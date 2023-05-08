@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
+import { EpsContext } from "../context/eps.context";
 
 export const EpsPage=()=>{
+  const {onSave} = useContext(EpsContext)
+  const [value, setValue] = React.useState(null);
+
+  //FUNCION MANEJADORA DEL INPUT QUE LE CAMBIA EL VALOR POR LO ESCRITO EN LA CASILLA 
+  const handleChange=(e)=>{
+    // console.log(e.target.value)
+    setValue(e.target.value)
+  }
+
+  const onSubmit=(e)=>{
+    e.preventDefault();
+    // console.log(value);
+    onSave(value);
+
+  }
+
   return(
     <main className="shadow-box col-10 bg-secondary p-4">
 
@@ -14,10 +31,24 @@ export const EpsPage=()=>{
 
           <h3 className="my-4"> Ingresar nueva EPS</h3>
 
-          <div className="col-3 mb-3">
+          <form 
+            className="col-3 mb-3"
+            onSubmit={onSubmit}
+          >
             <label >Nombre</label>
-            <input type="text" readonly className="form-control"  placeholder="nombre de la entidad " />
-          </div>
+            <input 
+              type="text" 
+              className="form-control"  
+              placeholder="nombre de la entidad" 
+              onChange={handleChange}
+            />
+            <button
+             className="btn btn-outline-warning mt-3" 
+             type="submit"
+            >
+              buscar
+            </button>
+          </form>
 
 
           <div className="row">

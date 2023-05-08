@@ -5,26 +5,31 @@ import { HomePage } from '../HomePage';
 import {Route, Routes, BrowserRouter} from 'react-router-dom';
 import { RegisterPage } from '../RegisterPage';
 import { EpsPage } from '../EpsPage';
+import { EpsProvider } from '../context/eps.context';
+import { PatientProvider } from '../context/patients.context';
 
 function App() {
   return (
     <>
     <BrowserRouter>
+      <EpsProvider>
+        <PatientProvider>
+          <div className='row principal-container'>
+            <SideMenu/>
 
-        <div className='row principal-container'>
-          <SideMenu/>
+          <Routes>
 
-        <Routes>
+              <Route path='/' element={<HomePage/>} />
+              <Route path='/register' element={<RegisterPage/>} />
+              <Route path='/eps' element={<EpsPage/>} />
 
-            <Route path='/' element={<HomePage/>} />
-            <Route path='/register' element={<RegisterPage/>} />
-            <Route path='/eps' element={<EpsPage/>} />
+          </Routes>
 
-        </Routes>
+          </div>
 
-        </div>
-
-      {/* <Footer/> */}
+          {/* <Footer/> */}
+        </PatientProvider>
+      </EpsProvider>
     </BrowserRouter>
     </>
   );

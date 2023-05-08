@@ -1,30 +1,54 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 export const SideMenu =()=>{
   return(
     <>
-      <div class="col-2 bg-white text-start aside-menu ">
+      <div className="col-2 bg-white text-start aside-menu ">
 
-        <img class="img-fluid my-3" src="../frontend/public/kinesioSportLogo.png" alt=""/>
+        <img className="img-fluid my-3" src="../frontend/public/kinesioSportLogo.png" alt=""/>
 
-        <aside class="row h-75 px-3 d-flex flex-column justify-content-evenly">
-          <h5 class="my-3">
-            <a class="nav-link" href="#"> <i class="bi bi-house-door-fill"></i> Home</a>
+        <aside className="row h-75 px-3 d-flex flex-column justify-content-evenly">
+
+          <h5 className="my-3">
+            <NavLink className="nav-link" to={`/`}> 
+              <i className="bi bi-house-door-fill"></i> 
+              <p>Home</p>
+            </NavLink>
           </h5>
-          <h5 class="my-3">
-            <a class="nav-link " href="./registro_pacientes.html"> <i class="bi bi-person-plus-fill"></i> registro pacientes</a>
+
+          <h5 className="my-3">
+            <NavLink className="nav-link " to={`/register`}>
+              <i className="bi bi-person-plus-fill"></i> 
+              <p>registro pacientes</p>
+            </NavLink>
           </h5>
-          <h5 class="my-3">
-            <a class="nav-link" href="#"> <i class="bi bi-clipboard2-minus"></i> ingreso pacientes</a>
+
+          <h5 className="my-3">
+            <NavLink className="nav-link" to={`/`}> 
+              <i className="bi bi-clipboard2-minus"></i> 
+              <p>ingresos</p>
+            </NavLink>
           </h5>
-          <h5 class="my-3">
-            <a class="nav-link" href="#"> <i class="bi bi-file-earmark-medical"></i> valoraciones</a>
+          <h5 className="my-3">
+            <NavLink className="nav-link" to={`/`}>
+             <i className="bi bi-file-earmark-medical"></i> 
+             <p>valoraciones</p>
+            </NavLink>
           </h5>
-          <h5 class="my-3">
-            <a class="nav-link" href="#"> <i class="fa-solid fa-person-walking"></i> evoluciones</a>
+
+          <h5 className="my-3">
+            <NavLink className="nav-link" to={`/`}>
+             <i className="fa-solid fa-person-walking"></i> 
+             <p>evoluciones</p>
+            </NavLink>
           </h5>
-          <h5 class="my-3">
-            <a class="nav-link" href="./eps.html"> <i class="bi bi-hospital"></i> EPS</a>
+
+          <h5 className="my-3">
+            <NavLink className="nav-link" to={`/eps`}> 
+              <i className="bi bi-hospital"></i> 
+              <p>EPS</p>
+            </NavLink>
           </h5>
         </aside>
 
