@@ -8,6 +8,10 @@ export function getPatientById(id) {
   return get(`/paciente/${id}`)
 }
 
+export function getPatientByCedula(cedula){
+  return get(`/paciente/cedula/${cedula}`)
+}
+
 export function getPatientByEPs(id){
   return get(`/paciente/eps/${id}`)
 }

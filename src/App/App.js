@@ -7,6 +7,7 @@ import { RegisterPage } from '../RegisterPage';
 import { EpsPage } from '../EpsPage';
 import { EpsProvider } from '../context/eps.context';
 import { PatientProvider } from '../context/patients.context';
+import { ConfirmationPage } from '../ConfirmationsPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route path='/' element={<HomePage/>} />
               <Route path='/register' element={<RegisterPage/>} />
               <Route path='/eps' element={<EpsPage/>} />
+              <Route path='/admission' element={<ConfirmationPage/>} />
 
           </Routes>
 

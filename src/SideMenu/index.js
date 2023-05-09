@@ -10,46 +10,46 @@ export const SideMenu =()=>{
 
         <aside className="row h-75 px-3 d-flex flex-column justify-content-evenly">
 
-          <h5 className="my-3">
-            <NavLink className="nav-link" to={`/`}> 
-              <i className="bi bi-house-door-fill"></i> 
+          <div className="my-3">
+            <NavLink className="nav-link d-flex align-item-center" to={`/`}> 
+              <i className="bi bi-house-door-fill me-2"></i> 
               <p>Home</p>
             </NavLink>
-          </h5>
+          </div>
 
-          <h5 className="my-3">
-            <NavLink className="nav-link " to={`/register`}>
-              <i className="bi bi-person-plus-fill"></i> 
+          <div className="my-3">
+            <NavLink className="nav-link d-flex align-item-center" to={`/register`}>
+              <i className="bi bi-person-plus-fill me-2"></i> 
               <p>registro pacientes</p>
             </NavLink>
-          </h5>
+          </div>
 
-          <h5 className="my-3">
-            <NavLink className="nav-link" to={`/`}> 
-              <i className="bi bi-clipboard2-minus"></i> 
-              <p>ingresos</p>
+          <div className="my-3">
+            <NavLink className="nav-link d-flex align-item-center" to={`/admission`}> 
+              <i className="bi bi-clipboard2-minus me-2"></i> 
+              <p>admisiones</p>
             </NavLink>
-          </h5>
-          <h5 className="my-3">
-            <NavLink className="nav-link" to={`/`}>
-             <i className="bi bi-file-earmark-medical"></i> 
+          </div>
+          <div className="my-3">
+            <NavLink className="nav-link d-flex align-item-center" to={`/`}>
+             <i className="bi bi-file-earmark-medical me-2"></i> 
              <p>valoraciones</p>
             </NavLink>
-          </h5>
+          </div>
 
-          <h5 className="my-3">
-            <NavLink className="nav-link" to={`/`}>
-             <i className="fa-solid fa-person-walking"></i> 
+          <div className="my-3">
+            <NavLink className="nav-link d-flex align-item-center" to={`/`}>
+             <i className="fa-solid fa-person-walking me-2"></i> 
              <p>evoluciones</p>
             </NavLink>
-          </h5>
+          </div>
 
-          <h5 className="my-3">
-            <NavLink className="nav-link" to={`/eps`}> 
-              <i className="bi bi-hospital"></i> 
+          <div className="my-3">
+            <NavLink className="nav-link d-flex align-item-center" to={`/eps`}> 
+              <i className="bi bi-hospital me-2"></i> 
               <p>EPS</p>
             </NavLink>
-          </h5>
+          </div>
         </aside>
 
       </div>

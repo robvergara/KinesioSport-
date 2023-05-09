@@ -1,8 +1,6 @@
 import axios from 'axios';
 // import { authHeader } from './login.service';
 
-export const img_URL = 'http://localhost:3005/'
-
 export const api = axios.create({baseURL:'http://localhost:3001/api'});
 
 export async function get(url, params) {

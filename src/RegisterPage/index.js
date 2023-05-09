@@ -19,7 +19,6 @@ export const RegisterPage = ()=>{
   },[])
 
   const handleChange = (e) =>{
-
     const {name, value} = e.target;
     setData(prevState=>({
       ...prevState,
