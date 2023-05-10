@@ -4,8 +4,12 @@ import {getPatientByCedula} from "../services/register.services"
 import { AdmissionsForm } from "./AdmissionsPage";
 // import { useNavigate } from "react-router";
 const admissionToken = "64594b727512a02cd4c0b040"
+const valorationToken = "645915e11a36206c6d6d7e80"
+const evaluationToken = "645914d61a36206c6d6d7e7d"
 
 export const ConfirmationPage=()=>{
+  // const{layout, search, initialValues, body} = useContext()
+
   const [layout, setLayout] = useState()
   const [search, setSearch] = useState()
   const [initialValues, setInitialValues] = useState()
@@ -31,16 +35,54 @@ export const ConfirmationPage=()=>{
 
   // const navigate = useNavigate()
 
-  useEffect(()=>{
-    const getTemplate = async()=>{
+  // useEffect(()=>{
+  //   const getTemplate = async()=>{
+  //     if(state.admission == true){
+  //       const template = await getLayout(admissionToken);
+  //       console.log(template)
+  //       setLayout(template[0]);
+        
+  //     }
+  //     if(state.evaluation == true) {
+  //       const template = await getLayout(evaluationToken);
+  //       console.log(template)
+  //       setLayout(template[0]);
+        
+  //     }
+  //     if(state.valoration == true) {
+  //       const template = await getLayout(valorationToken);
+  //       console.log(template)
+  //       setLayout(template[0]);
+        
+  //     }
+
+  //   if(layout == null){
+  //     getTemplate()
+  //   }
+  // }
+  // },[state]);
+
+  const getTemplate = async()=>{
+    if(state.admission == true){
       const template = await getLayout(admissionToken);
-      // console.log(template[0])
+      console.log(template)
       setLayout(template[0]);
+      
     }
-    if(layout == null){
-      getTemplate()
+    if(state.evaluation == true) {
+      const template = await getLayout(evaluationToken);
+      console.log(template)
+      setLayout(template[0]);
+      
     }
-  },[state]);
+    if(state.valoration == true) {
+      const template = await getLayout(valorationToken);
+      console.log(template)
+      setLayout(template[0]);
+      
+    }
+    return
+  }
 
 
   const onSearch= async(e)=>{
@@ -61,21 +103,30 @@ export const ConfirmationPage=()=>{
 
   const onSubmit =(e)=>{
     e.preventDefault()
-    console.log(body)
-    const keys = Object.keys(body)
+    // console.log(body)
+    const saveSection= (section)=>{
 
-    const campos = keys.map(key=>{
-      console.log(body.titulo)
-      return {
-        titulo: key,
-        valor: body.key,
-        tipo: typeof(body.key)
+      const keys = Object.keys(section)
+      const values = Object.values(section)
+  
+      const campos = []
+      for (let index = 0; index < keys.length; index++) {
+        campos.push( {
+          titulo: keys[index],
+          valor: values[index],
+          tipo: typeof(values[index]),
+          opciones : typeof(values[index]) !== "select"? [] : [1]
+        })
+        
       }
-    })
+      return campos
+    }
+
+
 
     const data = {
       body:{
-        campos:campos,
+        campos: saveSection(body),
         titulo:layout.nombre
       },
       cedula_tipo:initialValues.cedula_tipo,
@@ -100,7 +151,7 @@ export const ConfirmationPage=()=>{
       )}
       <div className="content-view container row bg-white h-auto p-4">
 
-        {layout && (
+        
           <div>
             {!initialValues && (
 
@@ -208,23 +259,25 @@ export const ConfirmationPage=()=>{
 
                   {/* SELECCION DE FORMULARIOS */}
                   <div className="d-flex">
-                    <button className="btn btn-outline-warning mx-2" onClick={onAdmission}>
+                    <button className="btn btn-outline-warning mx-2" onClick={()=>{onAdmission(); getTemplate()}}>
                       admisiones
                     </button>
 
-                    <button className="btn btn-outline-warning mx-2" onClick={onValoration}>
+                    <button className="btn btn-outline-warning mx-2" onClick={()=> {onValoration(); getTemplate()}}>
                       valoraciones
                     </button>
 
-                    <button className="btn btn-outline-warning mx-2" onClick={onEvaluation}>
+                    <button className="btn btn-outline-warning mx-2" onClick={()=> {onEvaluation(); getTemplate()}}>
                       evaluaciones
                     </button>
                   </div>
 
                   {/* COMPONENTES DE LOS TIPOS DE FORMULARIOS */}
+                {layout && (
+
                 <form onSubmit={onSubmit}>
 
-                  {state.admission && (
+                  {(state.admission || state.evaluation || state.valoration == true) && (
                     <AdmissionsForm handleChange={bodyHandleChange} layout={layout} />
                   )}
 
@@ -232,10 +285,11 @@ export const ConfirmationPage=()=>{
                     guardar
                   </button>
                 </form>
+                )}
               </>
             )}
           </div>
-        )}
+        
       </div>
     </main>
   )
