@@ -18,13 +18,30 @@ export const AdmissionsForm=({handleChange, layout})=>{
                 <>
                   <div className="col-3 mb-3">
                     <label >{campo.titulo} </label>
-                    <input 
-                      type={campo.tipo}
-                      className="form-control" 
-                      placeholder={campo.titulo}
-                      onChange={handleChange}
-                      name={campo.titulo}
-                    />
+                    {campo.tipo == "opciones" && (
+                      <>
+                        <select 
+                          className="form-control" 
+                          name={campo.titulo} 
+                          onChange={handleChange}
+                        >
+                          <option value="">seleccionar</option>
+                          {campo.opciones.map(opcion=>(
+                            <option value={opcion}>{opcion}</option>
+                          ))}
+
+                        </select>
+                      </>
+                    )}
+                    {campo.tipo != "opciones" && (
+                      <input 
+                        type={campo.tipo}
+                        className="form-control" 
+                        placeholder={campo.titulo}
+                        onChange={handleChange}
+                        name={campo.titulo}
+                      />
+                    )}
                   </div>
                 </>
               ))}
