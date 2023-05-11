@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useState } from "react"
 import { getLayout } from "../services/admissions.services";
 import {getPatientByCedula} from "../services/register.services"
-import { AdmissionsForm } from "./AdmissionsPage";
+import { Forms } from "./Forms";
 // import { useNavigate } from "react-router";
 const admissionToken = "64594b727512a02cd4c0b040"
 const valorationToken = "645915e11a36206c6d6d7e80"
@@ -13,18 +13,8 @@ export const ConfirmationPage=()=>{
   const [layout, setLayout] = useState()
   const [search, setSearch] = useState()
   const [initialValues, setInitialValues] = useState()
-  const [body, setBody] = useState()
-  
-  // const data = {
-  //   body:{
-  //     campos:body,
-  //     titulo:layout.titulo
-  //   },
-  //   cedula_tipo:initialValues.cedula_tipo,
-  //   cedula_numero: initialValues.cedula_numero,
-  //   nombre: layout.titulo
+  const [section, setSection] = useState()
 
-  // }
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -33,34 +23,6 @@ export const ConfirmationPage=()=>{
   const onValoration=()=>{dispatch({type: actionTypes.valoration})}
   const onRegret=()=>{dispatch({type: actionTypes.regret})}
 
-  // const navigate = useNavigate()
-
-  // useEffect(()=>{
-  //   const getTemplate = async()=>{
-  //     if(state.admission == true){
-  //       const template = await getLayout(admissionToken);
-  //       console.log(template)
-  //       setLayout(template[0]);
-        
-  //     }
-  //     if(state.evaluation == true) {
-  //       const template = await getLayout(evaluationToken);
-  //       console.log(template)
-  //       setLayout(template[0]);
-        
-  //     }
-  //     if(state.valoration == true) {
-  //       const template = await getLayout(valorationToken);
-  //       console.log(template)
-  //       setLayout(template[0]);
-        
-  //     }
-
-  //   if(layout == null){
-  //     getTemplate()
-  //   }
-  // }
-  // },[state]);
 
   const getTemplate = async()=>{
     if(state.admission == true){
@@ -71,7 +33,7 @@ export const ConfirmationPage=()=>{
     }
     if(state.evaluation == true) {
       const template = await getLayout(evaluationToken);
-      console.log(template)
+      // console.log(template)
       setLayout(template[0]);
       
     }
@@ -92,19 +54,10 @@ export const ConfirmationPage=()=>{
     setInitialValues(res[0]);
   }
 
-  const bodyHandleChange = (e) =>{
-    const {name, value} = e.target;
-    setBody(prevState=>({
-      ...prevState,
-      [name]:value
-    }))
-  }
-
-
   const onSubmit =(e)=>{
     e.preventDefault()
     // console.log(body)
-    const saveSection= (section)=>{
+    const saveParams= (section)=>{
 
       const keys = Object.keys(section)
       const values = Object.values(section)
@@ -122,13 +75,28 @@ export const ConfirmationPage=()=>{
       return campos
     }
 
+    const saveSections =(section)=>{
+      const keys = Object.keys(section);
+      const values = Object.values(section);
+      console.log(keys)
+      console.log(values)
+
+      const secciones = []
+
+      for (let i = 0; i < keys.length; i++) {
+        secciones.push({
+          titulo: keys[i],
+          campos: saveParams(values[i])
+        })
+        
+      }
+      return secciones
+    }
+
 
 
     const data = {
-      body:{
-        campos: saveSection(body),
-        titulo:layout.nombre
-      },
+      body: Object.values(saveSections(section)),
       cedula_tipo:initialValues.cedula_tipo,
       cedula_numero: initialValues.cedula_numero,
       nombre: layout.nombre
@@ -278,7 +246,7 @@ export const ConfirmationPage=()=>{
                 <form onSubmit={onSubmit}>
 
                   {(state.admission || state.evaluation || state.valoration == true) && (
-                    <AdmissionsForm handleChange={bodyHandleChange} layout={layout} />
+                    <Forms layout={layout} section={section} setSection={setSection} />
                   )}
 
                   <button className="btn btn-outline-warning" type="submit">
