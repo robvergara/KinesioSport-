@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import {PatientContext} from "../context/patients.context"
 import { EpsContext } from "../context/eps.context";
+import { createAdmission } from "../services/admissions.services";
 
 export const RegisterPage = ()=>{
 
@@ -30,6 +31,7 @@ export const RegisterPage = ()=>{
     e.preventDefault();
     console.log(data)
     onSave(data)
+    createAdmission(data)
 
   }
 

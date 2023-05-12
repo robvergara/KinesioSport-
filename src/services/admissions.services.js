@@ -12,9 +12,10 @@ export const createAdmission=(body)=>{
     plantilla:body.plantilla,
     cedula_tipo: body.cedula_tipo,
     cedula_numero: body.cedula_numero,
-    usuario_creacion: body.user,
+    usuario_creacion: body.user || "pds",
     usuario_instancia: body.usuario_instancia,
     body: body.body
+
   })
 }
 

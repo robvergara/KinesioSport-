@@ -1,5 +1,5 @@
 import { useReducer, useState, createContext } from "react"
-import { getLayout } from "../services/admissions.services";
+import { createAdmission, getLayout } from "../services/admissions.services";
 import {getPatientByCedula} from "../services/register.services"
 
 // import { useNavigate } from "react-router";
@@ -86,15 +86,18 @@ export const FormsProvider=({children})=>{
     }
 
 
-
     const data = {
       body: Object.values(saveSections(section)),
       cedula_tipo:initialValues.cedula_tipo,
       cedula_numero: initialValues.cedula_numero,
-      nombre: layout.nombre
+      nombre: layout.nombre,
+      plantilla: layout._id,
+      usuario_instancia: initialValues.nombre,
+      usuario_creacion: initialValues.user
   
     }
-    console.log(data)
+    // console.log(data)
+    createAdmission(data)
   }
 
   const onBack=()=>{
