@@ -1,18 +1,11 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Section } from "../Section";
+import { FormsContext } from "../../context/forms.context";
 
-export const Forms=({layout, section, setSection})=>{
+export const Forms=()=>{
 
-  // const [section, setSection] = useState()
-  console.log(section)
-
-  const sectionHandleChange = field =>{
-    const {value} = field;
-    setSection(prevState=>({
-      ...prevState,
-      [value.name]:value
-    }))
-  }
+  const { layout } = useContext(FormsContext)
+  // console.log(section)
 
   return(
     <>
@@ -22,7 +15,7 @@ export const Forms=({layout, section, setSection})=>{
 
         {layout.body.map (sec => (
           <>
-            <Section sec={sec} setSection={setSection} section={section} sectionHandleChange={sectionHandleChange} />
+            <Section sec={sec} />
           </>
         ))}
 

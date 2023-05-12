@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { FormsContext } from "../../context/forms.context";
 
 export const Field=({campo, handleChange})=>{
 
   return(
     <>
       <form className="col-3 mb-3">
+
         <label >{campo.titulo} </label>
         {campo.tipo == "opciones" && (
           <>
@@ -21,6 +23,7 @@ export const Field=({campo, handleChange})=>{
 
             </select>
           </>
+          
         )}
         {campo.tipo != "opciones" && (
           <input 

@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Field } from "../Field"
+import { FormsContext } from "../../context/forms.context";
 
 
-export const Section=({sec, sectionHandlechange, setSection })=>{
+export const Section=({ sec })=>{
+
+  const { setSection }= useContext(FormsContext)
   const [fields, setFields] = useState([])
 
   const sectionHandleChange = field =>{
     // const {value} = field;
-    console.log(field)
+    // console.log(field)
     setSection(prevState=>({
       ...prevState,
       [sec.titulo]:field
