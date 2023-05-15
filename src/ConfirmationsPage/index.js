@@ -2,6 +2,9 @@ import { useContext } from "react"
 import {getPatientByCedula} from "../services/register.services"
 import { Forms } from "./Forms";
 import { FormsContext } from "../context/forms.context";
+import { Histories } from "./Histories";
+import { PersonalData } from "./PersonalData";
+import { ButtonsFormSelect } from "./Forms/ButtonsFormSelect";
 
 
 export const ConfirmationPage=()=>{
@@ -42,7 +45,7 @@ export const ConfirmationPage=()=>{
       <div className="content-view container row bg-white h-auto p-4">
 
         
-          <div>
+          <div className="row">
             {!initialValues && (
 
               <form onSubmit={onSearch}>
@@ -75,92 +78,18 @@ export const ConfirmationPage=()=>{
 
             {initialValues && (
               <>
-                <form>
+                <div className="col-6">
 
-                  {/* COMPOMENTE DE DATOS PERSONALES */}
-                  <h3>Datos personales</h3>
-                  <div className="row">
+                  <PersonalData initialValues={initialValues}/>
+                  <Histories cedula={initialValues.cedula_numero} />
 
-                    <div className="col-3 mb-3">
-                      <label >Primer apellido</label>
-                      <input 
-                        type="text"
-                        className="form-control" 
-                        name="apellido1"
-                        value={initialValues.apellido1}
-                        readOnly
-                      />
-
-                    </div>
-
-                    <div className="col-3 mb-3">
-                      <label >Segundo apellido</label>
-                      <input
-                      type="text" 
-                      className="form-control"  
-                      value={initialValues.apellido2}
-                      readOnly
-                      name="apellido2"
-                      />
-                    </div>
-
-                    <div className="col-3 mb-3">
-                      <label >Nombres </label>
-                      <input 
-                        type="text" 
-                        className="form-control"  
-                        value={initialValues.nombre}
-                        readOnly
-                        name="nombre"
-                      />
-                    </div>
-
-                    <div className="col-3 mb-3">
-                      <label>tipo de documento </label>
-                      <input
-                      type="text" 
-                      className="form-control" 
-                      name="cedula_tipo"
-                      value={initialValues.cedula_tipo}
-                      readOnly
-                      />
-                    </div>
-
-                    <div className="col-3 mb-3">
-                      <label>Documento </label>
-                      <input
-                      type="number" 
-                      className="form-control"  
-                      name="cedula_numero"
-                      value={initialValues.cedula_numero}
-                      readOnly
-                      />
-                    </div>
-                    
-                  </div>
-                </form>
+                </div>
                 
-                  {/* BOTONES DE INTERACCION CON LA INTERFAZ */}
 
-                  {/* REGRESAR LOS FORMULARIOS */}
-                  <button className="btn btn-outline-warning btn-light px-5 mb-3" onClick={onRegret}>
-                    atras
-                  </button>
+                <div className="col-6">
 
                   {/* SELECCION DE FORMULARIOS */}
-                  <div className="d-flex">
-                    <button className="btn btn-outline-warning mx-2" onClick={()=>{onAdmission(); getTemplate()}}>
-                      admisiones
-                    </button>
-
-                    <button className="btn btn-outline-warning mx-2" onClick={()=> {onValoration(); getTemplate()}}>
-                      valoraciones
-                    </button>
-
-                    <button className="btn btn-outline-warning mx-2" onClick={()=> {onEvaluation(); getTemplate()}}>
-                      evaluaciones
-                    </button>
-                  </div>
+                  <ButtonsFormSelect/>
 
                   {/* COMPONENTES DE LOS TIPOS DE FORMULARIOS */}
                 {layout && (
@@ -168,14 +97,17 @@ export const ConfirmationPage=()=>{
                 <form onSubmit={onSubmit}>
 
                   {(state.admission || state.evaluation || state.valoration == true) && (
-                    <Forms layout={layout} section={section} setSection={setSection} />
+                    <>
+                      <Forms layout={layout} section={section} setSection={setSection} />
+                      <button className="btn btn-outline-warning" type="submit">
+                        guardar
+                      </button>
+                    </>
                   )}
 
-                  <button className="btn btn-outline-warning" type="submit">
-                    guardar
-                  </button>
                 </form>
                 )}
+                </div>
               </>
             )}
           </div>

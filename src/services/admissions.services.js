@@ -25,3 +25,7 @@ export const getAdmissionPacient=(body)=>{
     cedula: body.cedula
   })
 }
+
+export const getAllHistories=(cedula)=>{
+  return get(`formulario/${cedula}`);
+}

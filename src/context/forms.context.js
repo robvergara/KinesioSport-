@@ -1,5 +1,5 @@
 import { useReducer, useState, createContext } from "react"
-import { createAdmission, getLayout } from "../services/admissions.services";
+import { createAdmission, getAllHistories, getLayout } from "../services/admissions.services";
 import {getPatientByCedula} from "../services/register.services"
 
 // import { useNavigate } from "react-router";
@@ -14,6 +14,7 @@ export const FormsProvider=({children})=>{
   const [search, setSearch] = useState()
   const [initialValues, setInitialValues] = useState()
   const [section, setSection] = useState()
+  const [histories, setHistories] = useState()
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -104,6 +105,12 @@ export const FormsProvider=({children})=>{
     setInitialValues(null);
   }
 
+  const getHistorial = async(cedula)=>{
+    const list = await getAllHistories(cedula);
+    console.log(list);
+    setHistory(list);
+  }
+
   return(
     <FormsContext.Provider
       value={{
@@ -119,6 +126,9 @@ export const FormsProvider=({children})=>{
         setLayout,
         setInitialValues,
         setSection,
+        getHistorial,
+        setHistories,
+        histories, 
         section,
         layout,
         state,

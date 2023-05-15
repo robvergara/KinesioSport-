@@ -5,7 +5,7 @@ export const Field=({campo, handleChange})=>{
 
   return(
     <>
-      <form className="col-3 mb-3">
+      <form className="col-4 mb-3">
 
         <label >{campo.titulo} </label>
         {campo.tipo == "opciones" && (
