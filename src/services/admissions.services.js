@@ -29,3 +29,7 @@ export const getAdmissionPacient=(body)=>{
 export const getAllHistories=(cedula)=>{
   return get(`formulario/${cedula}`);
 }
+
+export const getOneHistory=(formId)=>{
+  return get(`formulario/view/${formId}`);
+}

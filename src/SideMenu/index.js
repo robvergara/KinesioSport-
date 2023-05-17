@@ -30,7 +30,7 @@ export const SideMenu =()=>{
               <p>admisiones</p>
             </NavLink>
           </div>
-          <div className="my-3">
+          {/* <div className="my-3">
             <NavLink className="nav-link d-flex align-item-center" to={`/`}>
              <i className="bi bi-file-earmark-medical me-2"></i> 
              <p>valoraciones</p>
@@ -42,7 +42,7 @@ export const SideMenu =()=>{
              <i className="fa-solid fa-person-walking me-2"></i> 
              <p>evoluciones</p>
             </NavLink>
-          </div>
+          </div> */}
 
           <div className="my-3">
             <NavLink className="nav-link d-flex align-item-center" to={`/eps`}> 

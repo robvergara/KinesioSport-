@@ -1,6 +1,6 @@
 import { useReducer, useState, createContext } from "react"
-import { createAdmission, getAllHistories, getLayout } from "../services/admissions.services";
-import {getPatientByCedula} from "../services/register.services"
+import { createAdmission, getLayout, getOneHistory } from "../services/admissions.services";
+// import {getPatientByCedula} from "../services/register.services"
 
 // import { useNavigate } from "react-router";
 const admissionToken = "64594b727512a02cd4c0b040"
@@ -15,6 +15,11 @@ export const FormsProvider=({children})=>{
   const [initialValues, setInitialValues] = useState()
   const [section, setSection] = useState()
   const [histories, setHistories] = useState()
+  //ESTADOS PATA EL PESTAÑEADO
+  const [tabMenu, setTabMenu] = useState([])
+  const [tabList, setTabList] = useState([])
+  const [activeTab, setActiveTab] = useState("main");
+  const [dataTabs, setDataTabs] = useState();
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -105,10 +110,9 @@ export const FormsProvider=({children})=>{
     setInitialValues(null);
   }
 
-  const getHistorial = async(cedula)=>{
-    const list = await getAllHistories(cedula);
-    console.log(list);
-    setHistory(list);
+  const getLog= async(id) =>{
+    const res = await getOneHistory(id);
+    console.log(res)
   }
 
   return(
@@ -125,15 +129,22 @@ export const FormsProvider=({children})=>{
         onBack,
         setLayout,
         setInitialValues,
-        setSection,
-        getHistorial,
         setHistories,
+        getLog,
+        setTabMenu,
+        setTabList,
+        setActiveTab,
+        setDataTabs,
+        dataTabs, 
+        activeTab, 
+        tabList, 
         histories, 
         section,
         layout,
         state,
         search,
-        initialValues, 
+        initialValues,
+        tabMenu 
       }}
     >
       {children}

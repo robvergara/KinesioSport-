@@ -1,5 +1,3 @@
-import { useContext, useState } from "react";
-import { FormsContext } from "../../context/forms.context";
 
 export const Field=({campo, handleChange})=>{
 
@@ -33,6 +31,8 @@ export const Field=({campo, handleChange})=>{
             onChange={handleChange}
             name={campo.titulo}
             key={campo.titulo}
+            value={campo.valor? campo.valor.valor : ""}
+            readOnly={campo.valor? true : false}
           />
         )}
       </form>
