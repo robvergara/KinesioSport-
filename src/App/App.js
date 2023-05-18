@@ -18,6 +18,7 @@ function App() {
         <PatientProvider>
           {/* <div className='row principal-container'> */}
           <div className='d-flex flex-nowrap h-100'>
+          {/* <div className='d-inline-flex'> */}
             <SideMenu/>
 
           <Routes>
