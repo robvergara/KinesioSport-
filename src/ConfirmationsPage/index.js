@@ -7,16 +7,14 @@ import { PersonalData } from "./PersonalData";
 import { ButtonsFormSelect } from "./Forms/ButtonsFormSelect";
 import { DinamicTabs } from "./Tabs";
 import {TabContent, TabPane} from 'reactstrap'
+import { SearchPatient } from "./SearchPatient";
 
 
 export const ConfirmationPage=()=>{
   const {
     state,
     layout,
-    search,
-    setSearch,
     initialValues, 
-    setInitialValues,
     onSubmit,
     onBack,
     activeTab,
@@ -24,20 +22,19 @@ export const ConfirmationPage=()=>{
 
   } = useContext(FormsContext)
   // console.log(dataTabs)
-  const onSearch= async(e)=>{
-    e.preventDefault();
-    const res = await getPatientByCedula(search);
-    // console.log(res[0]);
-    setInitialValues(res[0]);
-  }
 
   return(
     <>
       <main className="shadow-box col-10 bg-secondary p-4">
+
+        {/* PESTAÑAS DINAMICAS DE LA SECCION */}
         <DinamicTabs/>  
 
+        {/* PESTAÑA DE INICIO DE LA SECCION ADMISIONES. NUNCA SE CIERRA */}
         <TabContent activeTab={activeTab}>
           <TabPane tabId="main">
+
+            {/* BOTON PARA REGRESAR A LA BARRA DE BUSQUEDA POR CEDULA */}
             <div className="content-view container row bg-white h-auto p-4">
               {initialValues && (
                 <button className="col-3 btn btn-outline-warning btn-light px-5 my-3" onClick={onBack}>
@@ -45,43 +42,23 @@ export const ConfirmationPage=()=>{
                 </button>
               )}
 
-            
+              
               <div className="row">
                 {!initialValues && (
 
-                  <form onSubmit={onSearch}>
+                  //FORMULARIO DE BUSQUEDA DE PACIENTES POR CEDULA
+                  <SearchPatient/>
 
-                    <h3 className="mb-3">Buscar paciente</h3>
-                    <div className="row">
-
-                      <div className="col-5 mb-3">
-                        <label>Documento </label>
-                        <input
-                        type="number" 
-                        className="form-control" 
-                        placeholder="numedo de documento" 
-                        name="cedula_numero"
-                        onChange={(e)=> setSearch(e.target.value)}
-                        />
-                      </div>
-
-                    </div>
-
-                    <button
-                      className="btn btn-outline-warning mt-1" 
-                      type="submit"
-                    >
-                      buscar 
-                    </button>
-
-                  </form>
                 )}
 
                 {initialValues && (
                   <>
                     <div className="col-6">
 
+                      {/* COMPONENTE QUE MUESTRA LOS DATOS PERSONALES DE LA PERSONA AL MOMENTO DE HACER LA BUSQUEDA */}
                       <PersonalData initialValues={initialValues}/>
+
+                      {/* COMPONENTE QUE MUESTRA LAS HISTORIAS QUE TIENE LA PERSONA. SI LE DA CLICK A UN COMPONENTE SE ABRE UNA PESTAÑA NUEVA PARA VER CADA HISTORIA */}
                       <Histories cedula={initialValues.cedula_numero} />
 
                     </div>
@@ -92,22 +69,23 @@ export const ConfirmationPage=()=>{
                       {/* SELECCION DE FORMULARIOS */}
                       <ButtonsFormSelect/>
 
-                      {/* COMPONENTES DE LOS TIPOS DE FORMULARIOS */}
-                    {layout && (
+                      {/* RENDERIZADO DEL FORMULARIO SEGUN EL BOTON QUE SE ESCOGIO */}
+                      {layout && (
 
-                    <form onSubmit={onSubmit}>
+                      <form onSubmit={onSubmit}>
 
-                      {(state.admission || state.evaluation || state.valoration == true) && (
-                        <>
-                          <Forms layout={layout} />
-                          <button className="btn btn-outline-warning" type="submit">
-                            guardar
-                          </button>
-                        </>
+                        {(state.admission || state.evaluation || state.valoration == true) && (
+                          <>
+                            {/* COMPONENTE QUE RENDERIZA EL FORMULARIO DE ACUERDO AL JSON ESTIPULADO EN EL BACKEND QUE SE LE ENVIA EN EL ATRIBUTO "LAYOUT" */}
+                            <Forms layout={layout} />
+                            <button className="btn btn-outline-warning" type="submit">
+                              guardar
+                            </button>
+                          </>
+                        )}
+
+                      </form>
                       )}
-
-                    </form>
-                    )}
                     </div>
                   </>
                 )}
@@ -117,13 +95,16 @@ export const ConfirmationPage=()=>{
           </TabPane>
         </TabContent>
 
+        {/* CREACION DE LOS CUERPOS DE LAS PESTAÑAS DINAMICAS */}
         {dataTabs ? dataTabs.map((tab)=>(
           <>
             <TabContent activeTab={activeTab}>
               <TabPane tabId={tab._id}>
+
                 <div className="container bg-white">
                   <Forms layout={tab} />
                 </div>
+
               </TabPane>
             </TabContent>
           </>
