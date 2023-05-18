@@ -6,7 +6,7 @@ export const SideMenu =()=>{
     <>
       <div className="col-2 bg-white text-start aside-menu ">
 
-        <img className="img-fluid my-3" src="../frontend/public/kinesioSportLogo.png" alt=""/>
+        <img className="img-fluid my-3" src="./logo.png" alt=""/>
 
         <aside className="row h-75 px-3 d-flex flex-column justify-content-evenly">
 
