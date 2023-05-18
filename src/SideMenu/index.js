@@ -4,7 +4,8 @@ import { NavLink } from "react-router-dom";
 export const SideMenu =()=>{
   return(
     <>
-      <div className="col-2 bg-white text-start aside-menu ">
+      {/* <div className="col-2 bg-white text-start aside-menu "> */}
+      <div className="col-2 text-bg-dark text-start aside-menu ">
 
         <img className="img-fluid my-3" src="../frontend/public/kinesioSportLogo.png" alt=""/>
 
@@ -12,8 +13,9 @@ export const SideMenu =()=>{
 
           <div className="my-3">
             <NavLink className="nav-link d-flex align-item-center" to={`/`}> 
-              <i className="bi bi-house-door-fill me-2"></i> 
-              <p>Home</p>
+              {/* <i className="bi bi-house-door-fill me-2"></i>  */}
+              <svg class="bi pe-none me-2" width="16" height="16"><use ></use></svg>
+              <p>Inicio</p>
             </NavLink>
           </div>
 
