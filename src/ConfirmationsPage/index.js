@@ -11,27 +11,19 @@ import {TabContent, TabPane} from 'reactstrap'
 
 export const ConfirmationPage=()=>{
   const {
-    onAdmission,
-    onEvaluation,
-    onValoration,
-    onRegret,
     state,
-    getTemplate,
     layout,
     search,
     setSearch,
     initialValues, 
     setInitialValues,
-    section,
-    setSection,
     onSubmit,
     onBack,
     activeTab,
-    tabMenu,
     dataTabs
 
   } = useContext(FormsContext)
-  console.log(dataTabs)
+  // console.log(dataTabs)
   const onSearch= async(e)=>{
     e.preventDefault();
     const res = await getPatientByCedula(search);
@@ -125,7 +117,7 @@ export const ConfirmationPage=()=>{
           </TabPane>
         </TabContent>
 
-        {dataTabs ? dataTabs.map((tab, i)=>(
+        {dataTabs ? dataTabs.map((tab)=>(
           <>
             <TabContent activeTab={activeTab}>
               <TabPane tabId={tab._id}>

@@ -18,10 +18,10 @@ export const Histories= ({cedula})=>{
  },[])
 
  const viewLog=(log)=>{
-  console.log(tabMenu);
+  // console.log(tabMenu);
   const list = [...tabMenu];
   list.push(log)
-  console.log(list)
+  // console.log(list)
   setTabMenu(list);
  }
   return(

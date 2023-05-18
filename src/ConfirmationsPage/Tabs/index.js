@@ -5,10 +5,8 @@ import { getOneHistory } from "../../services/admissions.services";
 import { FormsContext } from "../../context/forms.context";
 
 export const DinamicTabs=()=>{
-  const {tabMenu, tabList, setTabList, activeTab, setActiveTab, setDataTabs} = useContext(FormsContext)
-  // const [activeTab, setActiveTab] = useState("main");
-  // const [tabList, setTabList] = useState([])
-  // console.log(tabList)
+  const {tabMenu, tabList, setTabList, activeTab, setActiveTab, setDataTabs, setTabMenu} = useContext(FormsContext)
+
   const changeTab=(idTab)=>{
     if(idTab !== activeTab){
       setActiveTab(idTab);
@@ -25,7 +23,7 @@ export const DinamicTabs=()=>{
         const newData = res[0];
         data.push(newData);
         newTablist.push(name)
-        console.log(newData)
+        // console.log(newData)
       }
 
       setTabList(newTablist)
@@ -33,6 +31,14 @@ export const DinamicTabs=()=>{
     }
     tabName()
   },[tabMenu])
+
+  const delTab=(id)=>{
+    const list = tabMenu.filter(tab=> tab!= id);
+    // console.log(list)
+    setTabMenu(list)
+    changeTab("main")
+    // console.log(id)
+  }
 
   // console.log(tabList)
 
@@ -47,8 +53,11 @@ export const DinamicTabs=()=>{
           {tabMenu ? tabMenu.map((tab, i)=>{
             return(
             <NavItem>
-              <NavLink className={((activeTab) == tab ? "nav-link active bg-white" :"nav-link bg-white" )} aria-current="page" onClick={()=> changeTab(tab)}>
+              <NavLink className={((activeTab) == tab ? "nav-link active bg-white d-flex" :"nav-link bg-white d-flex" )} aria-current="page" onClick={()=> changeTab(tab)}>
                 <div>{tabList[i]}</div>
+                {tab && (
+                  <i className="bi bi-x-square-fill" onClick={()=>delTab(tab)}></i>
+                  )}
               </NavLink>
             </NavItem>
           )}) : <></>}
