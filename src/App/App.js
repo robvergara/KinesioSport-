@@ -16,7 +16,8 @@ function App() {
     <BrowserRouter>
       <EpsProvider>
         <PatientProvider>
-          <div className='row principal-container'>
+          {/* <div className='row principal-container'> */}
+          <div className='d-flex flex-nowrap h-100'>
             <SideMenu/>
 
           <Routes>
