@@ -20,9 +20,9 @@ export const SideMenu = () => {
         </div>
         
       </nav> */}
-      <div className="d-flex flex-column flex-shrink-0 bg-body-tertiary p-2">
+      <div className="d-flex flex-column flex-shrink-0 bg-body-tertiary p-1 py-2">
         <button
-          class="btn bnt-color-kine mb-auto text-center"
+          class="btn bnt-color-kine mb-auto mx-auto text-center w-75 "
           type="button"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasWithBothOptions"
@@ -30,17 +30,6 @@ export const SideMenu = () => {
         >
           <i class="fa-solid fa-bars"></i>
         </button>
-        {/* <div className="">
-          <button
-            class="btn bnt-color-kine"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasWithBothOptions"
-            aria-controls="offcanvasWithBothOptions"
-          >
-            <i class="fa-solid fa-bars"></i>
-          </button>
-        </div> */}
 
         <div class="dropdown border-top">
           <a
@@ -104,9 +93,22 @@ export const SideMenu = () => {
             ></button>
           </div>
           <div class="offcanvas-body">
-            <p>
-              Try scrolling the rest of the page to see this option in action.
-            </p>
+            <ul className="nav nav-pills flex-column mb-auto">
+              <li className="nav-item">
+                <NavLink className="nav-link align-item-center linkText m-1" to={`/`}>
+                  <i className="fa-solid fa-house me-2"></i> Inicio
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link align-item-center linkText m-1"
+                  to={`/register`}
+                >
+                  <i className="bi bi-person-plus-fill me-2"></i>
+                  Registro
+                </NavLink>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
