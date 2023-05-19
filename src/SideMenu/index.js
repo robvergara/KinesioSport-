@@ -22,7 +22,7 @@ export const SideMenu = () => {
       </nav> */}
       <div className="d-flex flex-column flex-shrink-0 bg-body-tertiary p-1 py-2">
         <button
-          class="btn bnt-color-kine mb-auto mx-auto text-center w-75 "
+          class="btn bnt-color-kine mb-auto mx-auto mt-1 text-center w-75 "
           type="button"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasWithBothOptions"
@@ -34,7 +34,7 @@ export const SideMenu = () => {
         <div class="dropdown border-top">
           <a
             href="#"
-            class="d-flex align-items-center justify-content-center p-2 link-body-emphasis text-decoration-none dropdown-toggle"
+            class="d-flex align-items-center justify-content-center p-1 m-1 link-body-emphasis text-decoration-none dropdown-toggle"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
