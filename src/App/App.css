@@ -49,3 +49,8 @@ button {
   --bs-nav-pills-link-active-bg: #FCA533;
   --bs-nav-pills-link-active-color: #212529;
 }
+
+.hamb:hover{
+  background-color: #212529;
+  color: #FCA533;
+}

@@ -4,25 +4,9 @@ import { NavLink } from "react-router-dom";
 export const SideMenu = () => {
   return (
     <>
-      {/* <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-        <div className="">
-          <button
-            class="btn btn-light"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasWithBothOptions"
-            aria-controls="offcanvasWithBothOptions"
-          >
-            <i class="fa-solid fa-bars"></i>
-          </button>
-        </div>
-        </div>
-        
-      </nav> */}
       <div className="d-flex flex-column flex-shrink-0 bg-body-tertiary p-1 py-2">
         <button
-          class="btn bnt-color-kine mb-auto mx-auto mt-1 text-center w-75 "
+          class="btn bnt-color-kine mb-auto mx-auto mt-1 text-center w-75 hamb"
           type="button"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasWithBothOptions"
@@ -92,10 +76,14 @@ export const SideMenu = () => {
               aria-label="Close"
             ></button>
           </div>
-          <div class="offcanvas-body">
+          <hr className="mx-3"></hr>
+          <div class="offcanvas-body d-flex flex-column">
             <ul className="nav nav-pills flex-column mb-auto">
               <li className="nav-item">
-                <NavLink className="nav-link align-item-center linkText m-1" to={`/`}>
+                <NavLink
+                  className="nav-link align-item-center linkText m-1"
+                  to={`/`}
+                >
                   <i className="fa-solid fa-house me-2"></i> Inicio
                 </NavLink>
               </li>
@@ -108,7 +96,38 @@ export const SideMenu = () => {
                   Registro
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link align-item-center linkText m-1"
+                  to={`/admission`}
+                >
+                  <i className="bi bi-clipboard2-minus me-2"></i>
+                  Adminisiones
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link align-item-center linkText m-1"
+                  to={`/`}
+                >
+                  <i class="fa-solid fa-arrow-up-right-dots me-2"></i>
+                  Evoluciones
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link align-item-center linkText m-1"
+                  to={`/eps`}
+                >
+                  <i className="bi bi-hospital me-2"></i>
+                  EPS
+                </NavLink>
+              </li>
             </ul>
+            <hr className=""></hr>
+            <div class="">
+              <h3>Ariel Navarro</h3>
+            </div>
           </div>
         </div>
       </div>
