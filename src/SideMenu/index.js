@@ -76,7 +76,6 @@ export const SideMenu = () => {
               aria-label="Close"
             ></button>
           </div>
-          <hr className="mx-3"></hr>
           <div class="offcanvas-body d-flex flex-column">
             <ul className="nav nav-pills flex-column mb-auto">
               <li className="nav-item">
