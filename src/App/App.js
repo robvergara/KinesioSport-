@@ -9,36 +9,43 @@ import { EpsProvider } from '../context/eps.context';
 import { PatientProvider } from '../context/patients.context';
 import { ConfirmationPage } from '../ConfirmationsPage';
 import { FormsProvider } from '../context/forms.context';
+import { LoginPage } from '../LoginPage';
+import { AuthProvider } from '../context/auth';
+import { LogOutPage } from '../LogoutPage';
 
 function App() {
   return (
     <>
     <BrowserRouter>
-      <EpsProvider>
-        <PatientProvider>
-          {/* <div className='row principal-container'> */}
-          <div className='d-flex flex-nowrap h-100'>
-          {/* <div className='d-inline-flex'> */}
-            <SideMenu/>
+      <AuthProvider>
+        <EpsProvider>
+          <PatientProvider>
+            {/* <div className='row principal-container'> */}
+            <div className='d-flex flex-nowrap h-100'>
+            {/* <div className='d-inline-flex'> */}
+              <SideMenu/>
 
-          <Routes>
+            <Routes>
 
-              <Route path='/' element={<HomePage/>} />
-              <Route path='/register' element={<RegisterPage/>} />
-              <Route path='/eps' element={<EpsPage/>} />
-              <Route path='/admission' element={
-                <FormsProvider>
-                  <ConfirmationPage/>
-                </FormsProvider>
-              } />
+                <Route path='/' element={<HomePage/>} />
+                <Route path='/register' element={<RegisterPage/>} />
+                <Route path='/eps' element={<EpsPage/>} />
+                <Route path='/admission' element={
+                  <FormsProvider>
+                    <ConfirmationPage/>
+                  </FormsProvider>
+                } />
+                <Route path='login' element={<LoginPage/>} />
+                <Route path='logout' element={<LogOutPage/>} />
 
-          </Routes>
+            </Routes>
 
-          </div>
+            </div>
 
-          {/* <Footer/> */}
-        </PatientProvider>
-      </EpsProvider>
+            {/* <Footer/> */}
+          </PatientProvider>
+        </EpsProvider>
+      </AuthProvider>
     </BrowserRouter>
     </>
   );

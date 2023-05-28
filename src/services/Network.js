@@ -1,11 +1,11 @@
 import axios from 'axios';
-// import { authHeader } from './login.service';
+import { authHeader } from './login.services';
 
 export const api = axios.create({baseURL:'http://localhost:3001/api'});
 
 export async function get(url, params) {
   try {
-    const res = await api.get(url)
+    const res = await api.get(url, { params, headers: authHeader() })
     // const res = await api.get(url, {params, headers: authHeader()})
     return res.data
   } catch (error) {
@@ -15,7 +15,7 @@ export async function get(url, params) {
 
 export async function post (url, body){
   try {
-    const res = await api.post(url,body);
+    const res = await api.post(url, body, {headers: authHeader()});
     // const res = await api.post(url,body,{headers: authHeader()});
     return res.data;
   } catch (error) {
@@ -25,7 +25,7 @@ export async function post (url, body){
 
 export async function patch (url,body, params){
   try {
-    const res = await api.patch(url, body);
+    const res = await api.patch(url, body, {headers: authHeader()});
     // const res = await api.patch(url, body, {params, headers: authHeader()});
     return res.data
   } catch (error) {
@@ -35,7 +35,7 @@ export async function patch (url,body, params){
 
 export async function erase (url,params){
   try {
-    const res = await api.delete(url);
+    const res = await api.delete(url, { params, headers: authHeader() });
     // const res = await api.delete(url, {params, headers: authHeader()});
     return res.data;
   } catch (error) {
