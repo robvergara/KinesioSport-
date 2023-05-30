@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useAuth } from "../context/auth";
 import { Navigate } from "react-router";
 import "./login.css";
+import { ErrorContext } from "../context/error.context";
 
 export const LoginPage = () => {
   const [user, setUser] = useState({ usuario: "", password: "" });
   const auth = useAuth();
+  const {state} = useContext(ErrorContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,6 +60,11 @@ export const LoginPage = () => {
                     value={user.usuario}
                     onChange={handleChange}
                   />
+                  {state.errorUser && (
+                    <label className="form-label text-danger">
+                      usuario no encontrado
+                    </label>
+                  )}
                 </div>
                 <div className="col-12 mt-1">
                   <label class="form-label" for="form3Example2">
@@ -75,6 +82,11 @@ export const LoginPage = () => {
                     value={user.password}
                     onChange={handleChange}
                   />
+                  {state.errorPassword && (
+                    <label className="form-label text-danger">
+                      contraseña incorrecta
+                    </label>
+                  )}
                 </div>
                 <div className="col-12">
                   <button

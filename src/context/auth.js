@@ -1,14 +1,15 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { getCurrentUser, getLogin } from "../services/login.services";
+import { ErrorContext } from "./error.context";
 
 // import { StateContext } from "./statesContext";
 
 export const AuthContext = createContext()
 
 export function AuthProvider({children}){
-  // const {onError, onRegret} = React.useContext(StateContext);
   const navigate = useNavigate();
+  const {onPasswordError, onUserError, onRegret} = useContext(ErrorContext);
   const [user, setUser] = useState(null);
   // console.log(user);
 
@@ -20,6 +21,8 @@ export function AuthProvider({children}){
       }
 
   },[]);
+
+
 
   const login = async(usuario)=>{
     // console.log(usuario);
@@ -37,7 +40,13 @@ export function AuthProvider({children}){
         window.location.reload()
       }
 
-      // else onError()
+      if(user === "Contrasena Equivocada"){
+        onPasswordError()
+      }
+
+      if (user === "Usuario no encontrado"){
+        onUserError()
+      }
 
     } catch (error) {
       // onError();
@@ -76,4 +85,5 @@ export function AuthRoute(props) {
 
   return props.children;
 }
+
 

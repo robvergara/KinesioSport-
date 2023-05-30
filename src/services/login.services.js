@@ -11,6 +11,7 @@ export async function getLogin(body) {
     if (res.data.token) {
       localStorage.setItem("kine_user", JSON.stringify(res.data));
     }
+    console.log(res.data)
     return res.data;
   } catch (reason) {
     console.error(reason.message);
