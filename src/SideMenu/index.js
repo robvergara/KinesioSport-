@@ -67,45 +67,75 @@ export const SideMenu = () => {
         </ul>
         <hr className="hr-text p-0 m-0" />
         <div className="dropdown btn btn-secondary bg-gradient rounded-4 p-1 d-flex bd-highlight align-middle">
-          <p className="flex-grow-1 m-auto">Ariel</p>
-          <a
-            href="#"
-            className="d-flex align-items-center justify-content-center p-1 m-1 link-body-emphasis text-decoration-none dropdown-toggle"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img
-              src="https://github.com/mdo.png"
-              alt="mdo"
-              width="24"
-              height="24"
-              className="rounded-circle"
-            />
-          </a>
+          {auth.user && (
+            <>
+              <p className="flex-grow-1 m-auto">{auth.user.nombre}</p>
+              <a
+              href="#"
+              className="d-flex align-items-center justify-content-center p-1 m-1 link-body-emphasis text-decoration-none dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img
+                src="./kinesio-sinfondo.png"
+                alt="mdo"
+                width="24"
+                height="24"
+                className="rounded-circle"
+              />
+            </a>
+            </>
+          )}
+          {!auth.user && (
+            <>
+              <p className="flex-grow-1 m-auto">ingresar</p>
+              <a
+                href="#"
+                className="d-flex align-items-center justify-content-center p-1 m-1 link-body-emphasis text-decoration-none dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+
+                <i class="bi bi-person-circle rounded-circle"
+                  alt="mdo"
+                  width="24"
+                  height="24"
+                >
+                </i>
+
+              </a>
+            </>
+          )}
+
           <ul className="dropdown-menu text-small shadow">
-            <li>
-              <a className="dropdown-item" href="#">
-                Ariel
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                New project...
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Settings
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Profile
-              </a>
-            </li>
-            <li>
-              <hr className="dropdown-divider" />
-            </li>
+            {auth.user && (
+              <>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    {auth.user.nombre}
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    New project...
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Settings
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Profile
+                  </a>
+                </li>
+                <li>
+                  <hr className="dropdown-divider" />
+                </li>
+              </>
+            )}
+
             {loginRoutes.map((route) => {
               if (route.publicOnly && auth.user) return null; //PARA QUE NO SE RENDERICE EL LOGIN
               if (route.private && !auth.user) return null; // PARA QUE NO SE RENDERICE EL PERFIL YL EL LOGOUT SI NO HAY LOGIN
