@@ -66,7 +66,7 @@ export const SideMenu = () => {
           </li>
         </ul>
         <hr className="hr-text p-0 m-0" />
-        <div className="dropdown btn btn-secondary bg-gradient p-1 d-flex bd-highlight align-middle">
+        <div className="dropdown btn btn-secondary bg-gradient rounded-4 p-1 d-flex bd-highlight align-middle">
           <p className="flex-grow-1 m-auto">Ariel</p>
           <a
             href="#"
