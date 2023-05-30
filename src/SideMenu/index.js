@@ -83,7 +83,7 @@ export const SideMenu = () => {
           )}
           {!auth.user && (
             <>
-              <p className="flex-grow-1 m-auto">ingresar</p>
+              <p className="flex-grow-1 m-auto">Ingresar</p>
               <a
                 href="#"
                 className="d-flex align-items-center justify-content-center p-1 m-1 link-body-emphasis text-decoration-none dropdown-toggle"
