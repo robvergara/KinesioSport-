@@ -91,7 +91,7 @@ export const SideMenu = () => {
                 aria-expanded="false"
               >
 
-                <i class="bi bi-person-circle rounded-circle"
+                <i className="bi bi-person-circle rounded-circle"
                   alt="mdo"
                   width="24"
                   height="24"
