@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect } from 'react'
 import {createEps, getAllEps, getEpsById} from '../services/eps.services'
 
 export const EpsContext = createContext()

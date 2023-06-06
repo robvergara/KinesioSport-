@@ -1,5 +1,4 @@
 import { useContext } from "react"
-import {getPatientByCedula} from "../services/register.services"
 import { Forms } from "./Forms";
 import { FormsContext } from "../context/forms.context";
 import { Histories } from "./Histories";
@@ -74,7 +73,7 @@ export const ConfirmationPage=()=>{
 
                       <form onSubmit={onSubmit}>
 
-                        {(state.admission || state.evaluation || state.valoration == true) && (
+                        {(state.admission || state.evaluation || state.valoration === true) && (
                           <>
                             {/* COMPONENTE QUE RENDERIZA EL FORMULARIO DE ACUERDO AL JSON ESTIPULADO EN EL BACKEND QUE SE LE ENVIA EN EL ATRIBUTO "LAYOUT" */}
                             <Forms layout={layout} />

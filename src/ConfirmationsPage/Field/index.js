@@ -6,7 +6,7 @@ export const Field=({campo, handleChange})=>{
       <form className="col-4 mb-3">
 
         <label >{campo.titulo} </label>
-        {campo.tipo == "opciones" && (
+        {campo.tipo === "opciones" && (
           <>
             <select 
               className="form-control" 
@@ -23,7 +23,7 @@ export const Field=({campo, handleChange})=>{
           </>
           
         )}
-        {campo.tipo != "opciones" && (
+        {campo.tipo !== "opciones" && (
           <input 
             type={campo.tipo}
             className="form-control" 

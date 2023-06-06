@@ -13,6 +13,7 @@ import { LoginPage } from "../LoginPage";
 import { AuthProvider } from "../context/auth";
 import { LogOutPage } from "../LogoutPage";
 import { ErrorProvider } from "../context/error.context";
+import { UsersManagment } from "../UsersManagment";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
                     />
                     <Route path="login" element={<LoginPage />} />
                     <Route path="logout" element={<LogOutPage />} />
+                    <Route path="users-managment" element={<UsersManagment/>} />
                   </Routes>
                 </div>
 

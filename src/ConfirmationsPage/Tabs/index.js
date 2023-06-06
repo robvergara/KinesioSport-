@@ -1,6 +1,7 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 // import { NavLink } from "react-router-dom"
-import {Nav, NavItem, NavLink, TabContent, TabPane} from 'reactstrap'
+// import {Nav, NavItem, NavLink, TabContent, TabPane} from 'reactstrap'
+import {Nav, NavItem, NavLink} from 'reactstrap'
 import { getOneHistory } from "../../services/admissions.services";
 import { FormsContext } from "../../context/forms.context";
 
@@ -33,7 +34,7 @@ export const DinamicTabs=()=>{
   },[tabMenu])
 
   const delTab=(id)=>{
-    const list = tabMenu.filter(tab=> tab!= id);
+    const list = tabMenu.filter(tab=> tab!== id);
     // console.log(list)
     setTabMenu(list)
     changeTab("main")
@@ -46,14 +47,14 @@ export const DinamicTabs=()=>{
     <>
       <Nav tabs>
         <NavItem>
-          <NavLink className={(activeTab == "main" ? "nav-link active bg-white" :"nav-link bg-white" )} aria-current="page" onClick={()=> changeTab("main")}>
+          <NavLink className={(activeTab === "main" ? "nav-link active bg-white" :"nav-link bg-white" )} aria-current="page" onClick={()=> changeTab("main")}>
             Datos personales
           </NavLink>
         </NavItem>
           {tabMenu ? tabMenu.map((tab, i)=>{
             return(
             <NavItem>
-              <NavLink className={((activeTab) == tab ? "nav-link active bg-white d-flex" :"nav-link bg-white d-flex" )} aria-current="page" onClick={()=> changeTab(tab)}>
+              <NavLink className={((activeTab) === tab ? "nav-link active bg-white d-flex" :"nav-link bg-white d-flex" )} aria-current="page" onClick={()=> changeTab(tab)}>
                 <div>{tabList[i]}</div>
                 {tab && (
                   <i className="bi bi-x-square-fill" onClick={()=>delTab(tab)}></i>

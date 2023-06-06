@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react"
 import { FormsContext } from "../../context/forms.context"
 import { getAllHistories } from "../../services/admissions.services";
 import { NavLink } from "react-router-dom";
-import { tabMenu } from "../Tabs";
+// import { tabMenu } from "../Tabs";
 
 
 export const Histories= ({cedula})=>{

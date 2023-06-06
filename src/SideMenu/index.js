@@ -66,7 +66,7 @@ export const SideMenu = () => {
             <>
               <p className="flex-grow-1 m-auto">{auth.user.nombre}</p>
               <a
-              href="#"
+              href={"/"}
               className="d-flex align-items-center justify-content-center p-1 m-1 link-body-emphasis text-decoration-none dropdown-toggle"
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -85,7 +85,7 @@ export const SideMenu = () => {
             <>
               <p className="flex-grow-1 m-auto">Ingresar</p>
               <a
-                href="#"
+                href={"/"}
                 className="d-flex align-items-center justify-content-center p-1 m-1 link-body-emphasis text-decoration-none dropdown-toggle"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
@@ -106,24 +106,19 @@ export const SideMenu = () => {
             {auth.user && (
               <>
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <NavLink className="dropdown-item" to={"/"} >
                     {auth.user.nombre}
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
-                    New project...
-                  </a>
+                  <NavLink className="dropdown-item" to={"/users-managment"}>
+                    Usuarios
+                  </NavLink>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
+                <NavLink className="dropdown-item" to={"/"} >
                     Settings
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Profile
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
                   <hr className="dropdown-divider" />

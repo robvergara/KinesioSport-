@@ -9,7 +9,7 @@ export const AuthContext = createContext()
 
 export function AuthProvider({children}){
   const navigate = useNavigate();
-  const {onPasswordError, onUserError, onRegret} = useContext(ErrorContext);
+  const {onPasswordError, onUserError} = useContext(ErrorContext);
   const [user, setUser] = useState(null);
   // console.log(user);
 

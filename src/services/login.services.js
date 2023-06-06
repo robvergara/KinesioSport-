@@ -32,7 +32,7 @@ export const getCurrentUser = () => {
 
 
 export function authHeader() {
-  const user = JSON.parse(localStorage.getItem("Kine_user"));
+  const user = JSON.parse(localStorage.getItem("kine_user"));
 
   if (user && user.token) {
     return { Authorization: `Bearer ${user.token}` };
