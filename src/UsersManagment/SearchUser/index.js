@@ -25,6 +25,11 @@ export const SearchUser = ()=>{
     // return res
   }
 
+  const onRegret=(e)=>{
+    e.preventDefault();
+    setUser(null)
+  }
+
   return(
     <>
       <div className="d-flex flex-column p-5">
@@ -95,11 +100,19 @@ export const SearchUser = ()=>{
                 id={user._id} 
               />
 
+              <button className="btn btn-outline-warning my-3" onClick={onRegret}>
+                regresar
+              </button>
+
             </>
           )}
           {(!!user && user.error) && (
             <>
               <h3>{user.message}</h3>
+
+              <button className="btn btn-outline-warning my-3" onClick={onRegret}>
+                regresar
+              </button>
             </>
           )}
         </>
