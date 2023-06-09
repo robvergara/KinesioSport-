@@ -1,11 +1,14 @@
 import { useState } from "react"
 import { deleteUser, getUserByCedula } from "../../services/user.services";
-import { ConfirmationModal } from "../../Modals/ConfirmationModal";
+import { ConfirmationModal } from "../../Modal/ConfirmationModal";
+import { InfoModal } from "../../Modal/InfoModal";
 
 export const SearchUser = ()=>{
   const [value, setValue] = useState();
   const [user, setUser] = useState();
   const [show, setShow] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [res, setRes] = useState(null)
 
   const handleShow = () => setShow(true);
 
@@ -22,6 +25,13 @@ export const SearchUser = ()=>{
     // e.preventDefault();
     console.log(id)
     const res = await deleteUser(id);
+    res.message = "usuario eliminado con exito!";
+    setRes(res);
+    setShow(false);
+    setShowModal(true);
+    setTimeout(() => {
+      setUser(null)
+    }, 2000);
     // return res
   }
 
@@ -68,7 +78,7 @@ export const SearchUser = ()=>{
           {(!!user && !user.error)  && (
             <>
               <div>
-                <h3>Usuario encontrado</h3>
+                {/* <h3>Usuario encontrado</h3> */}
                 <div className="card">
                   <div className="card-body">
 
@@ -103,7 +113,10 @@ export const SearchUser = ()=>{
               <button className="btn btn-outline-warning my-3" onClick={onRegret}>
                 regresar
               </button>
+              {res && (
 
+                <InfoModal message={res.message} show={showModal} setShow={setShowModal}/>
+              )}
             </>
           )}
           {(!!user && user.error) && (

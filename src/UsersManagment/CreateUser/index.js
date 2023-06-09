@@ -1,10 +1,13 @@
 import { useState } from "react"
 import { createUser } from "../../services/user.services";
+import { InfoModal } from "../../Modal/InfoModal";
 
 
 export const CreateUser = ()=>{
   const [show, setShow] = useState(false);
-  const [user, setUser] = useState(null)
+  const [showModal, setShowModal] = useState(false);
+  const [user, setUser] = useState(null);
+  const [res, setRes] = useState(null)
 
   const userHandleChange = (e) =>{
     const {name, value} = e.target;
@@ -15,6 +18,7 @@ export const CreateUser = ()=>{
   }
 
   const showForm =()=>{
+    setRes(null)
     setShow(true)
   }
   const closeForm=()=>{
@@ -24,7 +28,32 @@ export const CreateUser = ()=>{
   const onSubmit=async(e)=>{
     e.preventDefault();
     console.log(user);
-    await createUser(user);
+    if(!user.status){
+      const res = {}
+      res.message = "por favor ingrese el status del nuevo usuario";
+      setRes(res);
+      setShowModal(true);
+      return
+    }
+
+    const res = await createUser(user);
+    console.log(res)
+
+    if(!res.error){
+      res.message = "usuario creado satisfactoriamente" 
+      // console.log(res.message)
+      setRes(res);
+      setShowModal(true);
+
+      setTimeout(() => {
+        // closeForm()
+        // setUser(null)
+        window.location.reload()
+      }, 1000);
+    }
+
+    setRes(res);
+    setShowModal(true);
   }
 
   return(
@@ -37,9 +66,9 @@ export const CreateUser = ()=>{
 
         {show && (
           <>
-            <div className="row">
+            {/* <div className="row">
               <button className="col-4 btn btn-outline-warning" onClick={closeForm}>regresar</button>
-            </div>
+            </div> */}
 
             <h3 className="form-title mt-5">
               Ingresar nuevo usuario
@@ -54,6 +83,7 @@ export const CreateUser = ()=>{
                   placeholder="Nombre" 
                   name="nombre"
                   onChange={userHandleChange}
+                  required
                 />
               </div>
 
@@ -64,6 +94,7 @@ export const CreateUser = ()=>{
                   placeholder="Apellido" 
                   name="apellido"
                   onChange={userHandleChange}
+                  required
                 />
               </div>
 
@@ -74,6 +105,7 @@ export const CreateUser = ()=>{
                   placeholder="No documento" 
                   name="cedula"
                   onChange={userHandleChange}
+                  required
                 />
               </div>
 
@@ -84,6 +116,7 @@ export const CreateUser = ()=>{
                   placeholder="Nombre de usuario" 
                   name="usuario"
                   onChange={userHandleChange}
+                  required
                 />
               </div>
 
@@ -94,6 +127,7 @@ export const CreateUser = ()=>{
                   placeholder="Contraseña" 
                   name="contrasena"
                   onChange={userHandleChange}
+                  required
                 />
               </div>
 
@@ -102,6 +136,7 @@ export const CreateUser = ()=>{
                   className="form-control" 
                   name="status"
                   onChange={userHandleChange}
+                  required
                 >
                   <option defaultValue>seleccionar</option>
 
@@ -118,9 +153,18 @@ export const CreateUser = ()=>{
                 <button className="col-3 btn btn-outline-warning" type="submit">
                   crear usuario
                 </button>
+
+                <button className="col-3 btn btn-outline-warning ms-2" onClick={closeForm}>
+                  regresar
+                </button>
               </div>
 
             </form>
+            
+            {res && (
+              <InfoModal message={res.message} show={showModal} setShow={setShowModal} />
+            )}
+
           </>
         )}
 
