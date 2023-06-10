@@ -24,7 +24,7 @@ function App() {
             <EpsProvider>
               <PatientProvider>
                 {/* <div className='row principal-container'> */}
-                <div className="d-flex flex-nowrap h-100 principal">
+                <div className="d-inline-flex h-100 principal">
                   {/* <div className='d-inline-flex'> */}
                   <SideMenu />
 

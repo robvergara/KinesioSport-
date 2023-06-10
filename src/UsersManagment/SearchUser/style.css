@@ -1,0 +1,16 @@
+.buscar{
+    background-color: #FCA533;
+}
+
+.buscar:hover{
+    background-color: #FCA533;
+    color: white;
+}
+
+.fondo-kinesio{
+    background-color: #FCA533;
+}
+
+th, td{
+    font-size: 10px;
+}
