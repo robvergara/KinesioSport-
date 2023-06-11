@@ -1,16 +1,69 @@
-.buscar{
-    background-color: #FCA533;
+.buscar {
+  background-color: #fca533;
+  color: #001e51;
 }
 
-.buscar:hover{
-    background-color: #FCA533;
+.buscar:hover {
+  background-color: #fca533;
+  color: white;
+}
+
+.fondo-kinesio {
+  background-color: #fca533;
+  /* background: rgb(252,165,51); */
+  background: linear-gradient(
+    90deg,
+    rgba(252, 165, 51, 1) 0%,
+    rgba(247, 174, 77, 1) 100%
+  );
+}
+
+th,
+td {
+  font-size: 10px;
+}
+
+th {
+  color: #bcbecc;
+  letter-spacing: 2px;
+}
+
+.nombre {
+  color: #001e51;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.cedula {
+    color: #001e51;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.master,
+.admin,
+.fisio {
+  font-size: 12px;
+}
+
+.master {
+  background-color: #46a24a;
+  color: white;
+  letter-spacing: 1px;
+  font-size: 12px;
+}
+
+.fisio {
+    background-color: #466ca2;
     color: white;
+    letter-spacing: 1px;
+    font-size: 12px;
 }
 
-.fondo-kinesio{
-    background-color: #FCA533;
+.admin {
+    background-color: #c4bf1f;
+    color: white;
+    letter-spacing: 1px;
+    font-size: 12px;
 }
 
-th, td{
-    font-size: 10px;
-}

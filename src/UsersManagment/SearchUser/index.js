@@ -79,84 +79,34 @@ export const SearchUser = () => {
         <div className="container-fluid py-4 ">
           <div className="row">
             <div className="col-12">
-              <div className="card my-4">
-                <div className="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                  <div className="fondo-kinesio bg-gradient shadow-primary border-radius-lg pt-4 pb-3 rounded-4">
+              <div className="card my-3 border-0">
+                <div className="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent border-0">
+                  <div className="fondo-kinesio shadow-primary border-radius-lg pt-4 pb-3 rounded-3 shadow shadow">
                     <h6 className="text-white text-capitalize ps-3">
                       Usuarios
                     </h6>
                   </div>
                 </div>
-                <div className="card-body px-0 pb-2 bg-transparent">
-                  <div className="table-responsive p-0">
-                    <table className="table align-items-center mb-0 ">
+                <div className="card-body px-0 pb-2 bg-transparent shadow rounded border-0">
+                  <div className="table-responsive p-0 border-0">
+                    <table className="table align-items-center mb-0 border-0">
                       <thead>
                         <tr>
-                          <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                            Usuario
-                          </th>
-                          <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                            Cedula
-                          </th>
-                          <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                          <th className="text-uppercase ps-3 w-50">Usuario</th>
+                          <th className="text-uppercase ps-2 w-25">Cedula</th>
+                          <th className="text-center text-uppercase w-10">
                             Status
                           </th>
-                          <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                            Employed
+                          <th className="text-center text-uppercase w-10">
+                           
                           </th>
-                          <th class="text-secondary opacity-7"></th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <div class="d-flex px-2 py-1">
-                              <div>
-                                <img
-                                  src="../assets/img/team-2.jpg"
-                                  class="avatar avatar-sm me-3 border-radius-lg"
-                                  alt="user1"
-                                />
-                              </div>
-                              <div class="d-flex flex-column justify-content-center">
-                                <h6 class="mb-0 text-sm">John Michael</h6>
-                                <p class="text-xs text-secondary mb-0">
-                                  john@creative-tim.com
-                                </p>
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                            <p class="text-xs font-weight-bold mb-0">Manager</p>
-                            <p class="text-xs text-secondary mb-0">
-                              Organization
-                            </p>
-                          </td>
-                          <td class="align-middle text-center text-sm">
-                            <span class="badge badge-sm bg-gradient-success">
-                              Online
-                            </span>
-                          </td>
-                          <td class="align-middle text-center">
-                            <span class="text-secondary text-xs font-weight-bold">
-                              23/04/18
-                            </span>
-                          </td>
-                          <td class="align-middle">
-                            <a
-                              href="javascript:;"
-                              class="text-secondary font-weight-bold text-xs"
-                              data-toggle="tooltip"
-                              data-original-title="Edit user"
-                            >
-                              Edit
-                            </a>
-                          </td>
-                        </tr>
+                      <tbody className="border-0">
                         {!!user && !user.error && (
                           <>
-                            <tr>
-                              <td>
+                            <tr className="border-0">
+                              <td className="border-0">
                                 <div className="d-flex px-2 py-1">
                                   <div>
                                     <img
@@ -167,27 +117,56 @@ export const SearchUser = () => {
                                       className="avatar avatar-sm me-3 border-radius-lg"
                                     />
                                   </div>
-                                  <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">
+                                  <div className="d-flex flex-column justify-content-center">
+                                    <p className="mb-0 text-sm nombre">
                                       {user.nombre} {user.apellido}
-                                    </h6>
-                                    {/* <p class="text-xs text-secondary mb-0">
-                                      john@creative-tim.com
-                                    </p> */}
+                                    </p>
                                   </div>
                                 </div>
                               </td>
-                              <td>
-                                <h6 class="text-sm">{user.cedula}</h6>
+                              <td className="d-flex align-items-center border-0">
+                                <div className="d-flex py-1 ">
+                                  <div className="d-flex flex-column justify-content-center">
+                                    <p className="mb-0 text-sm cedula">
+                                      {user.cedula}
+                                    </p>
+                                  </div>
+                                </div>
                               </td>
-                              <td>
-                                <h6 class="text-sm">
-                                  {user.status === 0
-                                    ? "Super"
-                                    : user.status === 1
-                                    ? "Admin"
-                                    : "medico"}
-                                </h6>
+                              <td className="align-middle text-center text-sm border-0">
+                                {/* <span class="badge badge-sm bg-success master">Online</span> */}
+                                {/* <div className="d-flex d-flex py-1"> */}
+                                {user.status === 0 ? (
+                                  <span className="badge badge-sm mb-0 text-sm flex-column justify-content-center master bg-gradient">
+                                    MASTER
+                                  </span>
+                                ) : user.status === 1 ? (
+                                  <span className="badge badge-sm mb-0 text-sm flex-column justify-content-center admin bg-gradient">
+                                    ADMIN
+                                  </span>
+                                ) : (
+                                  <span className="badge badge-sm mb-0 text-sm flex-column justify-content-center fisio bg-gradient">
+                                    FISIO
+                                  </span>
+                                )}
+                              </td>
+                              <td className="align-middle text-center border-0">
+                                <div className="d-flex px-2 justify-content-center">
+                                  <div className="d-flex flex-column justify-content-center">
+                                    <button className="btn btn-primary btn-sm me-2 my-0">
+                                      <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                  </div>
+                                  <div className="d-flex flex-column justify-content-center">
+                                    <button
+                                      type="button"
+                                      className="btn btn-danger btn-sm my-0"
+                                      onClick={handleShow}
+                                    >
+                                      <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                  </div>
+                                </div>
                               </td>
                             </tr>
                           </>
