@@ -1,18 +1,50 @@
-import { useState } from "react";
-import { deleteUser, getUserByCedula } from "../../services/user.services";
+import { useEffect, useState } from "react";
+import { deleteUser, getAllUsers, getUserByCedula } from "../../services/user.services";
 import { ConfirmationModal } from "../../Modal/ConfirmationModal";
 import { InfoModal } from "../../Modal/InfoModal";
 
 import "./style.css";
+import { useAuth } from "../../context/auth";
 
 export const SearchUser = () => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState('');
   const [user, setUser] = useState();
+  const [list, setList] = useState();
   const [show, setShow] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [res, setRes] = useState(null);
+  const auth = useAuth()
+
+  let usersList = []
 
   const handleShow = () => setShow(true);
+
+  useEffect(()=>{
+
+      const userList = async()=>{
+        const res = await getAllUsers();
+        // console.log(res);
+        setList(res);
+      }
+      userList();
+
+
+  },[]);
+
+  if(!value.length >= 1) {
+    usersList = list;
+    // console.log(usersList)
+  }else{
+    usersList = list.filter(usuario => {
+      const cedula = usuario.cedula
+      return cedula.includes(value)
+    })
+    // console.log(usersList)
+  }
+
+  const onHandleSearch = (e)=>{
+    setValue(e.target.value);
+  }
 
   const onSearch = async (e) => {
     // console.log(value)
@@ -32,6 +64,7 @@ export const SearchUser = () => {
     setShowModal(true);
     setTimeout(() => {
       setUser(null);
+      window.location.reload()
     }, 2000);
     // return res
   };
@@ -44,8 +77,9 @@ export const SearchUser = () => {
   return (
     <>
       <div className="h-100 w-100">
-        <nav className="navbar navbar-expand-lg navbar-light">
+        <nav className="navbar navbar-expand-sm navbar-light">
           <div className="container-fluid py-1 px-3 w-100">
+            {/* BUSCADOR */}
             <div className="collapse navbar-collapse">
               <form onSubmit={onSearch} className="">
                 <div className="input-group input-group-sm mb-3">
@@ -56,7 +90,7 @@ export const SearchUser = () => {
                     aria-label="Sizing example input"
                     name="cedula_numero"
                     aria-describedby="inputGroup-sizing-sm"
-                    onChange={(e) => setValue(e.target.value)}
+                    onChange={onHandleSearch}
                   />
                   <button className="btn buscar bg-gradient" type="submit">
                     Buscar
@@ -64,18 +98,26 @@ export const SearchUser = () => {
                 </div>
               </form>
             </div>
-            <nav aria-label="breadcrumb">
-              <ol className="breadcrumb bg-transparent">
-                <li className="breadcrumb-item mini-titulo">Pablo</li>
-                <li className="breadcrumb-item mini-titulo seccion">
-                  Adminstrador
-                </li>
-              </ol>
-              {/* <h6 class="font-weight-bolder mb-0">Usuarios</h6> */}
-            </nav>
+            {/* DATOS DE USUARIO INGRESADO */}
+            {auth.user && (
+              <>
+              <nav aria-label="breadcrumb">
+                <ol className="breadcrumb bg-transparent">
+                  <li className="breadcrumb-item mini-titulo">{auth.user.nombre}</li>
+                  <li className="breadcrumb-item mini-titulo seccion">
+                    {
+                      auth.user.status === 0? "Super" : 
+                      auth.user.status === 1? "Admin" :
+                      "Fisio"
+                      }
+                  </li>
+                </ol>
+              </nav>
+              </>
+            )}
           </div>
         </nav>
-
+        {/* CONTAINER DE LA TABLA DE USUARIOS */}
         <div className="container-fluid py-4 ">
           <div className="row">
             <div className="col-12">
@@ -90,6 +132,7 @@ export const SearchUser = () => {
                 <div className="card-body px-0 pb-2 bg-transparent shadow rounded border-0">
                   <div className="table-responsive p-0 border-0">
                     <table className="table align-items-center mb-0 border-0">
+                      {/* EMCABEZADO DE LA TABLA */}
                       <thead>
                         <tr>
                           <th className="text-uppercase ps-3 w-50">Usuario</th>
@@ -102,11 +145,15 @@ export const SearchUser = () => {
                           </th>
                         </tr>
                       </thead>
+
+                      {/* CUERPO DE LA TABLA */}
                       <tbody className="border-0">
-                        {!!user && !user.error && (
+
+                      {!!usersList && usersList.map(user =>(
                           <>
                             <tr className="border-0">
                               <td className="border-0">
+
                                 <div className="d-flex px-2 py-1">
                                   <div>
                                     <img
@@ -124,6 +171,7 @@ export const SearchUser = () => {
                                   </div>
                                 </div>
                               </td>
+
                               <td className="d-flex align-items-center border-0">
                                 <div className="d-flex py-1 ">
                                   <div className="d-flex flex-column justify-content-center">
@@ -133,6 +181,7 @@ export const SearchUser = () => {
                                   </div>
                                 </div>
                               </td>
+
                               <td className="align-middle text-center text-sm border-0">
                                 {/* <span class="badge badge-sm bg-success master">Online</span> */}
                                 {/* <div className="d-flex d-flex py-1"> */}
@@ -153,11 +202,14 @@ export const SearchUser = () => {
                               <td className="align-middle text-center border-0">
                                 <div className="d-flex px-2 justify-content-center">
                                   <div className="d-flex flex-column justify-content-center">
+                                    {/* BOTON EDITAR */}
                                     <button className="btn btn-primary btn-sm me-2 my-0">
                                       <i class="fa-solid fa-pen-to-square"></i>
                                     </button>
+                                    
                                   </div>
                                   <div className="d-flex flex-column justify-content-center">
+                                    {/* BOTON ELIMINAR */}
                                     <button
                                       type="button"
                                       className="btn btn-danger btn-sm my-0"
@@ -165,11 +217,29 @@ export const SearchUser = () => {
                                     >
                                       <i class="fa-solid fa-trash-can"></i>
                                     </button>
+
                                   </div>
                                 </div>
                               </td>
                             </tr>
+                            
+                            {/* MODAL DE CONFIRMACION DE ESTADOS */}
+                            <ConfirmationModal
+                              show={show}
+                              setShow={setShow}
+                              handleShow={handleShow}
+                              deleteUser={delUser}
+                              id={user._id}
+                            />
+                            {res && (
+                              <InfoModal
+                                message={res.message}
+                                show={showModal}
+                                setShow={setShowModal}
+                              />
+                            )}
                           </>
+                          )
                         )}
                       </tbody>
                     </table>
@@ -179,94 +249,14 @@ export const SearchUser = () => {
             </div>
           </div>
         </div>
+        
 
-        {/* <form className="container-md h-100 d-flex border">
-          <div className="m-auto row g-0 align-items-center">aaa</div>
-        </form> */}
-
-        <div className="d-flex flex-column p-5 border">
-          {/* FORMULARIO DE BUSQUEDA DE USUARIO POR CEDULA */}
+        <div className="d-flex flex-column p-5">
           <>
-            {/* <form onSubmit={onSearch} className="mb-5">
-              <h3 className="mb-3">Buscar usuario</h3>
-              <div className="row">
-                <div className=" mb-3">
-                  <label>Documento </label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    placeholder="numedo de documento"
-                    name="cedula_numero"
-                    onChange={(e) => setValue(e.target.value)}
-                  />
-                </div>
-              </div>
-
-              <button className="btn btn-outline-warning mt-1" type="submit">
-                buscar
-              </button>
-            </form> */}
-          </>
-
-          <>
-            {/* DATOS DEL USUARIO ENCONTRADO */}
             {!!user && !user.error && (
               <>
-                <div>
-                  {/* <h3>Usuario encontrado</h3> */}
-                  <div className="card">
-                    <div className="card-body">
-                      <h5 className="card-title">
-                        Nombre del usuario:{" "}
-                        <b>
-                          {user.nombre} {user.apellido}
-                        </b>
-                      </h5>
-                      <p>
-                        numero de cedula: <b>{user.cedula}</b>
-                      </p>
-                      <p>
-                        status:{" "}
-                        <b>
-                          {user.status === 0
-                            ? "Super"
-                            : user.status === 1
-                            ? "Admin"
-                            : "medico"}
-                        </b>
-                      </p>
-                    </div>
 
-                    <div className="text-center mb-3">
-                      <button className="btn btn-outline-warning me-2">
-                        editar
-                      </button>
-                      <button
-                        type="button"
-                        className="btn btn-outline-warning"
-                        onClick={handleShow}
-                      >
-                        eliminar
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* MODAL DE CONFIRMACION DE ESTADOS */}
-                <ConfirmationModal
-                  show={show}
-                  setShow={setShow}
-                  handleShow={handleShow}
-                  deleteUser={delUser}
-                  id={user._id}
-                />
-
-                <button
-                  className="btn btn-outline-warning my-3"
-                  onClick={onRegret}
-                >
-                  regresar
-                </button>
+                {/* MODAL INFORMATIVO */}
                 {res && (
                   <InfoModal
                     message={res.message}
@@ -277,8 +267,8 @@ export const SearchUser = () => {
               </>
             )}
             {!!user && user.error && (
-              <>
-                <h3>{user.message}</h3>
+              <div className="card p-3">
+                <h3 className="card-title">{user.message}</h3>
 
                 <button
                   className="btn btn-outline-warning my-3"
@@ -286,7 +276,7 @@ export const SearchUser = () => {
                 >
                   regresar
                 </button>
-              </>
+              </div>
             )}
           </>
         </div>

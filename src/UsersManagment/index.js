@@ -8,14 +8,18 @@ export const UsersManagment = () => {
     //   <SearchUser/>
     //   <CreateUser/>
     // </div>
-    <div className="my-2 w-100 overflow-auto row p-0 m-0">
-      {/* <label>Administrador de Usuarios</label> */}
-      <div className="col-9 col-sm-8">
-        <SearchUser />
+    <>
+
+      <div className="my-2 w-100 overflow-auto row p-0 m-0 justify-content-center">
+        {/* <label>Administrador de Usuarios</label> */}
+        <div className="col-9 col-sm-9">
+          <SearchUser />
+        </div>
+        <div className="col-4 col-sm-4 pt-2">
+          <CreateUser />
+        </div>
       </div>
-      <div className="col-3 col-sm-4 pt-2">
-        <CreateUser />
-      </div>
-    </div>
+
+    </>
   );
 };
