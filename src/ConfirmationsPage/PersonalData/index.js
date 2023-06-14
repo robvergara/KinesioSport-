@@ -1,20 +1,67 @@
-import { useContext } from "react"
-import { FormsContext } from "../../context/forms.context"
+import { useContext } from "react";
+import { FormsContext } from "../../context/forms.context";
 
+import "./style.css";
 
-export const PersonalData=({initialValues})=>{
-
-  const {onRegret} = useContext(FormsContext)
-
-  return(
+export const PersonalData = ({ initialValues }) => {
+  const { onRegret } = useContext(FormsContext);
+  console.log("PACIENTE");
+  console.log({ initialValues });
+  return (
     <>
-      <div className="mb-5">
-
+      <div className="mb-2">
         <form>
-
           {/* COMPOMENTE DE DATOS PERSONALES */}
-          <h3>Datos personales</h3>
+          {/* <h3>Datos personales</h3> */}
           <div className="row">
+            <label className="paciente col-12 mb-1 d-flex">
+              <div className="flex-grow-1 ">
+                {initialValues.apellido1} {initialValues.apellido2},{" "}
+                {initialValues.nombre}{" "}
+              </div>
+              <p className="text-body-secondary">
+                {initialValues.edad} años
+              </p>
+            </label>
+            <label className="cedula col-12 d-flex">
+              <strong className="me-3 paciente-titulo">Documento:</strong>{" "}
+              <p className="text-body-secondary mb-1">
+                {initialValues.cedula_tipo} - {initialValues.cedula_numero}
+              </p>
+            </label>
+            <label className="cedula col-12 d-flex">
+              <strong className="me-3 paciente-titulo">Nacimiento:</strong>{" "}
+              <p className="text-body-secondary mb-1">
+                {/* {new Date(initialValues.nacimiento)} */}
+                {initialValues.nacimiento.split('T')[0]}
+              </p>
+            </label>
+            <label className="cedula col-12 d-flex">
+              <strong className="me-3 paciente-titulo">Dirección:</strong>{" "}
+              <p className="text-body-secondary mb-1">
+                {initialValues.direccion}
+              </p>
+            </label>
+            <label className="cedula col-12 d-flex">
+              <strong className="me-3 paciente-titulo">Entidad:</strong>{" "}
+              <p className="text-body-secondary mb-1">
+                {initialValues.entidad_id}
+              </p>
+            </label>
+            <label className="cedula col-12 d-flex">
+              <strong className="me-3 paciente-titulo">Familiar:</strong>{" "}
+              <p className="text-body-secondary mb-1">
+              {initialValues.parentezco} - {initialValues.familiar}
+              </p>
+            </label>
+            <label className="cedula col-12 d-flex">
+              <strong className="me-3 paciente-titulo">Contacto:</strong>{" "}
+              <p className="text-body-secondary mb-1">
+                {initialValues.familiar_celular}
+              </p>
+            </label>
+          </div>
+          {/* <div className="row">
 
             <div className="col-4 mb-3">
               <label >Primer apellido</label>
@@ -72,15 +119,14 @@ export const PersonalData=({initialValues})=>{
               />
             </div>
             
-          </div>
+          </div> */}
         </form>
 
         {/* REGRESAR LOS FORMULARIOS */}
-        <button className="btn btn-outline-warning btn-light px-5 mb-3" onClick={onRegret}>
+        {/* <button className="btn btn-outline-warning btn-light px-5 mb-3" onClick={onRegret}>
           atras
-        </button>
-
+        </button> */}
       </div>
     </>
-  )
-}
+  );
+};

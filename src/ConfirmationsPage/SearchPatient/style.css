@@ -1,0 +1,13 @@
+.buscar {
+  background-color: #fca533;
+  color: #001e51;
+}
+
+.buscar:hover {
+  background-color: #fca533;
+  color: white;
+}
+
+/* .barra{
+  height: 25px;
+} */
