@@ -26,7 +26,7 @@ export const Histories= ({cedula})=>{
  }
   return(
     <>
-      <h5>Historial de registro</h5>
+      {/* <h5>Historial de registro</h5> */}
       {!!histories && (
         <>
           {histories.map(history=> {
