@@ -62,14 +62,20 @@ export const ConfirmationPage = () => {
               <div className="row">
                 <div className="col-12 pt-2 mb-4">
                   <div className="card border-0 shadow">
-                    <div class="card-header p-2 pt-3 border-0 bg-transparent">
-                      <div class="fondo-kinesio text-center border-radius-xl mt-n4 position-absolute rounded-3 shadow ms-3 ">
-                        <i class="fa-solid fa-hospital-user text-white m-3"></i>
+                    <div className="card-header p-2 pt-3 border-0 bg-transparent">
+                      <div className="fondo-kinesio text-center border-radius-xl mt-n4 position-absolute rounded-3 shadow ms-3 ">
+                        <i className="fa-solid fa-hospital-user text-white m-3"></i>
                       </div>
-                      <div class="text-end">
-                        <p class="text-sm mb-0 text-capitalize text-body-tertiary me-3">
-                          Datos personales
-                        </p>
+                      <div className="text-end">
+                        <div className="d-flex justify-content-end m-auto">
+                          <p className="text-sm mb-0 text-capitalize text-body-tertiary me-3 align-self-center">
+                            Datos personales
+                          </p>
+                          <button className="btn bg-gradient buscar">
+                            <i class="fa-solid fa-pen-to-square my-auto"></i>
+                            {/* <i className="fa-solid fa-user-plus my-auto"></i> */}
+                          </button>
+                        </div>
                       </div>
                     </div>
                     <div className="card-body p-3 pb-2 shadow rounded border-0 bg-transparent">
@@ -79,15 +85,22 @@ export const ConfirmationPage = () => {
                 </div>
                 <div className="col-12 pt-3 h-100">
                   <div className="card border-0 shadow">
-                    <div class="card-header p-2 pt-3 border-0 bg-transparent">
-                      <div class="fondo-kinesio text-center border-radius-xl mt-n4 position-absolute rounded-3 shadow ms-3 ">
-                        <i class="fa-solid fa-file-medical text-white m-3"></i>
+                    <div className="card-header p-2 pt-3 border-0 bg-transparent">
+                      <div className="fondo-kinesio text-center border-radius-xl mt-n4 position-absolute rounded-3 shadow ms-3 ">
+                        <i className="fa-solid fa-file-medical text-white m-3"></i>
                       </div>
-                      <div class="text-end">
-                        <p class="text-sm mb-0 text-capitalize text-body-tertiary me-3">
-                          Admisiones
-                        </p>
+                      <div className="text-end">
+                        <div className="d-flex justify-content-end m-auto">
+                          <p className="text-sm mb-0 text-capitalize text-body-tertiary me-3 align-self-center">
+                            Admisiones
+                          </p>
+                          <button className="btn bg-gradient buscar">
+
+                            <i class="fa-solid fa-plus my-auto"></i>
+                          </button>
+                        </div>
                       </div>
+
                     </div>
                     <div className="card-body p-3 pb-2 shadow rounded border-0 bg-transparent">
                       {initialValues && (
@@ -106,13 +119,13 @@ export const ConfirmationPage = () => {
               <div className="row h-100 p-0 m-0">
                 <div className="col-12 pt-2 pe-3">
                   <div className="card border-0 shadow h-100 ">
-                    <div class="card-header p-2 pt-3 border-0 bg-transparent">
-                      <div class="fondo-kinesio text-center border-radius-xl mt-n4 position-absolute rounded-3 shadow ms-3 ">
-                        <i class="fa-solid fa-hospital-user text-white m-3"></i>
+                    <div className="card-header p-2 pt-3 border-0 bg-transparent">
+                      <div className="fondo-kinesio text-center border-radius-xl mt-n4 position-absolute rounded-3 shadow ms-3 ">
+                        <i class="fa-regular fa-rectangle-list text-white m-3"></i>
                       </div>
-                      <div class="text-end">
-                        <p class="text-sm mb-0 text-capitalize text-body-tertiary me-3">
-                          Datos personales
+                      <div className="text-end">
+                        <p className="text-sm mb-0 text-capitalize text-body-tertiary me-3">
+                          Citas
                         </p>
                       </div>
                     </div>

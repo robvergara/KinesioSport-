@@ -7,6 +7,10 @@
 @import "../../node_modules/bootstrap/scss/mixins";
 @import "../../node_modules/bootstrap/scss/root";
 
+.mt-n4 {
+    margin-top: -3rem!important;
+}
+
 .buscar {
   background-color: #fca533;
   color: #001e51;
@@ -17,8 +21,12 @@
   color: white;
 }
 
+.boton-no:hover {
+  color: white;
+}
+
 .fondo-kinesio {
-  background-color: #fca533;
+  // background-color: #fca533;
   /* background: rgb(252,165,51); */
   background: linear-gradient(
     90deg,

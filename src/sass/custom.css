@@ -12196,6 +12196,10 @@ textarea.form-control-lg {
   --bs-form-invalid-border-color: #ea868f;
 }
 
+.mt-n4 {
+  margin-top: -3rem !important;
+}
+
 .buscar {
   background-color: #fca533;
   color: #001e51;
@@ -12206,8 +12210,11 @@ textarea.form-control-lg {
   color: white;
 }
 
+.boton-no:hover {
+  color: white;
+}
+
 .fondo-kinesio {
-  background-color: #fca533;
   /* background: rgb(252,165,51); */
   background: linear-gradient(90deg, rgb(252, 165, 51) 0%, rgb(247, 174, 77) 100%);
 }
