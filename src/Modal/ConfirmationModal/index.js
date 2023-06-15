@@ -12,7 +12,9 @@ export function ConfirmationModal({show, setShow, deleteUser, id }) {
         <Modal.Header closeButton>
           <Modal.Title>Eliminar</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Estas seguro que quieres eliminar el usuario?</Modal.Body>
+        <Modal.Body>
+          Estas seguro que deseas eliminar al usuario?
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Cerrar

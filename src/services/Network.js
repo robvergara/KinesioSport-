@@ -25,7 +25,17 @@ export async function post (url, body){
 
 export async function patch (url,body, params){
   try {
-    const res = await api.patch(url, body, {headers: authHeader()});
+    const res = await api.patch(url, body, {params, headers: authHeader()});
+    // const res = await api.patch(url, body, {params, headers: authHeader()});
+    return res.data
+  } catch (error) {
+    console.log(error.reason)
+  }
+}
+
+export async function put (url,body, params){
+  try {
+    const res = await api.put(url, body, {params, headers: authHeader()});
     // const res = await api.patch(url, body, {params, headers: authHeader()});
     return res.data
   } catch (error) {

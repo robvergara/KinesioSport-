@@ -1,4 +1,4 @@
-import {get, post, patch, erase} from './Network';
+import {get, post, put, erase} from './Network';
 
 export function getAllUsers(){
   return get("/usuario");
@@ -6,6 +6,10 @@ export function getAllUsers(){
 
 export function getUserByCedula(cedula){
   return get(`/usuario/cedula/${cedula}`);
+}
+
+export function getUserById(id){
+  return get(`/usuario/${id}`);
 }
 
 export function createUser(body){
@@ -20,12 +24,10 @@ export function createUser(body){
 }
 
 export function updateUser(id, body){
-  return patch(`/usuario/${id}`,{
+  return put(`/usuario/${id}`,{
     nombre: body.nombre,
     apellido: body.apellido,
     cedula: body.cedula,
-    usuario: body.usuario,
-    contrasena: body.contraseña,
     status: body.status,
   })
 }

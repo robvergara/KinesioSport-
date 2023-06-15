@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { deleteUser, getAllUsers, getUserByCedula } from "../../services/user.services";
+import { deleteUser, getAllUsers, getUserByCedula, updateUser } from "../../services/user.services";
 import { ConfirmationModal } from "../../Modal/ConfirmationModal";
 import { InfoModal } from "../../Modal/InfoModal";
 
 import "./style.css";
 import { useAuth } from "../../context/auth";
+import { EditUserModal } from "../../Modal/EditUserModal";
 
 export const SearchUser = () => {
   const [value, setValue] = useState('');
@@ -13,6 +14,9 @@ export const SearchUser = () => {
   const [show, setShow] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [res, setRes] = useState(null);
+  const [edit, setEdit] = useState(false);
+  const [editUser, setEditUser] = useState()
+  const [editUserId, setEditUserId] = useState()
   const auth = useAuth()
 
   let usersList = []
@@ -41,11 +45,11 @@ export const SearchUser = () => {
     })
     // console.log(usersList)
   }
-
+  //MANEJADOR DE BUSQUEDA DE USUARIO POR CEDULA
   const onHandleSearch = (e)=>{
     setValue(e.target.value);
   }
-
+  //FUNCION BUSQUEDA DE USUARIO
   const onSearch = async (e) => {
     // console.log(value)
     e.preventDefault();
@@ -53,7 +57,7 @@ export const SearchUser = () => {
     console.log(res);
     setUser(res);
   };
-
+  //FUNCION ELIMINAR USUARIO
   const delUser = async (id) => {
     // e.preventDefault();
     console.log(id);
@@ -68,11 +72,23 @@ export const SearchUser = () => {
     }, 2000);
     // return res
   };
-
+  //FUNCION REGRESAR ESTADO DEL MODAL
   const onRegret = (e) => {
     e.preventDefault();
     setUser(null);
   };
+  //FUNCION PARA MOSTRAR LOS INPUT PARA CAMBIAR LOS DATOS DE UN USUARIO
+  const editFields =(e,id)=>{
+    e.preventDefault();
+    setEdit(true);
+    setEditUserId(id)
+  }
+  // FUNCION PARA OCUPTAR LOS INPUT EN LOS DATOS DEL USUARIO Y QUE SE MUESTREN COMO ETIQUETA <P>
+  const cancelEdit=(e)=>{
+    e.preventDefault();
+    setEdit(false);
+  }
+
 
   return (
     <>
@@ -152,8 +168,8 @@ export const SearchUser = () => {
                       {!!usersList && usersList.map(user =>(
                           <>
                             <tr className="border-0">
+                              {/* NOMBRE DE USUARIOS */}
                               <td className="border-0">
-
                                 <div className="d-flex px-2 py-1">
                                   <div>
                                     <img
@@ -164,52 +180,63 @@ export const SearchUser = () => {
                                       className="avatar avatar-sm me-3 border-radius-lg"
                                     />
                                   </div>
-                                  <div className="d-flex flex-column justify-content-center">
-                                    <p className="mb-0 text-sm nombre">
-                                      {user.nombre} {user.apellido}
-                                    </p>
+                                  <div className="d-flex justify-content-center">
+
+                                        <p className="mb-0 me-1 text-sm nombre">
+                                          {user.nombre}
+                                        </p>
+                                        <p className="mb-0 text-sm nombre">
+                                          {user.apellido}
+                                        </p>
+
                                   </div>
                                 </div>
                               </td>
-
+                              {/* CEDULA */}
                               <td className="d-flex align-items-center border-0">
                                 <div className="d-flex py-1 ">
                                   <div className="d-flex flex-column justify-content-center">
-                                    <p className="mb-0 text-sm cedula">
-                                      {user.cedula}
-                                    </p>
+
+                                      <p className="mb-0 text-sm cedula">
+                                        {user.cedula}
+                                      </p>
+
                                   </div>
                                 </div>
                               </td>
-
+                              {/* STATUS */}
                               <td className="align-middle text-center text-sm border-0">
-                                {/* <span class="badge badge-sm bg-success master">Online</span> */}
-                                {/* <div className="d-flex d-flex py-1"> */}
-                                {user.status === 0 ? (
-                                  <span className="badge badge-sm mb-0 text-sm flex-column justify-content-center master bg-gradient">
-                                    MASTER
-                                  </span>
-                                ) : user.status === 1 ? (
-                                  <span className="badge badge-sm mb-0 text-sm flex-column justify-content-center admin bg-gradient">
-                                    ADMIN
-                                  </span>
-                                ) : (
-                                  <span className="badge badge-sm mb-0 text-sm flex-column justify-content-center fisio bg-gradient">
-                                    FISIO
-                                  </span>
-                                )}
+
+                                    {user.status === 0 ? (
+                                      <span className="badge badge-sm mb-0 text-sm flex-column justify-content-center master bg-gradient">
+                                        MASTER
+                                      </span>
+                                    ) : user.status === 1 ? (
+                                      <span className="badge badge-sm mb-0 text-sm flex-column justify-content-center admin bg-gradient">
+                                        ADMIN
+                                      </span>
+                                    ) : (
+                                      <span className="badge badge-sm mb-0 text-sm flex-column justify-content-center fisio bg-gradient">
+                                        FISIO
+                                      </span>
+                                    )}
+                                  
                               </td>
+
+                              {/* BOTONES DE ACCION DE USUARIOS */}
                               <td className="align-middle text-center border-0">
                                 <div className="d-flex px-2 justify-content-center">
                                   <div className="d-flex flex-column justify-content-center">
-                                    {/* BOTON EDITAR */}
-                                    <button className="btn btn-primary btn-sm me-2 my-0">
+                                    {/* BOTON EDITAR - ENVIAR CAMBIOS */}
+                                    <button className="btn btn-primary btn-sm me-2 my-0" onClick={(e)=> editFields(e,user._id)}>
+
                                       <i class="fa-solid fa-pen-to-square"></i>
+
                                     </button>
                                     
                                   </div>
                                   <div className="d-flex flex-column justify-content-center">
-                                    {/* BOTON ELIMINAR */}
+                                    {/* BOTON ELIMINAR - CANCELAR EDICION*/}
                                     <button
                                       type="button"
                                       className="btn btn-danger btn-sm my-0"
@@ -242,6 +269,13 @@ export const SearchUser = () => {
                           )
                         )}
                       </tbody>
+                      {edit &&(
+                              <EditUserModal 
+                                show={edit} 
+                                setShow={setEdit} 
+                                id={editUserId}
+                              />)
+                            }
                     </table>
                   </div>
                 </div>

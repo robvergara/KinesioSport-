@@ -1,4 +1,4 @@
-import {get, post} from './Network'
+import {get, post, put, erase} from './Network'
 
 export function getAllEps() {
   return get("/eps")
