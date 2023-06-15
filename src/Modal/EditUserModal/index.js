@@ -5,11 +5,13 @@ import Modal from 'react-bootstrap/Modal';
 import { getUserById, updateUser } from '../../services/user.services';
 import FormGroup from 'react-bootstrap/esm/FormGroup';
 import FormLabel from 'react-bootstrap/esm/FormLabel';
+import { InfoModal } from '../InfoModal';
 
 export function EditUserModal({show, setShow, id }) {
 
-  const [user, setUser] = useState()
-  const [changeUser, setChangeUser] = useState()
+  const [user, setUser] = useState();
+  const [changeUser, setChangeUser] = useState();
+  const [infoModal, setInfoModal] = useState(false);
 
   const handleClose = () => setShow(false);
 
@@ -37,12 +39,12 @@ export function EditUserModal({show, setShow, id }) {
     //ENVIAR LOS CAMPOS EDITADOS DEL USUARIO
     const changeFields=async(e)=>{
       e.preventDefault();
-      console.log(editUserId,editUser);
+      console.log(id,changeUser);
       const res = await updateUser(id,changeUser);
       console.log(res);
-      res.message = "usuario actualizado con exito!";
+      handleClose
+      setInfoModal(true)
       setTimeout(() => {
-        handleClose
         window.location.reload()
       }, 2000);
     }
@@ -125,6 +127,7 @@ export function EditUserModal({show, setShow, id }) {
           </Button>
         </Modal.Footer>
       </Modal>
+      <InfoModal show={infoModal} setShow={setInfoModal} message={"usuario actualizado con exito!"}/>
     </>
   );
 }

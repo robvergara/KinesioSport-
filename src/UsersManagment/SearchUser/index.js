@@ -15,8 +15,8 @@ export const SearchUser = () => {
   const [showModal, setShowModal] = useState(false);
   const [res, setRes] = useState(null);
   const [edit, setEdit] = useState(false);
-  const [editUser, setEditUser] = useState()
-  const [editUserId, setEditUserId] = useState()
+  const [editUserId, setEditUserId] = useState();
+
   const auth = useAuth()
 
   let usersList = []
@@ -82,11 +82,6 @@ export const SearchUser = () => {
     e.preventDefault();
     setEdit(true);
     setEditUserId(id)
-  }
-  // FUNCION PARA OCUPTAR LOS INPUT EN LOS DATOS DEL USUARIO Y QUE SE MUESTREN COMO ETIQUETA <P>
-  const cancelEdit=(e)=>{
-    e.preventDefault();
-    setEdit(false);
   }
 
 
@@ -270,12 +265,12 @@ export const SearchUser = () => {
                         )}
                       </tbody>
                       {edit &&(
-                              <EditUserModal 
-                                show={edit} 
-                                setShow={setEdit} 
-                                id={editUserId}
-                              />)
-                            }
+                        <EditUserModal 
+                          show={edit} 
+                          setShow={setEdit} 
+                          id={editUserId}
+                        />)
+                      }
                     </table>
                   </div>
                 </div>

@@ -14,6 +14,7 @@ import { AuthProvider } from "../context/auth";
 import { LogOutPage } from "../LogoutPage";
 import { ErrorProvider } from "../context/error.context";
 import { UsersManagment } from "../UsersManagment";
+import { UserProvider } from "../context/users.context";
 
 function App() {
   return (
@@ -21,34 +22,40 @@ function App() {
       <BrowserRouter>
         <ErrorProvider>
           <AuthProvider>
-            <EpsProvider>
-              <PatientProvider>
-                {/* <div className='row principal-container'> */}
-                <div className="d-inline-flex h-100 principal">
-                  {/* <div className='d-inline-flex'> */}
-                  <SideMenu />
+            {/* <UserProvider> */}
+              <EpsProvider>
+                <PatientProvider>
+                  {/* <div className='row principal-container'> */}
+                  <div className="d-inline-flex h-100 principal">
+                    {/* <div className='d-inline-flex'> */}
+                    <SideMenu />
 
-                  <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/register" element={<RegisterPage />} />
-                    <Route path="/eps" element={<EpsPage />} />
-                    <Route
-                      path="/admission"
-                      element={
-                        <FormsProvider>
-                          <ConfirmationPage />
-                        </FormsProvider>
-                      }
-                    />
-                    <Route path="login" element={<LoginPage />} />
-                    <Route path="logout" element={<LogOutPage />} />
-                    <Route path="users-managment" element={<UsersManagment/>} />
-                  </Routes>
-                </div>
+                    <Routes>
+                      <Route path="/" element={<HomePage />} />
+                      <Route path="/register" element={<RegisterPage />} />
+                      <Route path="/eps" element={<EpsPage />} />
+                      <Route
+                        path="/admission"
+                        element={
+                          <FormsProvider>
+                            <ConfirmationPage />
+                          </FormsProvider>
+                        }
+                      />
+                      <Route path="login" element={<LoginPage />} />
+                      <Route path="logout" element={<LogOutPage />} />
+                      <Route path="users-managment" element={
+                        <UserProvider>
+                          <UsersManagment/>
+                        </UserProvider>
+                      } />
+                    </Routes>
+                  </div>
 
-                {/* <Footer/> */}
-              </PatientProvider>
-            </EpsProvider>
+                  {/* <Footer/> */}
+                </PatientProvider>
+              </EpsProvider>
+            {/* </UserProvider> */}
           </AuthProvider>
         </ErrorProvider>
       </BrowserRouter>
