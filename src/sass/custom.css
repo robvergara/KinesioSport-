@@ -12194,4 +12194,63 @@ textarea.form-control-lg {
   --bs-form-valid-border-color: #75b798;
   --bs-form-invalid-color: #ea868f;
   --bs-form-invalid-border-color: #ea868f;
+}
+
+.mt-n4 {
+  margin-top: -3rem !important;
+}
+
+.buscar {
+  background-color: #fca533;
+  color: #001e51;
+}
+
+.buscar:hover {
+  background-color: #fca533;
+  color: white;
+}
+
+.boton-no:hover {
+  color: white;
+}
+
+.fondo-kinesio {
+  /* background: rgb(252,165,51); */
+  background: linear-gradient(90deg, rgb(252, 165, 51) 0%, rgb(247, 174, 77) 100%);
+}
+
+.hr-text {
+  line-height: 1em;
+  position: relative;
+  outline: 0;
+  border: 0;
+  color: black;
+  text-align: center;
+  height: 1.2em;
+  opacity: 0.5;
+}
+.hr-text:before {
+  content: "";
+  background: linear-gradient(to right, transparent, #818078, transparent);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+}
+.hr-text:after {
+  content: attr(data-content);
+  position: relative;
+  display: inline-block;
+  color: black;
+  padding: 0 0.5em;
+  line-height: 1.5em;
+  color: #818078;
+  background-color: #fcfcfa;
+}
+
+.paciente {
+  font-size: 16px;
+  color: #001e51;
+  font-weight: bold;
 }/*# sourceMappingURL=custom.css.map */

@@ -24,10 +24,10 @@ export function LogOutPage() {
           <>
             <form onSubmit={logout} className="container-md h-100 d-flex">
               <div className="m-auto row g-0 align-items-center">
-                <div className="card col-md-6 mb-5 mb-md-0 m-auto shadow z-index-0 fadeIn3 fadeInBottom">
-                  <div className=" p-0 position-relative mt-n4 mx-3 z-index-2 g-transparent ">
-                    <div className="bg-gradient shadow-primary border-radius-lg py-3 pe-1">
-                      <div className="fondo-kinesio bg-gradient shadow-primary rounded-4 py-3 pe-1">
+                <div className="card col-md-6 mb-5 mb-md-0 m-auto shadow z-index-0 border-0">
+                  <div className=" p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                    <div className="border-radius-lg py-3 pe-1">
+                      <div className="fondo-kinesio shadow rounded-4 py-3 pe-1">
                         <h4 class="text-white font-weight-bolder text-center mt-2 mb-0 py-1">
                           Salir
                         </h4>
@@ -48,14 +48,14 @@ export function LogOutPage() {
                         <div className="col-12">
                           <div className="d-flex justify-content-center ">
                             <button
-                              className="btn boton-si bg-gradient d-flex justify-content-center me-2"
+                              className="btn buscar bg-gradient d-flex justify-content-center me-2"
                               type="submit"
                             >
                               <i className="fa-solid fa-check m-auto"></i>
                               <p className="m-auto mx-2">SI</p>
                             </button>
                             <button
-                              className="btn bg-secondary bg-gradient d-flex d-flex justify-content-center align-item-center" 
+                              className="btn bg-secondary boton-no border-0 bg-gradient d-flex d-flex justify-content-center align-item-center" 
                               onClick={onCancel}
                             >
                               <i className="fa-solid fa-xmark m-auto"></i>

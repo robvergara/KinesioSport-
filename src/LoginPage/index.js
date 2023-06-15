@@ -32,10 +32,10 @@ export const LoginPage = () => {
       <form onSubmit={login} className="container-sm h-100 d-flex">
         {/* <div className="d-flex align-items-center justify-content-center align-middle m-auto"> */}
         <div className="m-auto row g-0 align-items-center">
-          <div className="card col-sm-6 mb-5 mb-sm-0 m-auto shadow z-index-0 fadeIn3 fadeInBottom">
+          <div className="card col-sm-6 mb-5 mb-sm-0 m-auto shadow z-index-0 border-0">
             <div className=" p-0 position-relative mt-n4 mx-3 z-index-2 g-transparent">
-              <div className="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                <div className="fondo-kinesio bg-gradient shadow-primary rounded-4 py-3 pe-1">
+              <div className="border-radius-lg py-3 pe-1">
+                <div className="fondo-kinesio shadow rounded-4 py-3 pe-1">
                   <h4 className="text-white font-weight-bolder text-center mt-2 mb-0 py-1">
                     Ingresar
                   </h4>
@@ -90,7 +90,7 @@ export const LoginPage = () => {
                 </div>
                 <div className="col-12">
                   <button
-                    className="btn btn-primary mt-3 col-sm-6 mx-auto"
+                    className="btn buscar mt-3 col-sm-6 mx-auto"
                     type="submit"
                   >
                     Entrar

@@ -8,15 +8,15 @@
   color: white;
 }
 
-.fondo-kinesio {
+/* .fondo-kinesio {
   background-color: #fca533;
-  /* background: rgb(252,165,51); */
+  background: rgb(252,165,51);
   background: linear-gradient(
     90deg,
     rgba(252, 165, 51, 1) 0%,
     rgba(247, 174, 77, 1) 100%
   );
-}
+} */
 
 th,
 td {

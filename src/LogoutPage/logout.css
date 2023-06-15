@@ -1,19 +1,29 @@
-.fondo-input{
+/* .fondo-input{
     background-color: white;
-}
+} */
 
-.fondo-kinesio{
+/* .fondo-kinesio{
     background-color: #FCA533;
-}
+} */
 
-.mt-n4 {
+/* .mt-n4 {
     margin-top: -3rem!important;
-}
+} */
 
-.boton-si {
+/* .boton-si {
     background-color:  #FCA533;
 }
 
 .boton-no {
     background-color:  #FCA533;
-}
+} */
+
+/* .fondo-kinesio {
+    background-color: #fca533;
+    background: linear-gradient(
+      90deg,
+      rgba(252, 165, 51, 1) 0%,
+      rgba(247, 174, 77, 1) 100%
+    );
+  } */
+  
