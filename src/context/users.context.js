@@ -12,6 +12,8 @@ export const UserProvider=({children})=>{
   const [res, setRes] = useState(null);
   const [edit, setEdit] = useState(false);
   const [editUserId, setEditUserId] = useState();
+  const [changeUser, setChangeUser] = useState();
+  const [infoModal, setInfoModal] = useState(false);
 
   const onHandleSearch = (e)=>{
     setValue(e.target.value);
@@ -51,20 +53,22 @@ export const UserProvider=({children})=>{
     setEditUserId(id)
   }
 
-    //MANEJADOR DE DATOS DEL USUARIO A CAMBIAR 
-    const handleEditUser = (e)=>{
-      const {name, value} = e.target;
-      setChangeUser(prevState=>({
-        ...prevState,
-        [name]:value
-      }))
-    }
+  const handleClose = () => setShow(false);
+
+  //MANEJADOR DE DATOS DEL USUARIO A CAMBIAR 
+  const handleEditUser = (e)=>{
+    const {name, value} = e.target;
+    setChangeUser(prevState=>({
+      ...prevState,
+      [name]:value
+    }))
+  }
   
       //ENVIAR LOS CAMPOS EDITADOS DEL USUARIO
       const changeFields=async(e)=>{
         e.preventDefault();
-        console.log(id,changeUser);
-        const res = await updateUser(id,changeUser);
+        console.log(editUserId,changeUser);
+        const res = await updateUser(editUserId,changeUser);
         console.log(res);
         handleClose
         setInfoModal(true)
@@ -82,6 +86,8 @@ export const UserProvider=({children})=>{
     setRes,
     setEdit,
     setEditUserId,
+    setChangeUser,
+    setInfoModal
   }
 
   const states = {
@@ -93,6 +99,8 @@ export const UserProvider=({children})=>{
     res,
     edit,
     editUserId,
+    changeUser,
+    infoModal
   }
 
   const functions = {
@@ -102,7 +110,8 @@ export const UserProvider=({children})=>{
     delUser,
     editFields,
     handleEditUser,
-    changeFields
+    changeFields,
+    handleClose,
   }
 
   return(

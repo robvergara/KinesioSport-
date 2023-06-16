@@ -1,21 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import { getUserById, updateUser } from '../../services/user.services';
+import { getUserById } from '../../services/user.services';
 import FormGroup from 'react-bootstrap/esm/FormGroup';
 import FormLabel from 'react-bootstrap/esm/FormLabel';
 import { InfoModal } from '../InfoModal';
+import { UserContext } from '../../context/users.context';
 
-export function EditUserModal({show, setShow, id }) {
+export function EditUserModal({ show }) {
+
+  const {states,setStates,functions} = useContext(UserContext)
+  const {handleEditUser, changeFields, handleClose} = functions;
+  const {editUserId, infoModal} = states;
+  const {setInfoModal} = setStates;
+
 
   const [user, setUser] = useState();
-  const [changeUser, setChangeUser] = useState();
-  const [infoModal, setInfoModal] = useState(false);
 
-  const handleClose = () => setShow(false);
-
-  // console.log(id);
+  // console.log(editUserId);
 
   useEffect(()=>{
     const getUser = async(id)=>{
@@ -24,30 +27,8 @@ export function EditUserModal({show, setShow, id }) {
       setUser(res);
     }
 
-    getUser(id)
+    getUser(editUserId)
   },[])
-
-  //MANEJADOR DE DATOS DEL USUARIO A CAMBIAR 
-  const handleEditUser = (e)=>{
-    const {name, value} = e.target;
-    setChangeUser(prevState=>({
-      ...prevState,
-      [name]:value
-    }))
-  }
-
-    //ENVIAR LOS CAMPOS EDITADOS DEL USUARIO
-    const changeFields=async(e)=>{
-      e.preventDefault();
-      console.log(id,changeUser);
-      const res = await updateUser(id,changeUser);
-      console.log(res);
-      handleClose
-      setInfoModal(true)
-      setTimeout(() => {
-        window.location.reload()
-      }, 2000);
-    }
 
   if (user)
     return (
