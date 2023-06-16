@@ -4,12 +4,19 @@ import { UserContext } from "../../context/users.context";
 import { ConfirmationModal } from "../../Modal/ConfirmationModal";
 import { InfoModal } from "../../Modal/InfoModal";
 import { EditUserModal } from "../../Modal/EditUserModal";
+import { ModalContext } from "../../context/modal.context";
 
 
 export const UserTable=()=>{
+  const {      
+    state,
+    onConfirm,
+    onRegretModal,
+  }= useContext(ModalContext);
+
   const {states, setStates, functions}= useContext(UserContext);
-  const {show, showModal, edit, res, value, list} = states;
-  const {setShow, setShowModal, setList} = setStates;
+  const {res, value, list} = states;
+  const {setList, setShow} = setStates;
   const {delUser, editFields} = functions
 
   let usersList = []
@@ -35,7 +42,9 @@ export const UserTable=()=>{
     // console.log(usersList)
   }
 
-  const handleShow = () => setStates.setShow(true);
+  const handleShow = () => {
+    onConfirm()
+  }
 
   return(
     <>
@@ -157,9 +166,8 @@ export const UserTable=()=>{
                           
                           {/* MODAL DE CONFIRMACION PARA ELIMINAR EL USUARIO DE ESTADOS */}
                           <ConfirmationModal
-                            show={show}
-                            setShow={setShow}
-                            handleShow={handleShow}
+                            show={state.confirm}
+                            onRegret={onRegretModal}
                             deleteUser={delUser}
                             id={user._id}
                           />
@@ -167,8 +175,8 @@ export const UserTable=()=>{
                           {res && (
                             <InfoModal
                               message={res.message}
-                              show={showModal}
-                              setShow={setShowModal}
+                              show={state.info}
+                              onRegret={onRegretModal}
                             />
                           )}
                         </>
@@ -176,9 +184,9 @@ export const UserTable=()=>{
                     )}
                     </tbody>
                     {/* MODAL PARA EDITAR EL USUARIO */}
-                    {edit &&(
+                    {state.edit &&(
                       <EditUserModal 
-                        show={edit} 
+                        show={state.edit} 
                       />)
                     }
 

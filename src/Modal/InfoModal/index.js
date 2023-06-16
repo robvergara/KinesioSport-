@@ -1,14 +1,14 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-export function InfoModal({show, setShow, message}) {
+export function InfoModal({show, onRegret, message}) {
 
-  const handleClose = () => setShow(false);
+  // const handleClose = () => setShow(false);
 
   return (
     <>
 
-      <Modal show={show} onHide={handleClose} centered>
+      <Modal show={show} onHide={onRegret} centered>
         <Modal.Header closeButton>
           <Modal.Title>Aviso</Modal.Title>
         </Modal.Header>

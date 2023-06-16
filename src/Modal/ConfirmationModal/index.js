@@ -1,14 +1,14 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-export function ConfirmationModal({show, setShow, deleteUser, id }) {
+export function ConfirmationModal({show, onRegret, deleteUser, id }) {
 
-  const handleClose = () => setShow(false);
+  // const handleClose = () => setShow(false);
 
   return (
     <>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={onRegret}>
         <Modal.Header closeButton>
           <Modal.Title>Eliminar</Modal.Title>
         </Modal.Header>
@@ -16,7 +16,7 @@ export function ConfirmationModal({show, setShow, deleteUser, id }) {
           Estas seguro que deseas eliminar al usuario?
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={onRegret}>
             Cerrar
           </Button>
           <Button variant="primary" onClick={() => deleteUser(id)}>

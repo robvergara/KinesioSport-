@@ -1,16 +1,22 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { deleteUser, getUserByCedula, updateUser } from "../services/user.services";
+import { ModalContext } from "./modal.context";
 
 export const UserContext = createContext();
 
 export const UserProvider=({children})=>{
+  const {      
+    state,
+    onInfo,
+    onConfirm,
+    onEdit,
+    onRegretModal,
+  }= useContext(ModalContext);
+
   const [value, setValue] = useState('');
   const [user, setUser] = useState();
   const [list, setList] = useState();
-  const [show, setShow] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const [res, setRes] = useState(null);
-  const [edit, setEdit] = useState(false);
   const [editUserId, setEditUserId] = useState();
   const [changeUser, setChangeUser] = useState();
   const [infoModal, setInfoModal] = useState(false);
@@ -33,6 +39,7 @@ export const UserProvider=({children})=>{
     const res = await deleteUser(id);
     res.message = "usuario eliminado con exito!";
     setRes(res);
+    onInfo();
     setShow(false);
     setShowModal(true);
     setTimeout(() => {
@@ -49,7 +56,8 @@ export const UserProvider=({children})=>{
   //FUNCION PARA MOSTRAR LOS INPUT PARA CAMBIAR LOS DATOS DE UN USUARIO
   const editFields =(e,id)=>{
     e.preventDefault();
-    setEdit(true);
+    onEdit();
+    // setEdit(true);
     setEditUserId(id)
   }
 
@@ -64,27 +72,25 @@ export const UserProvider=({children})=>{
     }))
   }
   
-      //ENVIAR LOS CAMPOS EDITADOS DEL USUARIO
-      const changeFields=async(e)=>{
-        e.preventDefault();
-        console.log(editUserId,changeUser);
-        const res = await updateUser(editUserId,changeUser);
-        console.log(res);
-        handleClose
-        setInfoModal(true)
-        setTimeout(() => {
-          window.location.reload()
-        }, 2000);
-      }
+  //ENVIAR LOS CAMPOS EDITADOS DEL USUARIO
+  const changeFields=async(e)=>{
+    e.preventDefault();
+    // console.log(editUserId,changeUser);
+    const res = await updateUser(editUserId,changeUser);
+    // console.log(res);
+    onInfo();
+    // handleClose
+    // setInfoModal(true)
+    setTimeout(() => {
+      window.location.reload()
+    }, 2000);
+  }
 
   const setStates = {
     setValue,
     setUser,
     setList,
-    setShow,
-    setShowModal,
     setRes,
-    setEdit,
     setEditUserId,
     setChangeUser,
     setInfoModal
@@ -94,10 +100,7 @@ export const UserProvider=({children})=>{
     value,
     user,
     list,
-    show,
-    showModal,
     res,
-    edit,
     editUserId,
     changeUser,
     infoModal

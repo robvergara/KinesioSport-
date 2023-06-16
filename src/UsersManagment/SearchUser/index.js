@@ -7,24 +7,25 @@ import "./style.css";
 import { useAuth } from "../../context/auth";
 import { UserContext } from "../../context/users.context";
 import { UserTable } from "../UserTable";
+import { ModalContext } from "../../context/modal.context";
 
 export const SearchUser = () => {
-  
+
+  const {      
+    state,
+    onRegretModal,
+  }= useContext(ModalContext);
+
   const {
     states, 
-    setStates, 
     functions,
   }= useContext(UserContext);
 
   const {    
     user,
-    showModal,
     res,
   } = states;
 
-  const {    
-    setShowModal,
-  } = setStates;
 
   const {    
     onHandleSearch,
@@ -91,8 +92,8 @@ export const SearchUser = () => {
                 {res && (
                   <InfoModal
                     message={res.message}
-                    show={showModal}
-                    setShow={setShowModal}
+                    show={state.info}
+                    onRegret={onRegretModal}
                   />
                 )}
               </>

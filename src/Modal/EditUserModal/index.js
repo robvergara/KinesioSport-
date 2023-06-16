@@ -7,15 +7,23 @@ import FormGroup from 'react-bootstrap/esm/FormGroup';
 import FormLabel from 'react-bootstrap/esm/FormLabel';
 import { InfoModal } from '../InfoModal';
 import { UserContext } from '../../context/users.context';
+import { ModalContext } from '../../context/modal.context';
 
 export function EditUserModal({ show }) {
 
-  const {states,setStates,functions} = useContext(UserContext)
-  const {handleEditUser, changeFields } = functions;
-  const {editUserId, infoModal} = states;
-  const {setInfoModal, setEdit} = setStates;
+  const {      
+    state,
+    onRegretModal,
+  }= useContext(ModalContext);
 
-  const handleClose = () => setEdit(false);
+  const {states,functions} = useContext(UserContext)
+  const {handleEditUser, changeFields } = functions;
+  const {editUserId} = states;
+
+  // const handleClose = () => {
+  //   onRegretModal()
+  //   // setEdit(false)
+  // };
 
   const [user, setUser] = useState();
 
@@ -36,7 +44,7 @@ export function EditUserModal({ show }) {
     <>
       <Modal 
         show={show} 
-        onHide={handleClose}
+        onHide={onRegretModal}
         backdrop="static"
         keyboard={false}
         >
@@ -104,12 +112,17 @@ export function EditUserModal({ show }) {
           <Button variant="secondary" onClick={changeFields}>
             Editar
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={onRegretModal}>
             Cancelar
           </Button>
         </Modal.Footer>
       </Modal>
-      <InfoModal show={infoModal} setShow={setInfoModal} message={"usuario actualizado con exito!"}/>
+
+      <InfoModal 
+        show={state.info} 
+        onRegret={onRegretModal} 
+        message={"usuario actualizado con exito!"}
+      />
     </>
   );
 }

@@ -1,12 +1,25 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { createUser } from "../../services/user.services";
 import { InfoModal } from "../../Modal/InfoModal";
+import { ModalContext } from "../../context/modal.context";
+import { UserContext } from "../../context/users.context";
 
 export const CreateUser = () => {
+
+  const {      
+    state,
+    onInfo,
+    onRegretModal,
+  }= useContext(ModalContext);
+
+  const{states, setStates} = useContext(UserContext);
+  const {res} = states
+  const {setRes} = setStates
+
   const [show, setShow] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
   const [user, setUser] = useState(null);
-  const [res, setRes] = useState(null);
+  // const [res, setRes] = useState(null);
 
   const userHandleChange = (e) => {
     const { name, value } = e.target;
@@ -31,8 +44,9 @@ export const CreateUser = () => {
     if (!user.status) {
       const res = {};
       res.message = "por favor ingrese el status del nuevo usuario";
+      // console.log(res.message)
       setRes(res);
-      setShowModal(true);
+      onInfo()
       return;
     }
 
@@ -43,7 +57,7 @@ export const CreateUser = () => {
       res.message = "usuario creado satisfactoriamente";
       // console.log(res.message)
       setRes(res);
-      setShowModal(true);
+      onInfo()
 
       setTimeout(() => {
         // closeForm()
@@ -53,7 +67,7 @@ export const CreateUser = () => {
     }
 
     setRes(res);
-    setShowModal(true);
+    onInfo()
   };
 
   return (
@@ -176,8 +190,8 @@ export const CreateUser = () => {
                         {res && (
                           <InfoModal
                             message={res.message}
-                            show={showModal}
-                            setShow={setShowModal}
+                            show={state.info}
+                            onRegret={onRegretModal}
                           />
                         )}
                       </div>
@@ -190,8 +204,8 @@ export const CreateUser = () => {
             {res && (
               <InfoModal
                 message={res.message}
-                show={showModal}
-                setShow={setShowModal}
+                show={state.info}
+                onRegret={onRegretModal}
               />
             )}
           </>
