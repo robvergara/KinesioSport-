@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/auth";
+import Dropdown from 'react-bootstrap/Dropdown';
 import "./style.css";
 
 export const SideMenu = () => {
@@ -66,16 +67,10 @@ export const SideMenu = () => {
             </li>
           </ul>
           <hr className="hr-text p-0 m-0" />
-          <div className="dropdown btn btn-secondary bg-gradient rounded-4 p-1 d-flex bd-highlight align-middle mx-2 mb-2">
+          <Dropdown >
             {auth.user && (
-              <>
-                <p className="flex-grow-1 m-auto">{auth.user.nombre}</p>
-                <a
-                  href={"/"}
-                  className="d-flex align-items-center justify-content-center p-1 m-1 link-body-emphasis text-decoration-none dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
+              <Dropdown.Toggle className=" btn btn-secondary bg-gradient rounded-4 p-3 d-flex bd-highlight align-middle mx-2 mb-2">
+                <p className="flex-grow-1 m-auto ">{auth.user.nombre}</p>
                   <img
                     src="./kinesio-sinfondo.png"
                     alt="mdo"
@@ -83,29 +78,29 @@ export const SideMenu = () => {
                     height="24"
                     className="rounded-circle"
                   />
-                </a>
-              </>
+
+              </Dropdown.Toggle>
             )}
             {!auth.user && (
-              <>
+              <Dropdown.Toggle>
                 <p className="flex-grow-1 m-auto">Ingresar</p>
-                <a
+                {/* <a
                   href={"/"}
                   className="d-flex align-items-center justify-content-center p-1 m-1 link-body-emphasis text-decoration-none dropdown-toggle"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                >
+                > */}
                   <i
                     className="bi bi-person-circle rounded-circle"
                     alt="mdo"
                     width="24"
                     height="24"
                   ></i>
-                </a>
-              </>
+                {/* </a> */}
+              </Dropdown.Toggle>
             )}
 
-            <ul className="dropdown-menu text-small shadow">
+            <Dropdown.Menu className="dropdown-menu text-small shadow">
               {auth.user && (
                 <>
                   <li>
@@ -147,8 +142,8 @@ export const SideMenu = () => {
                   </>
                 );
               })}
-            </ul>
-          </div>
+            </Dropdown.Menu>
+          </Dropdown>
         </div>
       {/* </aside> */}
     </>
