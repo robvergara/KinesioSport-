@@ -155,7 +155,7 @@ export const UserTable=()=>{
                             </td>
                           </tr>
                           
-                          {/* MODAL DE CONFIRMACION DE ESTADOS */}
+                          {/* MODAL DE CONFIRMACION PARA ELIMINAR EL USUARIO DE ESTADOS */}
                           <ConfirmationModal
                             show={show}
                             setShow={setShow}
@@ -163,6 +163,7 @@ export const UserTable=()=>{
                             deleteUser={delUser}
                             id={user._id}
                           />
+                          {/* MODAL PARA INFORMAR QUE SE ELIMINO EL USUARIO CORRECTAMENTE */}
                           {res && (
                             <InfoModal
                               message={res.message}
@@ -174,7 +175,7 @@ export const UserTable=()=>{
                         )
                     )}
                     </tbody>
-
+                    {/* MODAL PARA EDITAR EL USUARIO */}
                     {edit &&(
                       <EditUserModal 
                         show={edit} 
