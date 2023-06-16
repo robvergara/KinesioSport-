@@ -9,7 +9,7 @@ import { EditUserModal } from "../../Modal/EditUserModal";
 export const UserTable=()=>{
   const {states, setStates, functions}= useContext(UserContext);
   const {show, showModal, edit, res, value, list} = states;
-  const {setShow, setShowModal, setEdit, setList} = setStates;
+  const {setShow, setShowModal, setList} = setStates;
   const {delUser, editFields} = functions
 
   let usersList = []

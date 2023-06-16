@@ -11,10 +11,11 @@ import { UserContext } from '../../context/users.context';
 export function EditUserModal({ show }) {
 
   const {states,setStates,functions} = useContext(UserContext)
-  const {handleEditUser, changeFields, handleClose} = functions;
+  const {handleEditUser, changeFields } = functions;
   const {editUserId, infoModal} = states;
-  const {setInfoModal} = setStates;
+  const {setInfoModal, setEdit} = setStates;
 
+  const handleClose = () => setEdit(false);
 
   const [user, setUser] = useState();
 
