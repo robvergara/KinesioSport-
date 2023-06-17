@@ -40,8 +40,6 @@ export const UserProvider=({children})=>{
     res.message = "usuario eliminado con exito!";
     setRes(res);
     onInfo();
-    setShow(false);
-    setShowModal(true);
     setTimeout(() => {
       setUser(null);
       window.location.reload()

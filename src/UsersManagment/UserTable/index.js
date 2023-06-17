@@ -40,6 +40,12 @@ export const UserTable = () => {
     onConfirm();
   };
 
+  const deleteUser = (e,id)=> {
+    handleShow(); 
+    editFields(e,id);
+    onConfirm();
+  }
+
   return (
     <>
       <div className="container-fluid py-4 ">
@@ -138,7 +144,7 @@ export const UserTable = () => {
                                     <button
                                       type="button"
                                       className="btn btn-danger btn-sm my-0"
-                                      onClick={handleShow}
+                                      onClick={(e)=> deleteUser(e, user._id)}
                                     >
                                       <i class="fa-solid fa-trash-can"></i>
                                     </button>
@@ -148,12 +154,12 @@ export const UserTable = () => {
                             </tr>
 
                             {/* MODAL DE CONFIRMACION PARA ELIMINAR EL USUARIO DE ESTADOS */}
-                            <ConfirmationModal
-                              show={state.confirm}
-                              onRegret={onRegretModal}
-                              deleteUser={delUser}
-                              id={user._id}
-                            />
+                            {state.confirm && (
+
+                              <ConfirmationModal
+                                deleteUser={delUser}
+                              />
+                            )}
                             {/* MODAL PARA INFORMAR QUE SE ELIMINO EL USUARIO CORRECTAMENTE */}
                             {res && (
                               <InfoModal
