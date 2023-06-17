@@ -12200,6 +12200,11 @@ textarea.form-control-lg {
   margin-top: -3rem !important;
 }
 
+.btn-close {
+  background-color: transparent;
+  box-shadow: none;
+}
+
 .entradas {
   background-color: #fac680;
   width: 20%;

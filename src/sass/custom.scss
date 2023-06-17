@@ -8,7 +8,12 @@
 @import "../../node_modules/bootstrap/scss/root";
 
 .mt-n4 {
-    margin-top: -3rem!important;
+  margin-top: -3rem!important;
+}
+
+.btn-close{
+  background-color: transparent;
+  box-shadow: none;
 }
 
 .entradas {

@@ -19,13 +19,14 @@ export const RegisterPatientModal =({show})=>{
         show={show} 
         onHide={onRegretModal}         
         backdrop="static"
-        keyboard={false} centered>
+        keyboard={false} centered
+        className="modal-xl border-0">
 
-        <Modal.Header closeButton>
-          <Modal.Title>Aviso</Modal.Title>
+        <Modal.Header className="fondo-kinesio text-white" closeButton >
+          <Modal.Title>Registro de Paciente</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body className='text-center'>
+        <Modal.Body className='popups'>
           <>
             <RegisterForm/>
           </>

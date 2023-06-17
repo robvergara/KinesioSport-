@@ -130,13 +130,15 @@ export const UserTable = () => {
                               {/* BOTONES DE ACCION DE USUARIOS */}
                               <td className="align-middle text-center border-0">
                                 <div className="d-flex px-2 justify-content-center">
+                                {user.status != 0 && (<>
                                   <div className="d-flex flex-column justify-content-center">
                                     {/* BOTON EDITAR - ENVIAR CAMBIOS */}
+                                    
                                     <button
                                       className="btn btn-primary btn-sm me-2 my-0"
                                       onClick={(e) => editFields(e, user._id)}
                                     >
-                                      <i class="fa-solid fa-pen-to-square"></i>
+                                      <i className="fa-solid fa-pen-to-square"></i>
                                     </button>
                                   </div>
                                   <div className="d-flex flex-column justify-content-center">
@@ -146,9 +148,10 @@ export const UserTable = () => {
                                       className="btn btn-danger btn-sm my-0"
                                       onClick={(e)=> deleteUser(e, user._id)}
                                     >
-                                      <i class="fa-solid fa-trash-can"></i>
+                                      <i className="fa-solid fa-trash-can"></i>
                                     </button>
                                   </div>
+                                </>)}
                                 </div>
                               </td>
                             </tr>
