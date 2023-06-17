@@ -1,5 +1,6 @@
-import { createContext } from "react"
+import { createContext, useContext } from "react"
 import {createPatient} from "../services/register.services"
+import { ModalContext } from "./modal.context"
 
 export const PatientContext = createContext()
 

@@ -29,7 +29,7 @@ export const SideMenu = () => {
                 <i className="fa-solid fa-house me-2"></i> Inicio
               </NavLink>
             </li>
-            <li className="nav-item rounded-3 bnt-color-kine">
+            {/* <li className="nav-item rounded-3 bnt-color-kine">
               <NavLink
                 className="nav-link align-item-center linkText m-1 boton-menu"
                 to={`/register`}
@@ -37,7 +37,7 @@ export const SideMenu = () => {
                 <i className="bi bi-person-plus-fill me-2"></i>
                 Registro
               </NavLink>
-            </li>
+            </li> */}
             <li className="nav-item rounded-3 bnt-color-kine">
               <NavLink
                 className="nav-link align-item-center linkText m-1 boton-menu"

@@ -3,7 +3,7 @@ import { SideMenu } from "../SideMenu";
 import { HomePage } from "../HomePage";
 // import { Footer } from '../Footer';
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { RegisterPage } from "../RegisterPage";
+// import { RegisterPage } from "../RegisterPage";
 import { EpsPage } from "../EpsPage";
 import { EpsProvider } from "../context/eps.context";
 import { PatientProvider } from "../context/patients.context";
@@ -33,18 +33,24 @@ function App() {
 
                     <Routes>
                       <Route path="/" element={<HomePage />} />
-                      <Route path="/register" element={<RegisterPage />} />
+
+                      {/* <Route path="/register" element={<RegisterPage />} /> */}
+
                       <Route path="/eps" element={<EpsPage />} />
+
                       <Route
                         path="/admission"
                         element={
-                          <FormsProvider>
-                            <ConfirmationPage />
-                          </FormsProvider>
+                          <ModalProvider>
+                            <FormsProvider>
+                              <ConfirmationPage />
+                            </FormsProvider>
+                          </ModalProvider>
                         }
                       />
                       <Route path="login" element={<LoginPage />} />
                       <Route path="logout" element={<LogOutPage />} />
+
                       <Route path="users-managment" element={
                         <ModalProvider>
                           <UserProvider>
@@ -52,6 +58,7 @@ function App() {
                           </UserProvider>
                         </ModalProvider>
                       } />
+
                     </Routes>
                   </div>
 
