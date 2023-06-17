@@ -9,10 +9,10 @@ export function InfoModal({show, onRegret, message}) {
     <>
 
       <Modal show={show} onHide={onRegret} centered>
-        <Modal.Header closeButton>
+        <Modal.Header className="fondo-kinesio text-white" closeButton>
           <Modal.Title>Aviso</Modal.Title>
         </Modal.Header>
-        <Modal.Body className='text-center'>{message}</Modal.Body>
+        <Modal.Body className='text-center popups'>{message}</Modal.Body>
         {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Cerrar

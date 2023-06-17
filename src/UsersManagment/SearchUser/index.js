@@ -83,7 +83,7 @@ export const SearchUser = () => {
         <UserTable/>
 
         {/* MODAL PARA CREACION DE USUARIOS */}
-        <div className="d-flex flex-column p-5">
+        <div className="d-flex flex-column px-5">
           <>
             {!!user && !user.error && (
               <>

@@ -73,11 +73,11 @@ export const CreateUser = () => {
   return (
     <>
       {/* BOTON MOSTRAR FORMULARIO CREAR USUARIO */}
-      <div className="d-flex flex-column p-5">
+      <div className="d-flex flex-column p-4">
         {!show && (
-          <div className="d-flex justify-content-center">
+          <div className="d-flex justify-content-center w-100">
             <button
-              className="col-5 btn btn-warning p-2"
+              className="col-5 btn buscar w-1"
               onClick={showForm}
             >
               Crear usuario
