@@ -12200,6 +12200,11 @@ textarea.form-control-lg {
   margin-top: -3rem !important;
 }
 
+.entradas {
+  background-color: #fac680;
+  width: 20%;
+}
+
 .buscar {
   background-color: #fca533;
   color: #001e51;
@@ -12253,4 +12258,8 @@ textarea.form-control-lg {
   font-size: 16px;
   color: #001e51;
   font-weight: bold;
+}
+
+.popups {
+  background-color: #F0F2F5;
 }/*# sourceMappingURL=custom.css.map */

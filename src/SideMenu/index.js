@@ -67,47 +67,68 @@ export const SideMenu = () => {
             </li>
           </ul>
           <hr className="hr-text p-0 m-0" />
-          <Dropdown >
+          <div className="px-2 pb-2">
+          <Dropdown>
             {auth.user && (
-              <Dropdown.Toggle className=" btn btn-secondary bg-gradient rounded-4 p-3 d-flex bd-highlight align-middle mx-2 mb-2">
-                <p className="flex-grow-1 m-auto ">{auth.user.nombre}</p>
-                  <img
-                    src="./kinesio-sinfondo.png"
-                    alt="mdo"
-                    width="24"
-                    height="24"
-                    className="rounded-circle"
-                  />
+              // <Dropdown.Toggle className="btn btn-secondary bg-gradient rounded-4 p-3 d-flex bd-highlight align-middle mx-2 mb-2">
+              //   <p className="flex-grow-1 m-auto ">{auth.user.nombre}</p>
+              //     <img
+              //       src="./kinesio-sinfondo.png"
+              //       alt="mdo"
+              //       width="24"
+              //       height="24"
+              //       className="rounded-circle"
+              //     />
 
-              </Dropdown.Toggle>
+              // </Dropdown.Toggle>
+              <Dropdown.Toggle className="btn-secondary w-100 d-flex align-items-center rounded-4" >
+              <p className="flex-grow-1 m-auto ">{auth.user.nombre}</p>
+                <img
+                  src="./kinesio-sinfondo.png"
+                  alt="mdo"
+                  width="24"
+                  height="24"
+                  className="rounded-circle"
+                />
+
+            </Dropdown.Toggle>
             )}
             {!auth.user && (
-              <Dropdown.Toggle>
-                <p className="flex-grow-1 m-auto">Ingresar</p>
-                {/* <a
-                  href={"/"}
-                  className="d-flex align-items-center justify-content-center p-1 m-1 link-body-emphasis text-decoration-none dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                > */}
+              // <Dropdown.Toggle className="btn btn-secondary bg-gradient rounded-4 p-3 d-flex bd-highlight align-middle mx-2 mb-2 w-100">
+              //   <p className="flex-grow-1 m-auto">Ingresar</p>
+              //   {/* <a
+              //     href={"/"}
+              //     className="d-flex align-items-center justify-content-center p-1 m-1 link-body-emphasis text-decoration-none dropdown-toggle"
+              //     data-bs-toggle="dropdown"
+              //     aria-expanded="false"
+              //   > */}
+              //     <i
+              //       className="bi bi-person-circle rounded-circle"
+              //       alt="mdo"
+              //       width="24"
+              //       height="24"
+              //     ></i>
+              //   {/* </a> */}
+              // </Dropdown.Toggle>
+              <Dropdown.Toggle className="btn-secondary w-100 d-flex align-items-center rounded-4" >
+                <p className="w-100 m-0">Ingresar</p>
                   <i
                     className="bi bi-person-circle rounded-circle"
                     alt="mdo"
                     width="24"
                     height="24"
                   ></i>
-                {/* </a> */}
               </Dropdown.Toggle>
             )}
 
             <Dropdown.Menu className="dropdown-menu text-small shadow">
               {auth.user && (
                 <>
-                  <li>
+                  {/* <li>
                     <NavLink className="dropdown-item" to={"/"}>
                       {auth.user.nombre}
                     </NavLink>
-                  </li>
+                  </li> */}
                   <li>
                     <NavLink className="dropdown-item" to={"/users-managment"}>
                       Usuarios
@@ -144,6 +165,7 @@ export const SideMenu = () => {
               })}
             </Dropdown.Menu>
           </Dropdown>
+          </div>
         </div>
       {/* </aside> */}
     </>
