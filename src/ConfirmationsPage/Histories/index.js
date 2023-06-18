@@ -29,18 +29,26 @@ export const Histories= ({cedula})=>{
       {/* <h5>Historial de registro</h5> */}
       {!!histories && (
         <>
-          {histories.error && (
-            <>
-              <h2>{histories.message}</h2>
-            </>
-          )}
+          {histories.error 
+            ? 
+              (
+                <>
+                  <h2>{histories.message}</h2>
+                </>
+              )
+            : 
+              (
+                <>
+                  {histories.map(history=> {
+                    const date = history.date.substring(0,10)
+                    return(
+                    <NavLink className="nav-link" onClick={()=> viewLog(history._id)}>{history.nombre} <b>{date}</b></NavLink>
+                  )})}
+                </>
+              )
+          }
 
-          {histories.map(history=> {
-            const date = history.date.substring(0,10)
-            return(
-            <NavLink className="nav-link" onClick={()=> viewLog(history._id)}>{history.nombre} <b>{date}</b></NavLink>
-          )})}
-          {}
+
         </>
       )}
     </>
