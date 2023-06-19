@@ -16,6 +16,7 @@ import { ErrorProvider } from "../context/error.context";
 import { UsersManagment } from "../UsersManagment";
 import { UserProvider } from "../context/users.context";
 import { ModalProvider } from "../context/modal.context";
+import { FormsTemplate } from '../FormsTemplate'
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
                       />
                       <Route path="login" element={<LoginPage />} />
                       <Route path="logout" element={<LogOutPage />} />
+                      <Route path="templates" element={<FormsTemplate />} />
 
                       <Route path="users-managment" element={
                         <ModalProvider>

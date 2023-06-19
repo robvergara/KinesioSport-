@@ -135,8 +135,8 @@ export const SideMenu = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink className="dropdown-item" to={"/"}>
-                      Settings
+                    <NavLink className="dropdown-item" to={"/templates"}>
+                      Plantillas
                     </NavLink>
                   </li>
                   <li>
