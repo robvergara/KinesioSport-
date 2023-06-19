@@ -13,13 +13,7 @@ import { useAuth } from "../context/auth";
 export const ConfirmationPage = () => {
   const auth = useAuth();
   const {
-    state,
-    layout,
     initialValues,
-    onSubmit,
-    onBack,
-    activeTab,
-    dataTabs,
   } = useContext(FormsContext);
   // console.log(dataTabs)
 
