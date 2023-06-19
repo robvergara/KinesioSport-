@@ -1,5 +1,5 @@
 import Modal from 'react-bootstrap/Modal';
-import { RegisterForm } from '../../RegisterForm';
+import { RegisterForm } from '../../RegisterPage';
 import { useContext } from 'react';
 import { ModalContext } from '../../context/modal.context';
 import { InfoModal } from '../InfoModal';

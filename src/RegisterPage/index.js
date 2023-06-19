@@ -11,19 +11,6 @@ export const RegisterForm = () => {
   const { onSave } = useContext(PatientContext);
   const [data, setData] = useState();
 
-  //PARA OBTENER EPS
-  // const {onGet} = useContext(EpsContext)
-  // const [eps, setEps] = useState()
-
-  // useEffect(()=>{
-  //   const getEpsList = async()=>{
-  //     const list = await onGet()
-  //     // console.log(list)
-  //     setEps(list)
-  //   }
-  //   getEpsList()
-  // },[])
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevState) => ({
