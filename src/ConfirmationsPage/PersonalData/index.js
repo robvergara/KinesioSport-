@@ -69,6 +69,7 @@ export const PersonalData = ({ initialValues }) => {
             </p>
           </label>
         </div>
+
         {/* <div className="row">
 
             <div className="col-4 mb-3">

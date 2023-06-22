@@ -13,6 +13,7 @@ export const Field=({campo, handleChange})=>{
               name={campo.titulo} 
               onChange={handleChange}
               key={campo.titulo}
+              required
             >
               <option value="">seleccionar</option>
               {campo.opciones.map(opcion=>(
@@ -32,7 +33,8 @@ export const Field=({campo, handleChange})=>{
             name={campo.titulo}
             key={campo.titulo}
             value={campo.valor? campo.valor.valor : ""}
-            readOnly={campo.valor? true : false}
+            readOnly={campo.valor.length > 1 ? true : false}
+            required
           />
         )}
       </form>
