@@ -14,8 +14,9 @@ export const Histories= ()=>{
  useEffect(()=>{
   const getHistorial = async(cedula)=>{
     const list = await getAllHistories(cedula);
+    const admissionList = list.filter(item=> item.plantilla === "64594b727512a02cd4c0b040")
     // console.log(list);
-    setHistories(list);
+    setHistories(admissionList);
   }
   getHistorial(cedula)
  },[cedula])
