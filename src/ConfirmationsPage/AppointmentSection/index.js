@@ -1,38 +1,49 @@
-import { useContext } from "react"
-import { PersonalData } from "../PersonalData"
+import { useContext, useEffect, useState } from "react"
 import { FormsContext } from "../../context/forms.context"
+import { getAllHistories } from "../../services/admissions.services";
+import { NavLink } from "react-router-dom";
 
 
 export const AppointmentSection=()=>{
 
-  const {initialValues} = useContext(FormsContext)
+  const {initialValues} = useContext(FormsContext);
+  const [evaluaciones, setEvaluaciones] = useState();
+  // console.log(initialValues)
+
+  const cedula = initialValues.cedula_numero;
+  
+  useEffect(()=>{
+    const getHistorial = async(cedula)=>{
+      const list = await getAllHistories(cedula);
+      const admissionList = list.filter(item=> item.plantilla === "645914d61a36206c6d6d7e7d")
+      // console.log(list);
+      setEvaluaciones(admissionList);
+    }
+    getHistorial(cedula)
+   },[cedula])
+
   return(
     <>
-      <div className="col-7 row p-0 m-0">
-        <div className="container-fluid p-0 m-0">
-          <div className="row h-100 p-0 m-0">
-            <div className="col-12 pt-2 pe-3">
-              <div className="card border-0 shadow h-100 ">
-                <div className="card-header p-2 pt-3 border-0 bg-transparent">
-                  <div className="fondo-kinesio text-center border-radius-xl mt-n4 position-absolute rounded-3 shadow ms-3 ">
-                    <i class="fa-regular fa-rectangle-list text-white m-3"></i>
-                  </div>
-                  <div className="text-end">
-                    <p className="text-sm mb-0 text-capitalize text-body-tertiary me-3">
-                      Citas
-                    </p>
-                  </div>
-                </div>
-                <div className="card-body p-3 pb-2 shadow rounded border-0 bg-transparent">
-                  {initialValues && (
-                    <PersonalData initialValues={initialValues} />
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+      <button className="btn bg-gradient buscar mb-3" >
+        Nueva evaluación
+      </button>
+      <p>cantidad de citas: <b>{evaluaciones.length}</b> </p>
+      {/* LISTA DE EVOLUCIONES */}
+      {evaluaciones && (
+        <>
+          {evaluaciones.map(history=> {
+            const date = history.date.substring(0,10);
+            return(
+            <NavLink className="nav-link" onClick={()=> console.log(history)}>
+              {history.nombre} <b>{date}</b>
+            </NavLink>
+          )})}
+        </>
+      )}
+
+
+
     </>
   )
 }
