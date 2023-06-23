@@ -5,14 +5,18 @@ import { NavLink } from "react-router-dom";
 // import { tabMenu } from "../Tabs";
 
 
-export const Histories= ({cedula})=>{
- const {histories, setHistories, tabMenu, setTabMenu} = useContext(FormsContext);
-  console.log(histories)
+export const Histories= ()=>{
+ const {histories, setHistories, tabMenu, setTabMenu, initialValues} = useContext(FormsContext);
+//  console.log(histories)
+
+ const cedula = initialValues.cedula_numero;
+
  useEffect(()=>{
   const getHistorial = async(cedula)=>{
     const list = await getAllHistories(cedula);
+    const admissionList = list.filter(item=> item.plantilla === "64594b727512a02cd4c0b040")
     // console.log(list);
-    setHistories(list);
+    setHistories(admissionList);
   }
   getHistorial(cedula)
  },[cedula])

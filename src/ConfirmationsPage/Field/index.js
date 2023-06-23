@@ -13,6 +13,7 @@ export const Field=({campo, handleChange})=>{
               name={campo.titulo} 
               onChange={handleChange}
               key={campo.titulo}
+              required
             >
               <option value="">seleccionar</option>
               {campo.opciones.map(opcion=>(
@@ -23,16 +24,56 @@ export const Field=({campo, handleChange})=>{
           </>
           
         )}
-        {campo.tipo !== "opciones" && (
+        {campo.tipo === "numerico" && (
           <input 
-            type={campo.tipo}
+            type="number"
             className="form-control" 
-            placeholder={campo.titulo}
+            placeholder="numero"
             onChange={handleChange}
             name={campo.titulo}
             key={campo.titulo}
-            value={campo.valor? campo.valor.valor : ""}
-            readOnly={campo.valor? true : false}
+            // value={campo.valor? campo.valor.valor : ""}
+            readOnly={campo.valor.length > 1 ? true : false}
+            required
+          />
+        )}
+        {campo.tipo === "texto" && (
+          <input 
+            type="text"
+            className="form-control" 
+            // placeholder={campo.titulo}
+            onChange={handleChange}
+            name={campo.titulo}
+            key={campo.titulo}
+            // value={campo.valor? campo.valor.valor : ""}
+            readOnly={campo.valor.length > 1 ? true : false}
+            required
+          />
+        )}
+        {campo.tipo === "texto-grande" && (
+          <input 
+            type="text"
+            className="form-control" 
+            placeholder="escriba aqui"
+            onChange={handleChange}
+            name={campo.titulo}
+            key={campo.titulo}
+            // value={campo.valor? campo.valor.valor : ""}
+            readOnly={campo.valor.length > 1 ? true : false}
+            required
+          />
+        )}
+        {campo.tipo === "archivo" && (
+          <input 
+            type="file"
+            className="form-control" 
+            // placeholder={campo.titulo}
+            onChange={handleChange}
+            name={campo.titulo}
+            key={campo.titulo}
+            // value={campo.valor? campo.valor.valor : ""}
+            readOnly={campo.valor.length > 1 ? true : false}
+            required
           />
         )}
       </form>
