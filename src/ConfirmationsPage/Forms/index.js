@@ -1,10 +1,11 @@
-// import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import { Section } from "../Section";
-// import { FormsContext } from "../../context/forms.context";
+import { FormsContext } from "../../context/forms.context";
 
-export const Forms=({layout})=>{
+export const Forms=()=>{
 
-  // const { layout } = useContext(FormsContext)
+  const { layout } = useContext(FormsContext)
+
   // console.log(section)
 
   return(

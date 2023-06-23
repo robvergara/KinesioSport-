@@ -28,7 +28,7 @@ export const AdmissionModal=({show})=>{
         <Modal.Body className='popups'>
           <>
             <form onSubmit={onSubmit}>
-              {(state.admission || state.evaluation || state.valoration === true) && (
+              {(state.admission === true) && (
                 <>
                   {/* COMPONENTE QUE RENDERIZA EL FORMULARIO DE ACUERDO AL JSON ESTIPULADO EN EL BACKEND QUE SE LE ENVIA EN EL ATRIBUTO "LAYOUT" */}
                   <Forms layout={layout} />

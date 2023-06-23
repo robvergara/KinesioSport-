@@ -1,11 +1,11 @@
-import { useReducer, useState, createContext } from "react"
+import { useReducer, useState, createContext, useEffect } from "react"
 import { createAdmission, getLayout, getOneHistory } from "../services/admissions.services";
 // import {getPatientByCedula} from "../services/register.services"
 
 // import { useNavigate } from "react-router";
-const admissionToken = "64594b727512a02cd4c0b040"
-const valorationToken = "645915e11a36206c6d6d7e80"
-const evaluationToken = "645914d61a36206c6d6d7e7d"
+export const admissionToken = "64594b727512a02cd4c0b040"
+export const valorationToken = "645915e11a36206c6d6d7e80"
+export const evaluationToken = "645914d61a36206c6d6d7e7d"
 
 export const FormsContext = createContext();
 
@@ -29,28 +29,30 @@ export const FormsProvider=({children})=>{
   const onRegret=()=>{dispatch({type: actionTypes.regret})}
 
 
-  const getTemplate = async()=>{
-    if(state.admission === true){
-      const template = await getLayout(admissionToken);
-      // console.log(template)
-      setLayout(template[0]);
+  // console.log(state)
+  // const getTemplate = async()=>{
+  //   if(state.admission){
+  //     const template = await getLayout(admissionToken);
+  //     // console.log(template)
+  //     setLayout(template[0]);
       
-    }
-    if(state.evaluation === true) {
-      const template = await getLayout(evaluationToken);
-      // console.log(template[0])
-      setLayout(template[0]);
+  //   }
+  //   if(state.evaluation) {
+  //     const template = await getLayout(evaluationToken);
+  //     // console.log(template[0])
+  //     setLayout(template[0]);
       
-    }
-    if(state.valoration === true) {
-      const template = await getLayout(valorationToken);
-      // console.log(template)
-      setLayout(template[0]);
+  //   }
+  //   if(state.valoration) {
+  //     const template = await getLayout(valorationToken);
+  //     // console.log(template)
+  //     setLayout(template[0]);
       
-    }
-    // console.log(state)
-    return
-  }
+  //   }
+  //   // console.log(state)
+  //   return
+  // }
+
 
   const onSubmit =(e)=>{
     e.preventDefault()
@@ -125,7 +127,7 @@ export const FormsProvider=({children})=>{
         onValoration,
         onRegret,
         onSubmit,
-        getTemplate,
+        // getTemplate,
         onBack,
         setLayout,
         setInitialValues,

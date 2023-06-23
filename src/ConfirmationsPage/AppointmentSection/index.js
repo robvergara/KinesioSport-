@@ -7,7 +7,7 @@ import { Forms } from "../Forms";
 
 export const AppointmentSection=()=>{
 
-  const {initialValues, onEvaluation, getTemplate, layout, state, onSubmit, onRegret} = useContext(FormsContext);
+  const {initialValues, onEvaluation, layout, state, onSubmit, getTemplate, onRegret} = useContext(FormsContext);
   const [evaluaciones, setEvaluaciones] = useState();
   // console.log(initialValues)
   // console.log(layout)
@@ -27,7 +27,7 @@ export const AppointmentSection=()=>{
   return(
     <>
 
-      <button className="btn bg-gradient buscar mb-3" onClick={()=> {onEvaluation(); getTemplate()}}>
+      <button className="btn bg-gradient buscar mb-3" onClick={()=> {onEvaluation()}}>
         Nueva evaluación
       </button>
       {evaluaciones &&
@@ -64,9 +64,6 @@ export const AppointmentSection=()=>{
           )})}
         </>
       )}
-
-
-
     </>
   )
 }

@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { FormsContext } from "../context/forms.context";
+import { useContext, useEffect, useState } from "react";
+import { FormsContext, admissionToken, evaluationToken, valorationToken } from "../context/forms.context";
 import { Histories } from "./Histories";
 import { PersonalData } from "./PersonalData";
 import { SearchPatient } from "./SearchPatient";
@@ -8,6 +8,7 @@ import { useAuth } from "../context/auth";
 import { AdmissionModal } from "../Modal/AdmissionModal";
 import { EditPersonalData } from "./EditPersonalData";
 import { AppointmentSection } from "./AppointmentSection";
+import { getLayout } from "../services/admissions.services";
 
 export const ConfirmationPage = () => {
   const auth = useAuth();
@@ -16,8 +17,35 @@ export const ConfirmationPage = () => {
     onAdmission,
     state,
     getTemplate,
-    layout
+    layout,
+    setLayout
   } = useContext(FormsContext);
+
+  useEffect(()=>{
+    const getTemplate = async()=>{
+      if(state.admission){
+        const template = await getLayout(admissionToken);
+        // console.log(template)
+        setLayout(template[0]);
+        
+      }
+      if(state.evaluation) {
+        const template = await getLayout(evaluationToken);
+        // console.log(template[0])
+        setLayout(template[0]);
+        
+      }
+      if(state.valoration) {
+        const template = await getLayout(valorationToken);
+        // console.log(template)
+        setLayout(template[0]);
+        
+      }
+      // console.log(state)
+      return
+    }
+    getTemplate()
+  },[state])
 
   const [editPD, setEditPD] = useState(false);
 
@@ -125,7 +153,7 @@ export const ConfirmationPage = () => {
                             <button 
                               className="btn bg-gradient buscar" 
                               disabled={!initialValues? "true" : ""} 
-                              onClick={()=> {onAdmission(); getTemplate()}}>
+                              onClick={()=> {onAdmission()}}>
 
                               <i class="fa-solid fa-plus my-auto"></i>
 
