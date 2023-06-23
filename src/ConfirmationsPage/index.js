@@ -23,6 +23,7 @@ export const ConfirmationPage = () => {
 
   useEffect(()=>{
     const getTemplate = async()=>{
+      setLayout()
       if(state.admission){
         const template = await getLayout(admissionToken);
         // console.log(template)
