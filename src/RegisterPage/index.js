@@ -11,7 +11,7 @@ export const RegisterForm = () => {
   const { onSave } = useContext(PatientContext);
   const [data, setData] = useState();
 
-  const handleChange1 = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevState) => ({
       ...prevState,
@@ -66,7 +66,7 @@ export const RegisterForm = () => {
                 placeholder="segundo apellido"
                 name="apellido2"
                 id="apellido2"
-                onChange={handleChange1}
+                onChange={handleChange}
               />
             </div>
           </FormGroup>
