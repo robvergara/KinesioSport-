@@ -1,5 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import Button from "react-bootstrap/Button";
+import Collapse from "react-bootstrap/Collapse";
 
 export const options = [
   { value: "", label: "Tipo.." },
@@ -30,39 +32,43 @@ function SelectOptions(props) {
   );
 }
 
-
-
-export const VisorCampos = ({ campos, indice, id }) => {
-
-  const [listOpen, setListOpen] = useState();
+export const VisorCampos = ({ campos, seccion, id, cambios, eliminar_c }) => {
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setListOpen(false);
+    setOpen(
+      Array(4)
+        .fill(null)
+        .map((u) => false)
+    );
   }, []);
 
+  const Abrir = (e) => {
+    const { name } = e.target;
+    let position = Number(name.replace("abrir_", ""));
 
-  //   console.log(campos);
-  //   console.log(indice);
-  //   console.log(id)
-  // console.log(options)
-
-  const handleViewList = () => {
-    setListOpen(!listOpen);
+    setOpen((prevState) => ({
+      ...prevState,
+      [position]: !open[position],
+    }));
   };
 
   return (
     <>
       {React.Children.toArray(
         campos.map((c, i) => (
-          <div className="col-3 mb-3" key={c.titulo}>
-            <div className="card m-auto m-0 popups border-0 shadow">
+          <div
+            className="col-3 col-xxl-2 mb-3"
+            key={"S" + seccion + "_C" + i + c.titulo}
+          >
+            <div className="card m-auto m-0 fondo-gris-campos border-0 shadow bg-gradient">
               <div className="card-header">
                 <div className="input-group input-group-sm">
                   <span
                     className="input-group-text entradas"
                     id="inputGroup-sizing-default"
                   >
-                    S{i + 1}:
+                    C{i + 1}:
                   </span>
                   <input
                     type="text"
@@ -70,64 +76,24 @@ export const VisorCampos = ({ campos, indice, id }) => {
                     aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-default"
                     defaultValue={c.titulo}
-                    // onBlur={(e) =>
-                    //   modNombreCampo(e.target.value, indice + "C" + i, e)
-                    // }
+                    name={"S" + seccion + "_C" + i + "_T"}
+                    onBlur={cambios}
                   />
                 </div>
               </div>
               <div className="card-body">
-                <SelectOptions
-                  list={options}
-                  value={c.tipo}
-                  key={i}
-                  campo={c.titulo}
-                />
-                {c.tipo === "opciones" && (
-                  <>
-                    <div className="mt-2">
-                      <p className="m-auto">
-                        <button
-                          className="btn btn-primary btn-sm w-100"
-                          type="button"
-                          data-bs-toggle="collapse"
-                          onClick={handleViewList}
-                          // data-bs-target={"#" + index + "C" + i}
-                          aria-expanded="false"
-                          // aria-controls={index + "C" + i}
-                        >
-                          LISTA
-                          <i className="fa-solid fa-arrow-down fa-bounce fa-2xs ms-2"></i>
-                        </button>
-                      </p>
-                      <div className="collapse mt-2" isOpen={listOpen} toggleSidebar={handleViewList}>
-                        <textarea
-                          // key={index + "C" + i + c.titulo}
-                          className="form-control form-control-sm"
-                          id="exampleFormControlTextarea1"
-                          rows="3"
-                          data-bs-toggle="tooltip"
-                          data-bs-html="true"
-                          title="Separar las opciones con COMA ,"
-                          defaultValue={c.opciones}
-                          // onBlur={(e) =>
-                          //   modOpcion(e.target.value, index + "C" + i)
-                          // }
-                        ></textarea>
-                      </div>
-                    </div>
-                  </>
-                )}
-              </div>
-              {/* <div className="card-body">
-                <Select
-                  size="md"
-                  defaultValue={options.filter((options) => {
-                    return options.value === c.tipo;
-                  })}
-                    onChange={(e) => modTipoCampo(e.value, index + "C" + i)}
-                  options={options}
-                />
+                <select
+                  className="form-select form-select-sm"
+                  defaultValue={c.tipo}
+                  name={"S" + seccion + "_C" + i + "_O"}
+                  onChange={cambios}
+                >
+                  {options.map((o, i) => (
+                    <option value={o.value} key={i}>
+                      {o.label}
+                    </option>
+                  ))}
+                </select>
                 {c.tipo === "opciones" ? (
                   <div className="mt-2">
                     <p className="m-auto">
@@ -135,17 +101,16 @@ export const VisorCampos = ({ campos, indice, id }) => {
                         className="btn btn-primary btn-sm w-100"
                         type="button"
                         data-bs-toggle="collapse"
-                        // data-bs-target={"#" + index + "C" + i}
-                        aria-expanded="false"
-                        // aria-controls={index + "C" + i}
+                        name={"abrir_" + i}
+                        onClick={(e) => Abrir(e)}
+                        aria-expanded={open[i]}
                       >
                         LISTA
                         <i className="fa-solid fa-arrow-down fa-bounce fa-2xs ms-2"></i>
                       </button>
                     </p>
-                    <div className="collapse mt-2" id={index + "C" + i}>
+                    <Collapse in={open[i]}>
                       <textarea
-                        // key={index + "C" + i + c.titulo}
                         className="form-control form-control-sm"
                         id="exampleFormControlTextarea1"
                         rows="3"
@@ -153,30 +118,38 @@ export const VisorCampos = ({ campos, indice, id }) => {
                         data-bs-html="true"
                         title="Separar las opciones con COMA ,"
                         defaultValue={c.opciones}
-                        // onBlur={(e) =>
-                        //   modOpcion(e.target.value, index + "C" + i)
-                        // }
+                        name={"S" + seccion + "_C" + i + "_TA"}
+                        onBlur={cambios}
                       ></textarea>
-                    </div>
+                    </Collapse>
                   </div>
                 ) : (
                   <div className="mt-2">
                     <p className="m-auto">
-                     <button
+                      <button
                         disabled
                         className="btn btn-secondary btn-sm w-100"
                         type="button"
                         data-bs-toggle="collapse"
-                        data-bs-target={"#" + index + "C" + i}
                         aria-expanded="false"
-                        aria-controls={index + "C" + i}
                       >
                         LISTA
                       </button>
                     </p>
                   </div>
                 )}
-              </div> */}
+              </div>
+              <div className="card-footer ">
+                <small className="text-body-secondary d-flex justify-content-center">
+                  <button
+                    className="btn btn-danger btn-sm"
+                    name={"borrar-seccion-" + seccion + "-campo-" + i}
+                    onClick={eliminar_c}
+                  >
+                    <i className="fa-solid fa-trash-can"></i>
+                  </button>
+                </small>
+              </div>
             </div>
           </div>
         ))

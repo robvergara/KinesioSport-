@@ -1,36 +1,34 @@
 import { getAllTemplates } from "../services/templates.services";
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import React from "react";
 import { VisorForm } from "./VisorForm";
 
 export const FormsTemplate = () => {
   const [plantillas, setPlantillas] = useState();
   const [visor, setVisor] = useState();
-  const [band_1, setBand_1] = useState(false);
-  const [band_2, setBand_2] = useState(false);
+  // const [band_1, setBand_1] = useState(false);
+  // const [band_2, setBand_2] = useState(false);
 
   useEffect(() => {
     const plantillasList = async () => {
       const res = await getAllTemplates();
-      // console.log(res);
       setPlantillas(res);
     };
     plantillasList();
   }, []);
 
   const handleChange = (e) => {
-    // if(band_1){
-    //   confirm('desea confirmar?')
-    // }
     const { name, value } = e.target;
     let form = plantillas.find((item) => item._id === value);
 
     setVisor({ ...form });
-    setBand_1(true);
+    // setBand_1(true);
   };
 
-  // console.log("bandera 1:" + band_1);
-  // console.log("bandera 2:" + band_2);
+  // const Bandera = () => {
+  //   setBand_1(true)
+  //   console.log('BANDERA: ' + band_1)
+  // }
 
   return (
     <>
@@ -58,7 +56,7 @@ export const FormsTemplate = () => {
                     {plantillas && (
                       <>
                         {React.Children.toArray(
-                          plantillas.map((p, index) => (
+                          plantillas.map(p => (
                             <>
                               <option value={p._id}>{p.nombre}</option>
                             </>
@@ -66,14 +64,6 @@ export const FormsTemplate = () => {
                         )}
                       </>
                     )}
-                    {/* {plantillas &&
-                      plantillas.map((p, index) => (
-                        <>
-                          <option key={"option_" + p._id} value={p._id}>
-                            {p.nombre}
-                          </option>
-                        </>
-                      ))} */}
                   </>
                 ) : (
                   <>
@@ -88,7 +78,6 @@ export const FormsTemplate = () => {
           <div className="col-12 pt-3">
             <div className="col-12 pt-2 mb-4">
               <div className="card border-0 shadow">
-                {/* <VisorForm formulario={visor} /> */}
                 {visor && (
                   <>
                     <VisorForm formulario={visor} key={"V_"+visor._id}/>
