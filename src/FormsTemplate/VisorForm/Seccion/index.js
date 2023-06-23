@@ -36,22 +36,25 @@ export const VisorSeccion = ({
                   name={"add-campo-" + i}
                   onClick={campo}
                 >
-                  <i className="fa-solid fa-plus"></i>
+                  Añadir
+                  {/* <i className="fa-solid fa-plus"></i> */}
                 </button>
                 {s.campos.length == 0 ? (
                   <>
-                    <button
+                    <a
                       className="btn btn-danger"
                       name={"borrar-seccion-" + i}
                       onClick={eliminar_s}
                     >
-                      <i className="fa-solid fa-trash-can"></i>
-                    </button>
+                      {/* <i className="fa-solid fa-trash-can" disabled={true}></i> */}
+                      Eliminar
+                    </a>
                   </>
                 ) : (
                   <>
                     <button className="btn btn-danger" disabled>
-                      <i className="fa-solid fa-trash-can"></i>
+                      {/* <i className="fa-solid fa-trash-can" disabled={true}></i> */}
+                      Eliminar
                     </button>
                   </>
                 )}

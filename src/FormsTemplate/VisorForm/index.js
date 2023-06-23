@@ -92,9 +92,9 @@ export const VisorForm = ({ formulario }) => {
   const deleteSeccion = (e, i) => {
     e.preventDefault();
     const { name } = e.target;
-
+    console.log(name)
     let seccion = Number(name.replace("borrar-seccion-", ""));
-
+    console.log('Se elimina la seccion' + seccion)
     let body = [...editor.body];
     body = body.filter((n, i) => i !== seccion);
 
@@ -158,7 +158,7 @@ export const VisorForm = ({ formulario }) => {
                     id={editor._id}
                     cambios={handleBodyChange}
                     campo={addCampo}
-                    elimniar_s={deleteSeccion}
+                    eliminar_s={deleteSeccion}
                     eliminar_c={deteleCampo}
                   />
                 </div>

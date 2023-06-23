@@ -146,7 +146,8 @@ export const VisorCampos = ({ campos, seccion, id, cambios, eliminar_c }) => {
                     name={"borrar-seccion-" + seccion + "-campo-" + i}
                     onClick={eliminar_c}
                   >
-                    <i className="fa-solid fa-trash-can"></i>
+                    {/* <i className="fa-solid fa-trash-can"></i> */}
+                    Eliminar
                   </button>
                 </small>
               </div>
