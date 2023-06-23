@@ -2,13 +2,15 @@ import { useContext, useEffect, useState } from "react"
 import { FormsContext } from "../../context/forms.context"
 import { getAllHistories } from "../../services/admissions.services";
 import { NavLink } from "react-router-dom";
+import { Forms } from "../Forms";
 
 
 export const AppointmentSection=()=>{
 
-  const {initialValues} = useContext(FormsContext);
+  const {initialValues, onEvaluation, getTemplate, layout, state, onSubmit, onRegret} = useContext(FormsContext);
   const [evaluaciones, setEvaluaciones] = useState();
   // console.log(initialValues)
+  // console.log(layout)
 
   const cedula = initialValues.cedula_numero;
   
@@ -25,10 +27,31 @@ export const AppointmentSection=()=>{
   return(
     <>
 
-      <button className="btn bg-gradient buscar mb-3" >
+      <button className="btn bg-gradient buscar mb-3" onClick={()=> {onEvaluation(); getTemplate()}}>
         Nueva evaluación
       </button>
-      <p>cantidad de citas: <b>{evaluaciones.length}</b> </p>
+      {evaluaciones &&
+        <p>cantidad de citas: <b>{evaluaciones.length}</b> </p>
+      }
+
+      {/* FORMULARIO DE EVALUACION */}
+      {(layout && state.evaluation) && (
+        <>
+          <form onSubmit={onSubmit}>
+            <>
+              {/* COMPONENTE DE FORMULARIO */}
+              <Forms layout={layout} />
+              <button className="btn btn-outline-warning" type="submit">
+                guardar
+              </button>
+              <button className="btn btn-outline-warning" onClick={onRegret}>
+                cancelar
+              </button>
+            </>
+
+          </form>
+        </>
+      )}
       {/* LISTA DE EVOLUCIONES */}
       {evaluaciones && (
         <>
