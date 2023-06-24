@@ -19,7 +19,7 @@ export const VisorForm = ({ formulario }) => {
   };
 
   const handleEdtiroChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.currentTarget;
     setEditor((prevState) => ({
       ...prevState,
       [name]: value,
@@ -28,11 +28,11 @@ export const VisorForm = ({ formulario }) => {
   };
 
   const handleBodyChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.currentTarget;
     let body = editor.body;
 
     if (name.includes("C")) {
-      const { name, value } = e.target;
+      const { name, value } = e.currentTarget;
       let [seccion, campo, tipo] = name.split("_");
 
       seccion = Number(seccion.replace("S", ""));
@@ -73,7 +73,7 @@ export const VisorForm = ({ formulario }) => {
 
   const addCampo = (e, i) => {
     e.preventDefault();
-    const { name } = e.target;
+    const { name } = e.currentTarget;
     let seccion = Number(name.replace("add-campo-", ""));
     let body = [...editor.body];
     body[seccion].campos.push({
@@ -91,8 +91,9 @@ export const VisorForm = ({ formulario }) => {
 
   const deleteSeccion = (e, i) => {
     e.preventDefault();
-    const { name } = e.target;
-    console.log(name)
+    const { name } = e.currentTarget;
+    // console.log(e.currentTarget)
+    // console.log(name)
     let seccion = Number(name.replace("borrar-seccion-", ""));
     console.log('Se elimina la seccion' + seccion)
     let body = [...editor.body];
@@ -106,7 +107,7 @@ export const VisorForm = ({ formulario }) => {
 
   const deteleCampo = (e, i) => {
     e.preventDefault();
-    const { name } = e.target;
+    const { name } = e.currentTarget;
 
     console.log(name.replace("borrar-seccion-", "").replace("-campo-", "_"));
     let [seccion, campo] = name

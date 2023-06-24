@@ -18,7 +18,7 @@ export const FormsTemplate = () => {
   }, []);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.currentTarget;
     let form = plantillas.find((item) => item._id === value);
 
     setVisor({ ...form });
