@@ -54,15 +54,20 @@ export const SideMenu = () => {
                   Evoluciones
                 </NavLink>
               </li>
-              <li className="nav-item rounded-3 bnt-color-kine">
-                <NavLink
-                  className="nav-link align-item-center linkText m-1 boton-menu"
-                  to={`/eps`}
-                >
-                  <i className="bi bi-hospital me-2"></i>
-                  EPS
-                </NavLink>
-              </li></>
+              {auth.user.status !== 2 && (
+                <>
+                  <li className="nav-item rounded-3 bnt-color-kine">
+                    <NavLink
+                      className="nav-link align-item-center linkText m-1 boton-menu"
+                      to={`/eps`}
+                    >
+                      <i className="bi bi-hospital me-2"></i>
+                      EPS
+                    </NavLink>
+                  </li>
+                </>
+              )}
+              </>
             )}
 
           </ul>

@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
 import { EpsContext } from "../context/eps.context";
+import { useAuth } from "../context/auth";
+import { useNavigate } from "react-router";
 
 export const EpsPage=()=>{
   const {onSave} = useContext(EpsContext)
   const [value, setValue] = React.useState(null);
+  const auth = useAuth();
+  const navigate = useNavigate()
 
   //FUNCION MANEJADORA DEL INPUT QUE LE CAMBIA EL VALOR POR LO ESCRITO EN LA CASILLA 
   const handleChange=(e)=>{
@@ -18,6 +22,11 @@ export const EpsPage=()=>{
 
   }
 
+  if (auth.user.status === 2){
+    navigate("/")
+    return
+  }
+  
   return(
     <main className="shadow-box col-10 bg-secondary p-4">
 
