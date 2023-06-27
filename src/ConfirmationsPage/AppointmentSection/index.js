@@ -9,6 +9,7 @@ export const AppointmentSection=()=>{
 
   const {initialValues, onEvaluation, layout, state, onSubmit, getTemplate, onRegret} = useContext(FormsContext);
   const [evaluaciones, setEvaluaciones] = useState();
+  const [sessions, setSessions] = useState();
   // console.log(initialValues)
   // console.log(layout)
 
@@ -17,9 +18,29 @@ export const AppointmentSection=()=>{
   useEffect(()=>{
     const getHistorial = async(cedula)=>{
       const list = await getAllHistories(cedula);
-      const admissionList = list.filter(item=> item.plantilla === "645914d61a36206c6d6d7e7d")
+
+      //PARA OBTENER LA LISTA DE FORMULARIOS DE EVOLUCIONES
+      const evolutionList = list.filter(item=> item.plantilla === "645914d61a36206c6d6d7e7d");
+
+      //PARA OBTENER EL NUMERO DE SESIONES PUESTAS EN EL ULTIMO FORMULARIO DE ADMISION
+      const addmissionList = list.filter(item=> item.plantilla === "64594b727512a02cd4c0b040");
+      const lastAdmission = addmissionList[addmissionList.length - 1];
+
+      console.log(lastAdmission.body
+        .find(seccion => seccion.titulo === "Datos Administrativos2")
+        .campos.find(campo => campo.titulo === "Sesiones Ordenadas")
+        .valor
+        .valor
+      );
+
+      setSessions(lastAdmission.body
+        .find(seccion => seccion.titulo === "Datos Administrativos2")
+        .campos.find(campo => campo.titulo === "Sesiones Ordenadas")
+        .valor
+        .valor
+      );
       // console.log(list);
-      setEvaluaciones(admissionList);
+      setEvaluaciones(evolutionList);
     }
     getHistorial(cedula)
    },[cedula])
@@ -27,11 +48,26 @@ export const AppointmentSection=()=>{
   return(
     <>
 
-      <button className="btn bg-gradient buscar mb-3" onClick={()=> {onEvaluation()}}>
+      <button 
+        className="btn bg-gradient buscar mb-3" 
+        onClick={()=> {onEvaluation()}}
+        disabled={
+          evaluaciones?
+            sessions <= evaluaciones.length
+            ? true 
+            : false
+          : false
+        }
+      >
         Nueva evaluación
       </button>
-      {evaluaciones &&
-        <p>cantidad de citas: <b>{evaluaciones.length}</b> </p>
+      {evaluaciones &&(
+        <>
+          <p>sesiones ordenadas: <b>{sessions}</b></p>
+          <p>cantidad de citas: <b>{evaluaciones.length}</b> </p>
+        </>
+      )
+        
       }
 
       {/* FORMULARIO DE EVALUACION */}

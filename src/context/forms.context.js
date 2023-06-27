@@ -54,7 +54,7 @@ export const FormsProvider=({children})=>{
   // }
 
 
-  const onSubmit =(e)=>{
+  const onSubmit =async(e)=>{
     e.preventDefault()
     // console.log(body)
     const saveParams= (section)=>{
@@ -101,11 +101,14 @@ export const FormsProvider=({children})=>{
       nombre: layout.nombre,
       plantilla: layout._id,
       usuario_instancia: initialValues.nombre,
-      usuario_creacion: initialValues.user
+      usuario_creacion: initialValues.user,
+      pago: true,
+      valor : "50000"
   
     }
     // console.log(data)
-    createAdmission(data)
+    const res = await createAdmission(data)
+    // console.log(res)
   }
 
   const onBack=()=>{

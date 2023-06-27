@@ -6,7 +6,7 @@ export const Forms=()=>{
 
   const { layout } = useContext(FormsContext)
 
-  // console.log(section)
+  // console.log(layout)
 
   return(
     <>
