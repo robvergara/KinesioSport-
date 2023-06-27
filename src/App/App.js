@@ -10,7 +10,7 @@ import { PatientProvider } from "../context/patients.context";
 import { ConfirmationPage } from "../ConfirmationsPage";
 import { FormsProvider } from "../context/forms.context";
 import { LoginPage } from "../LoginPage";
-import { AuthProvider } from "../context/auth";
+import { AuthProvider, AuthRoute } from "../context/auth";
 import { LogOutPage } from "../LogoutPage";
 import { ErrorProvider } from "../context/error.context";
 import { UsersManagment } from "../UsersManagment";
@@ -33,32 +33,54 @@ function App() {
                     <SideMenu />
 
                     <Routes>
-                      <Route path="/" element={<HomePage />} />
+                      <Route path="/" element={
+                        <AuthRoute>
+                          <HomePage />
+                        </AuthRoute>
+                        } />
 
                       {/* <Route path="/register" element={<RegisterPage />} /> */}
 
-                      <Route path="/eps" element={<EpsPage />} />
+                      <Route path="/eps" element={
+                        <AuthRoute>
+                          <EpsPage />
+                        </AuthRoute>
+                      } />
 
                       <Route
                         path="/admission"
                         element={
-                          <ModalProvider>
-                            <FormsProvider>
-                              <ConfirmationPage />
-                            </FormsProvider>
-                          </ModalProvider>
+                          <AuthRoute>
+                            <ModalProvider>
+                              <FormsProvider>
+                                <ConfirmationPage />
+                              </FormsProvider>
+                            </ModalProvider>
+                          </AuthRoute>
                         }
                       />
                       <Route path="login" element={<LoginPage />} />
-                      <Route path="logout" element={<LogOutPage />} />
-                      <Route path="templates" element={<FormsTemplate />} />
+
+                      <Route path="logout" element={
+                        <AuthRoute>
+                          <LogOutPage />
+                        </AuthRoute>
+                      } />
+
+                      <Route path="templates" element={
+                        <AuthRoute>
+                          <FormsTemplate />
+                        </AuthRoute>
+                      } />
 
                       <Route path="users-managment" element={
-                        <ModalProvider>
-                          <UserProvider>
-                            <UsersManagment/>
-                          </UserProvider>
-                        </ModalProvider>
+                        <AuthRoute>
+                          <ModalProvider>
+                            <UserProvider>
+                              <UsersManagment/>
+                            </UserProvider>
+                          </ModalProvider>
+                        </AuthRoute>
                       } />
 
                     </Routes>
