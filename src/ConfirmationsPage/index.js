@@ -50,6 +50,7 @@ export const ConfirmationPage = () => {
 
   const [editPD, setEditPD] = useState(false);
 
+  if(auth.user)
   return (
     <>
       <div className="w-100 overflow-auto p-0 m-0 d-flex flex-column mt-2">
@@ -220,4 +221,12 @@ export const ConfirmationPage = () => {
 
     </>
   );
+
+  else {
+    return (
+      <>
+        <h1> Acceso denegado</h1>
+      </>
+    )
+  }
 };

@@ -50,13 +50,13 @@ function App() {
                       <Route
                         path="/admission"
                         element={
-                          <AuthRoute>
+                          <>
                             <ModalProvider>
                               <FormsProvider>
                                 <ConfirmationPage />
                               </FormsProvider>
                             </ModalProvider>
-                          </AuthRoute>
+                          </>
                         }
                       />
                       <Route path="login" element={<LoginPage />} />
@@ -68,19 +68,19 @@ function App() {
                       } />
 
                       <Route path="templates" element={
-                        <AuthRoute>
+                        <>
                           <FormsTemplate />
-                        </AuthRoute>
+                        </>
                       } />
 
                       <Route path="users-managment" element={
-                        <AuthRoute>
+                        <>
                           <ModalProvider>
                             <UserProvider>
                               <UsersManagment/>
                             </UserProvider>
                           </ModalProvider>
-                        </AuthRoute>
+                        </>
                       } />
 
                     </Routes>

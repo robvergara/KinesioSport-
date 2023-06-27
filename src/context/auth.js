@@ -29,7 +29,7 @@ export function AuthProvider({children}){
     
     try {
       const user = await getLogin(usuario);
-      console.log(user)
+      // console.log(user)
       if(user.token){
         const userName = user.nombre;
         const status = user.status;

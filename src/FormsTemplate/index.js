@@ -2,8 +2,10 @@ import { getAllTemplates } from "../services/templates.services";
 import {  useEffect, useState } from "react";
 import React from "react";
 import { VisorForm } from "./VisorForm";
+import { useAuth } from "../context/auth";
 
 export const FormsTemplate = () => {
+  const auth = useAuth()
   const [plantillas, setPlantillas] = useState();
   const [visor, setVisor] = useState();
   // const [band_1, setBand_1] = useState(false);
@@ -30,81 +32,98 @@ export const FormsTemplate = () => {
   //   console.log('BANDERA: ' + band_1)
   // }
 
+  if(auth.user)
   return (
     <>
-      <div className="w-100 overflow-auto p-0 m-0 d-flex flex-column mt-2">
-        <div className="w-100 overflow-auto row p-0 m-0 justify-content-center">
-          <div className="col-12">
-            <div className="input-group mb-3 input-group-sm w-25">
-              <span
-                className="input-group-text buscar w-10 fw-medium"
-                id="basic-addon1"
-              >
-                Formulario:
-              </span>
-              <select
-                className="form-control"
-                name="formulario"
-                key={"absdhsbdjhgsdj"}
-                onChange={handleChange}
-              >
-                {plantillas ? (
-                  <>
-                    <option value="" key={0}>
-                      seleccionar
-                    </option>
-                    {plantillas && (
+      {auth.user.status === 0 && (
+        <>
+          <div className="w-100 overflow-auto p-0 m-0 d-flex flex-column mt-2">
+            <div className="w-100 overflow-auto row p-0 m-0 justify-content-center">
+              <div className="col-12">
+                <div className="input-group mb-3 input-group-sm w-25">
+                  <span
+                    className="input-group-text buscar w-10 fw-medium"
+                    id="basic-addon1"
+                  >
+                    Formulario:
+                  </span>
+                  <select
+                    className="form-control"
+                    name="formulario"
+                    key={"absdhsbdjhgsdj"}
+                    onChange={handleChange}
+                  >
+                    {plantillas ? (
                       <>
-                        {React.Children.toArray(
-                          plantillas.map(p => (
-                            <>
-                              <option value={p._id}>{p.nombre}</option>
-                            </>
-                          ))
+                        <option value="" key={0}>
+                          seleccionar
+                        </option>
+                        {plantillas && (
+                          <>
+                            {React.Children.toArray(
+                              plantillas.map(p => (
+                                <>
+                                  <option value={p._id}>{p.nombre}</option>
+                                </>
+                              ))
+                            )}
+                          </>
                         )}
                       </>
+                    ) : (
+                      <>
+                        <option value="" key="seleccion">
+                          No hay formuarlios
+                        </option>
+                      </>
                     )}
-                  </>
-                ) : (
-                  <>
-                    <option value="" key="seleccion">
-                      No hay formuarlios
-                    </option>
-                  </>
-                )}
-              </select>
-            </div>
-          </div>
-          <div className="col-12 pt-3">
-            <div className="col-12 pt-2 mb-4">
-              <div className="card border-0 shadow">
-                {visor && (
-                  <>
-                    <VisorForm formulario={visor} key={"V_"+visor._id}/>
-                  </>
-                )}
-                {!visor && (
-                  <>
-                    <div className="card-header p-2 pt-3 border-0 bg-transparent">
-                      <div className="fondo-kinesio text-center border-radius-xl mt-n4 position-absolute rounded-3 shadow ms-3 ">
-                        <i className="fa-solid fa-newspaper text-white m-3"></i>
-                      </div>
-                      <div className="text-end">
-                        <div className="d-flex justify-content-end m-auto">
-                          <p className="text-sm mb-0 text-body-tertiary me-3 align-self-center">
-                            Elija un formulario
-                          </p>
+                  </select>
+                </div>
+              </div>
+              <div className="col-12 pt-3">
+                <div className="col-12 pt-2 mb-4">
+                  <div className="card border-0 shadow">
+                    {visor && (
+                      <>
+                        <VisorForm formulario={visor} key={"V_"+visor._id}/>
+                      </>
+                    )}
+                    {!visor && (
+                      <>
+                        <div className="card-header p-2 pt-3 border-0 bg-transparent">
+                          <div className="fondo-kinesio text-center border-radius-xl mt-n4 position-absolute rounded-3 shadow ms-3 ">
+                            <i className="fa-solid fa-newspaper text-white m-3"></i>
+                          </div>
+                          <div className="text-end">
+                            <div className="d-flex justify-content-end m-auto">
+                              <p className="text-sm mb-0 text-body-tertiary me-3 align-self-center">
+                                Elija un formulario
+                              </p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className="card-body p-3 pb-2 shadow rounded border-0 bg-transparent"></div>
-                  </>
-                )}
+                        <div className="card-body p-3 pb-2 shadow rounded border-0 bg-transparent"></div>
+                      </>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
+      {!auth.user && (
+        <>
+          <h1> Acceso denegado. por favor comunicarse con el administrador</h1>
+        </>
+      )}
     </>
   );
+  else {
+    return (
+      <>
+        <h1> Acceso denegado</h1>
+      </>
+    )
+  }
 };
