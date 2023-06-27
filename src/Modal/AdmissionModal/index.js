@@ -32,7 +32,10 @@ export const AdmissionModal=({show})=>{
                 <>
                   {/* COMPONENTE QUE RENDERIZA EL FORMULARIO DE ACUERDO AL JSON ESTIPULADO EN EL BACKEND QUE SE LE ENVIA EN EL ATRIBUTO "LAYOUT" */}
                   <Forms layout={layout} />
-                  <button className="btn btn-outline-warning" type="submit" onClick={onInfo}>
+                  <button 
+                    className="btn btn-outline-warning" 
+                    type="submit" 
+                  >
                     guardar
                   </button>
                   <button onClick={onRegret} className="btn btn-outline-warning">

@@ -1,5 +1,6 @@
-import { useReducer, useState, createContext, useEffect } from "react"
+import { useReducer, useState, createContext, useEffect, useContext } from "react"
 import { createAdmission, getLayout, getOneHistory } from "../services/admissions.services";
+import { ModalContext } from "./modal.context";
 // import {getPatientByCedula} from "../services/register.services"
 
 // import { useNavigate } from "react-router";
@@ -10,6 +11,7 @@ export const evaluationToken = "645914d61a36206c6d6d7e7d"
 export const FormsContext = createContext();
 
 export const FormsProvider=({children})=>{
+  const {onInfo} = useContext(ModalContext)
   const [layout, setLayout] = useState()
   const [search, setSearch] = useState()
   const [initialValues, setInitialValues] = useState()
@@ -109,6 +111,8 @@ export const FormsProvider=({children})=>{
     // console.log(data)
     const res = await createAdmission(data)
     // console.log(res)
+    onRegret();
+    onInfo();
   }
 
   const onBack=()=>{

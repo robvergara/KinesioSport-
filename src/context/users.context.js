@@ -77,8 +77,6 @@ export const UserProvider=({children})=>{
     const res = await updateUser(editUserId,changeUser);
     // console.log(res);
     onInfo();
-    // handleClose
-    // setInfoModal(true)
     setTimeout(() => {
       window.location.reload()
     }, 2000);

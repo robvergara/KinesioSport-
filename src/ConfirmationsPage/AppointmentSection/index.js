@@ -3,11 +3,14 @@ import { FormsContext } from "../../context/forms.context"
 import { getAllHistories } from "../../services/admissions.services";
 import { NavLink } from "react-router-dom";
 import { Forms } from "../Forms";
+import { InfoModal } from "../../Modal/InfoModal";
+import { ModalContext } from "../../context/modal.context";
 
 
 export const AppointmentSection=()=>{
 
   const {initialValues, onEvaluation, layout, state, onSubmit, getTemplate, onRegret} = useContext(FormsContext);
+  const {onRegretModal} = useContext(ModalContext);
   const [evaluaciones, setEvaluaciones] = useState();
   const [sessions, setSessions] = useState();
   // console.log(initialValues)
@@ -26,12 +29,12 @@ export const AppointmentSection=()=>{
       const addmissionList = list.filter(item=> item.plantilla === "64594b727512a02cd4c0b040");
       const lastAdmission = addmissionList[addmissionList.length - 1];
 
-      console.log(lastAdmission.body
-        .find(seccion => seccion.titulo === "Datos Administrativos2")
-        .campos.find(campo => campo.titulo === "Sesiones Ordenadas")
-        .valor
-        .valor
-      );
+      // console.log(lastAdmission.body
+      //   .find(seccion => seccion.titulo === "Datos Administrativos2")
+      //   .campos.find(campo => campo.titulo === "Sesiones Ordenadas")
+      //   .valor
+      //   .valor
+      // );
 
       setSessions(lastAdmission.body
         .find(seccion => seccion.titulo === "Datos Administrativos2")
@@ -77,7 +80,10 @@ export const AppointmentSection=()=>{
             <>
               {/* COMPONENTE DE FORMULARIO */}
               <Forms layout={layout} />
-              <button className="btn btn-outline-warning" type="submit">
+              <button 
+                className="btn btn-outline-warning" 
+                type="submit"
+              >
                 guardar
               </button>
               <button className="btn btn-outline-warning" onClick={onRegret}>
@@ -100,6 +106,12 @@ export const AppointmentSection=()=>{
           )})}
         </>
       )}
+
+      <InfoModal
+        show={state.info}
+        onRegret={onRegretModal}
+        message={"formulario cargado con exito!"}
+      />
     </>
   )
 }
