@@ -104,16 +104,20 @@ export const SideMenu = () => {
                       {auth.user.nombre}
                     </NavLink>
                   </li> */}
-                  <li>
-                    <NavLink className="dropdown-item" to={"/users-managment"}>
-                      Usuarios
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink className="dropdown-item" to={"/templates"}>
-                      Plantillas
-                    </NavLink>
-                  </li>
+                  {auth.user.status === 0 && (
+                    <>
+                      <li>
+                        <NavLink className="dropdown-item" to={"/users-managment"}>
+                          Usuarios
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink className="dropdown-item" to={"/templates"}>
+                          Plantillas
+                        </NavLink>
+                      </li>
+                    </>
+                  )}
                   <li>
                     <hr className="dropdown-divider" />
                   </li>

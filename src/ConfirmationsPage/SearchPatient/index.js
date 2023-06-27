@@ -5,14 +5,17 @@ import { getPatientByCedula } from "../../services/register.services";
 import "./style.css";
 import { RegisterPatientModal } from "../../Modal/RegisterPatientModal";
 import { ModalContext } from "../../context/modal.context";
+import { useAuth } from "../../context/auth";
 
 export const SearchPatient = () => {
   const { search, setSearch, setInitialValues } = useContext(FormsContext);
   const {state, onCreatePatient} = useContext(ModalContext);
+  const auth = useAuth()
 
 
   const onSearch = async (e) => {
     e.preventDefault();
+    // console.log(search)
     const res = await getPatientByCedula(search);
     // console.log(res[0]);
     setInitialValues(res[0]);
@@ -39,16 +42,20 @@ export const SearchPatient = () => {
             </div>
 
             {/* AGREGAR NUEVO PACIENTE */}
-            <div className="input-group input-group-sm mb-3 me-3 col-6">
-              <button 
-                className="btn bg-gradient buscar btn-sm" 
-                onClick={onCreatePatient}
-              >
+            {auth.user.status !== 2 && (
+              <>
+                <div className="input-group input-group-sm mb-3 me-3 col-6">
+                  <button 
+                    className="btn bg-gradient buscar btn-sm" 
+                    onClick={onCreatePatient}
+                  >
 
-                <i className="fa-solid fa-user-plus my-auto"></i>
+                    <i className="fa-solid fa-user-plus my-auto"></i>
 
-              </button>
-            </div>
+                  </button>
+                </div>
+              </>
+            )}
 
         </div>
 

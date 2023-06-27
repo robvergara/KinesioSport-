@@ -67,9 +67,12 @@ export const SearchUser = () => {
                   <li className="breadcrumb-item mini-titulo">{auth.user.nombre}</li>
                   <li className="breadcrumb-item mini-titulo seccion">
                     {
-                      auth.user.status === 0? "Super" : 
-                      auth.user.status === 1? "Admin" :
-                      "Fisio"
+                      auth.user.status === 0
+                      ? "Super" 
+                      : 
+                        auth.user.status === 1
+                        ? "Admin" 
+                        : "Fisio"
                       }
                   </li>
                 </ol>
