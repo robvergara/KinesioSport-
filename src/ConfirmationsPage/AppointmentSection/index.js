@@ -23,10 +23,10 @@ export const AppointmentSection=()=>{
       const list = await getAllHistories(cedula);
 
       //PARA OBTENER LA LISTA DE FORMULARIOS DE EVOLUCIONES
-      const evolutionList = list.filter(item=> item.plantilla === "645914d61a36206c6d6d7e7d");
+      const evolutionList = list.filter(item=> item.plantilla === "649c76f33143bd2e71cedad8");
 
       //PARA OBTENER EL NUMERO DE SESIONES PUESTAS EN EL ULTIMO FORMULARIO DE ADMISION
-      const addmissionList = list.filter(item=> item.plantilla === "64594b727512a02cd4c0b040");
+      const addmissionList = list.filter(item=> item.plantilla === "649c76fb3143bd2e71cedada");
       const lastAdmission = addmissionList[addmissionList.length - 1];
 
       // console.log(lastAdmission.body

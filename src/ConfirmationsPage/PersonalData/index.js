@@ -25,7 +25,7 @@ export const PersonalData = ({ initialValues }) => {
             </p>
           </label>
           <label className="cedula col-12 d-flex">
-            <strong className="me-3 paciente-titulo">Documento:</strong>{" "}
+            <strong className="me-3 paciente-titulo w-25">Documento:</strong>{" "}
             <p className="text-body-secondary mb-1">
               {initialValues && (
                 <>
@@ -35,25 +35,25 @@ export const PersonalData = ({ initialValues }) => {
             </p>
           </label>
           <label className="cedula col-12 d-flex">
-            <strong className="me-3 paciente-titulo">Nacimiento:</strong>{" "}
+            <strong className="me-3 paciente-titulo w-25">Nacimiento:</strong>{" "}
             <p className="text-body-secondary mb-1">
               {initialValues && <>{initialValues.nacimiento.split("T")[0]}</>}
             </p>
           </label>
           <label className="cedula col-12 d-flex">
-            <strong className="me-3 paciente-titulo">Dirección:</strong>{" "}
+            <strong className="me-3 paciente-titulo w-25">Dirección:</strong>{" "}
             <p className="text-body-secondary mb-1">
               {initialValues && <>{initialValues.direccion}</>}
             </p>
           </label>
-          <label className="cedula col-12 d-flex">
+          {/* <label className="cedula col-12 d-flex">
             <strong className="me-3 paciente-titulo">Entidad:</strong>{" "}
             <p className="text-body-secondary mb-1">
               {initialValues && <>{initialValues.entidad_id}</>}
             </p>
-          </label>
+          </label> */}
           <label className="cedula col-12 d-flex">
-            <strong className="me-3 paciente-titulo">Familiar:</strong>{" "}
+            <strong className="me-3 paciente-titulo w-25">Familiar:</strong>{" "}
             <p className="text-body-secondary mb-1">
               {initialValues && (
                 <>
@@ -63,7 +63,7 @@ export const PersonalData = ({ initialValues }) => {
             </p>
           </label>
           <label className="cedula col-12 d-flex">
-            <strong className="me-3 paciente-titulo">Contacto:</strong>{" "}
+            <strong className="me-3 paciente-titulo w-25">Contacto:</strong>{" "}
             <p className="text-body-secondary mb-1">
               {initialValues && <>{initialValues.familiar_celular}</>}
             </p>

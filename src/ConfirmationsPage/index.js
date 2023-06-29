@@ -111,7 +111,7 @@ export const ConfirmationPage = () => {
                               disabled={!initialValues? "true" : ""} 
                               onClick={()=> setEditPD(true)}
                             >
-                              <i class="fa-solid fa-pen-to-square my-auto"></i>
+                              <i className="fa-solid fa-pen-to-square my-auto"></i>
                               {/* <i className="fa-solid fa-user-plus my-auto"></i> */}
                             </button>
                           }
@@ -157,7 +157,7 @@ export const ConfirmationPage = () => {
                               disabled={!initialValues? "true" : ""} 
                               onClick={()=> {onAdmission()}}>
 
-                              <i class="fa-solid fa-plus my-auto"></i>
+                              <i className="fa-solid fa-plus my-auto"></i>
 
                             </button>
                           }
@@ -165,7 +165,7 @@ export const ConfirmationPage = () => {
 
                       </div>
                     </div>
-                    <div className="card-body p-3 pb-2 shadow rounded border-0 bg-transparent">
+                    <div className="card-body p-2 shadow rounded border-0 bg-transparent">
                       {initialValues && (
                         <>
                           <Histories />
@@ -186,7 +186,7 @@ export const ConfirmationPage = () => {
                   <div className="card border-0 shadow h-100 ">
                     <div className="card-header p-2 pt-3 border-0 bg-transparent">
                       <div className="fondo-kinesio text-center border-radius-xl mt-n4 position-absolute rounded-3 shadow ms-3 ">
-                        <i class="fa-regular fa-rectangle-list text-white m-3"></i>
+                        <i className="fa-regular fa-rectangle-list text-white m-3"></i>
                       </div>
                       <div className="text-end">
                         <p className="text-sm mb-0 text-capitalize text-body-tertiary me-3">

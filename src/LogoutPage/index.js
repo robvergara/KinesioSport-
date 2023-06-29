@@ -28,7 +28,7 @@ export function LogOutPage() {
                   <div className=" p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
                     <div className="border-radius-lg py-3 pe-1">
                       <div className="fondo-kinesio shadow rounded-4 py-3 pe-1">
-                        <h4 class="text-white font-weight-bolder text-center mt-2 mb-0 py-1">
+                        <h4 className="text-white font-weight-bolder text-center mt-2 mb-0 py-1">
                           Salir
                         </h4>
                       </div>

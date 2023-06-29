@@ -47,14 +47,14 @@ export const VisorSeccion = ({
                       onClick={eliminar_s}
                     >
                       {/* <span><i className="fa-solid fa-trash-can" name={"borrar-seccion-" + i}></i></span> */}
-                      <i class="fa-solid fa-trash-can"></i>
+                      <i className="fa-solid fa-trash-can"></i>
                       {/* Eliminar */}
                     </button>
                   </>
                 ) : (
                   <>
                     <button className="btn btn-danger" disabled>
-                    <i class="fa-solid fa-trash-can"></i>
+                    <i className="fa-solid fa-trash-can"></i>
                       {/* Eliminar */}
                     </button>
                   </>

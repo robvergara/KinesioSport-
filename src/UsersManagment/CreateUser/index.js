@@ -101,16 +101,16 @@ export const CreateUser = () => {
                       </div>
                       <div className="card-body px-0 pb-2 bg-transparent shadow rounded border-0">
                         <form className="row p-3" onSubmit={onSubmit}>
-                          <div class="input-group input-group-sm mb-3">
+                          <div className="input-group input-group-sm mb-3">
                             <span
-                              class="input-group-text w-25"
+                              className="input-group-text entradas fw-medium w-25"
                               id="inputGroup-sizing-sm"
                             >
                               Nombre
                             </span>
                             <input
                               type="text"
-                              class="form-control"
+                              className="form-control"
                               aria-label="Sizing example input"
                               name="nombre"
                               aria-describedby="inputGroup-sizing-sm"
@@ -118,16 +118,16 @@ export const CreateUser = () => {
                               required
                             />
                           </div>
-                          <div class="input-group input-group-sm mb-3">
+                          <div className="input-group input-group-sm mb-3">
                             <span
-                              class="input-group-text w-25"
+                              className="input-group-text entradas fw-medium w-25"
                               id="inputGroup-sizing-sm"
                             >
                               Apellido
                             </span>
                             <input
                               type="text"
-                              class="form-control"
+                              className="form-control"
                               aria-label="Sizing example input"
                               name="apellido"
                               aria-describedby="inputGroup-sizing-sm"
@@ -135,16 +135,16 @@ export const CreateUser = () => {
                               required
                             />
                           </div>
-                          <div class="input-group input-group-sm mb-3">
+                          <div className="input-group input-group-sm mb-3">
                             <span
-                              class="input-group-text w-25"
+                              className="input-group-text entradas fw-medium w-25"
                               id="inputGroup-sizing-sm"
                             >
                               Cédula
                             </span>
                             <input
                               type="text"
-                              class="form-control"
+                              className="form-control"
                               aria-label="Sizing example input"
                               name="cedula"
                               aria-describedby="inputGroup-sizing-sm"
@@ -153,9 +153,9 @@ export const CreateUser = () => {
                             />
                           </div>
 
-                          <div class="input-group input-group-sm mb-3">
+                          <div className="input-group input-group-sm mb-3">
                             <span
-                              class="input-group-text w-25"
+                              className="input-group-text entradas fw-medium w-25"
                               id="inputGroup-sizing-sm"
                             >
                               Status

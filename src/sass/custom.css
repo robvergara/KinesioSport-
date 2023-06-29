@@ -12275,4 +12275,19 @@ textarea.form-control-lg {
 
 .fondo-gris-campos {
   background-color: #7e8185;
+}
+
+.pagado {
+  background-color: #46a24a;
+  color: white;
+  letter-spacing: 1px;
+  font-size: 14px;
+  width: 35px;
+}
+
+.no-pagado {
+  background-color: #dc3545;
+  color: white;
+  font-size: 14px;
+  width: 35px;
 }/*# sourceMappingURL=custom.css.map */
