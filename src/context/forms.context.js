@@ -4,9 +4,9 @@ import { ModalContext } from "./modal.context";
 // import {getPatientByCedula} from "../services/register.services"
 
 // import { useNavigate } from "react-router";
-export const admissionToken = "64594b727512a02cd4c0b040"
+export const admissionToken = "649c74bd0c9afe310ec1a5b8"
 export const valorationToken = "645915e11a36206c6d6d7e80"
-export const evaluationToken = "645914d61a36206c6d6d7e7d"
+export const evaluationToken = "649c76f33143bd2e71cedad8"
 
 export const FormsContext = createContext();
 

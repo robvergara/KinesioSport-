@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router";
 import { useAuth } from "../context/auth";
 import { CreateUser } from "./CreateUser";
 import { SearchUser } from "./SearchUser";
@@ -7,12 +6,6 @@ import "./user.css";
 export const UsersManagment = () => {
 
   const auth = useAuth()
-  const navigate = useNavigate()
-
-  if (auth.user.status === 2){
-    navigate("/");
-    return
-  }
 
   if(auth.user)
   return (

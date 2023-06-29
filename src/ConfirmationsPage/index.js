@@ -27,19 +27,19 @@ export const ConfirmationPage = () => {
       if(state.admission){
         const template = await getLayout(admissionToken);
         // console.log(template)
-        setLayout(template[0]);
+        setLayout(template);
         
       }
       if(state.evaluation) {
         const template = await getLayout(evaluationToken);
-        // console.log(template[0])
-        setLayout(template[0]);
+        console.log(template)
+        setLayout(template);
         
       }
       if(state.valoration) {
         const template = await getLayout(valorationToken);
         // console.log(template)
-        setLayout(template[0]);
+        setLayout(template);
         
       }
       // console.log(state)

@@ -23,13 +23,14 @@ export function EditUserModal({ show }) {
 
   const [user, setUser] = useState();
 
+  // console.log(user)
   // console.log(editUserId);
 
   useEffect(() => {
     const getUser = async (id) => {
       const res = await getUserById(id);
       // console.log(res);
-      setUser(res);
+      setUser(res[0]);
     };
 
     getUser(editUserId);

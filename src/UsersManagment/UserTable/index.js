@@ -132,8 +132,8 @@ export const UserTable = () => {
                                 <div className="d-flex px-2 justify-content-center">
                                 {user.status != 0 && (<>
                                   <div className="d-flex flex-column justify-content-center">
-                                    {/* BOTON EDITAR - ENVIAR CAMBIOS */}
                                     
+                                    {/* BOTON EDITAR */}
                                     <button
                                       className="btn btn-primary btn-sm me-2 my-0"
                                       onClick={(e) => editFields(e, user._id)}
@@ -142,7 +142,8 @@ export const UserTable = () => {
                                     </button>
                                   </div>
                                   <div className="d-flex flex-column justify-content-center">
-                                    {/* BOTON ELIMINAR - CANCELAR EDICION*/}
+
+                                    {/* BOTON ELIMINAR*/}
                                     <button
                                       type="button"
                                       className="btn btn-danger btn-sm my-0"
