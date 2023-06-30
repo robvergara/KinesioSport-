@@ -7,13 +7,13 @@ export const getLayout=(id)=>{
 }
 
 export const createAdmission=(body)=>{
-  return post(`/formulario`, {
+  return post(`/admision`, {
     nombre: body.nombre,
     plantilla:body.plantilla,
     cedula_tipo: body.cedula_tipo,
     cedula_numero: body.cedula_numero,
     usuario_creacion: body.user || "pds",
-    usuario_instancia: body.usuario_instancia,
+    usuario_completado: body.usuario_instancia,
     body: body.body,
     pago: body.pago,
     valor: body.valor

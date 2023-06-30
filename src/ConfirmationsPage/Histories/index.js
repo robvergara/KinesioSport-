@@ -17,7 +17,7 @@ export const Histories = () => {
       const admissionList = list.filter(
         (item) => item.plantilla === "649c74bd0c9afe310ec1a5b8"
       );
-      // console.log(list);
+      // console.log(admissionList);
       setHistories(admissionList);
     };
     getHistorial(cedula);
@@ -27,21 +27,17 @@ export const Histories = () => {
     // console.log(tabMenu);
     const list = [...tabMenu];
     list.push(log);
-    // console.log(list)
+    // console.log(data)
     setTabMenu(list);
   };
   return (
     <>
       {/* <h5>Historial de registro</h5> */}
       {!!histories && (
-        <>
-          {histories.error ? (
-            <>
-              <h2>{histories.message} ALOJA</h2>
-            </>
-          ) : (
-            <>
-              <ul className="list-group list-group-flush">
+          <>
+            {histories.length >= 1
+              ? (
+                <ul className="list-group list-group-flush">
                 {histories.map((history) => {
                   const date = history.date.substring(0, 10);
                   return (
@@ -52,7 +48,10 @@ export const Histories = () => {
                       >
                         <div className="d-flex">
                           <div className="flex-grow-1 align-self-center">
-                            <b>{history.body[0].campos[0].valor}</b>
+                            {history.body[0].campos[0].valor.valor
+                              ? <b>{history.body[0].campos[0].valor.valor}</b>
+                              : <b>{history.body[0].campos[0].valor}</b>
+                            }
                           </div>
                           <div className='align-self-center'>{date}</div>
                           <div className="ms-2">
@@ -78,10 +77,16 @@ export const Histories = () => {
                   );
                 })}
               </ul>
-            </>
-          )}
-        </>
-      )}
+              )
+              : (
+                <>
+                  <div className="nav-link"> No hay admisiones creadas</div>
+                </>
+              )
+            }
+          </>
+        )
+      }
     </>
   );
 };

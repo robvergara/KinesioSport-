@@ -1,4 +1,4 @@
-import {get, post, patch, erase} from './Network'
+import {get, post, patch, erase, put} from './Network'
 
 export function getAllpatients() {
   return get("/paciente")
@@ -36,7 +36,7 @@ export function createPatient(body) {
 }
 
 export function updatePatient(id,body) {
-  return patch(`/paciente/${id}`, {
+  return put(`/paciente/${id}`, {
     nombre: body.nombre,
     apellido1: body.apellido1,
     apellido2: body.apellido2,

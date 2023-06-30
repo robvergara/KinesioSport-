@@ -17,8 +17,8 @@ export const SearchPatient = () => {
     e.preventDefault();
     // console.log(search)
     const res = await getPatientByCedula(search);
-    // console.log(res[0]);
-    setInitialValues(res[0]);
+    // console.log(res);
+    setInitialValues(res.find(patient => patient.cedula_numero === search));
   };
   return (
     <>

@@ -4,7 +4,7 @@ import { FormsContext } from "../../context/forms.context";
 
 
 export const Section=({ sec })=>{
-
+  // console.log(sec.campos)
   const { setSection }= useContext(FormsContext)
   const [fields, setFields] = useState([])
 
@@ -21,11 +21,12 @@ export const Section=({ sec })=>{
     const {name, value, type} = e.target;
     setFields(prevState=>({
       ...prevState, 
-      [name]:{
-        valor:value,
-        titulo:name,
-        tipo: type,
-      }
+      [name]:value
+      // [name]:{
+      //   valor:value,
+      //   titulo:name,
+      //   tipo: type,
+      // }
     }))
     // console.log(fields)
   }

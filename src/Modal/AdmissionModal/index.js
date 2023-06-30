@@ -9,7 +9,7 @@ import { InfoModal } from "../InfoModal";
 export const AdmissionModal=({show})=>{
 
   const {onRegretModal, state:modalState, onInfo }= useContext(ModalContext);
-  const{onSubmit,state,layout, onRegret} = useContext(FormsContext)
+  const{onSubmit,state,layout, onRegret} = useContext(FormsContext);
 
   return(
     <>

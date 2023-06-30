@@ -15,6 +15,7 @@ export const AppointmentSection=()=>{
   const [sessions, setSessions] = useState();
   // console.log(initialValues)
   // console.log(layout)
+  // console.log(evaluaciones)
 
   const cedula = initialValues.cedula_numero;
   
@@ -29,17 +30,21 @@ export const AppointmentSection=()=>{
       const addmissionList = list.filter(item=> item.plantilla === "649c74bd0c9afe310ec1a5b8");
       const lastAdmission = addmissionList[addmissionList.length - 1];
 
+      // console.log(addmissionList)
+
       // console.log(lastAdmission.body
       //   .find(seccion => seccion.titulo === "Datos Administrativos2")
       //   .campos.find(campo => campo.titulo === "Sesiones Ordenadas")
       //   .valor
       //   )
-
-      setSessions(lastAdmission.body
-        .find(seccion => seccion.titulo === "Datos Administrativos2")
-        .campos.find(campo => campo.titulo === "Sesiones Ordenadas")
-        .valor
-      );
+      
+      if(addmissionList.length >= 1){
+          setSessions(lastAdmission.body
+            .find(seccion => seccion.titulo === "Datos Administrativos2")
+            .campos.find(campo => campo.titulo === "Sesiones Ordenadas")
+            .valor
+          );
+      }
       // console.log(list);
       setEvaluaciones(evolutionList);
     }
@@ -94,16 +99,18 @@ export const AppointmentSection=()=>{
       )}
       {/* LISTA DE EVOLUCIONES */}
       {evaluaciones && (
-        <>
-          {evaluaciones.map(history=> {
-            const date = history.date.substring(0,10);
-            return(
-            <NavLink className="nav-link" onClick={()=> console.log(history)}>
-              {history.nombre} <b>{date}</b>
-            </NavLink>
-          )})}
-        </>
-      )}
+          <>
+            {evaluaciones.map(history=> {
+              const date = history.date.substring(0,10);
+              return(
+              <NavLink className="nav-link" onClick={()=> console.log(history)}>
+                {history.nombre} <b>{date}</b>
+              </NavLink>
+            )})}
+          </>
+        )
+
+      }
 
       <InfoModal
         show={state.info}
