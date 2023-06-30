@@ -14,7 +14,6 @@ export const VisorForm = ({ formulario }) => {
   }, [formulario]);
 
   const onSubmit = async (e) => {
-    // console.log(editor);
     let a = await updateTemplate(editor._id, editor);
   };
 
@@ -24,7 +23,6 @@ export const VisorForm = ({ formulario }) => {
       ...prevState,
       [name]: value,
     }));
-    // bandera_1()
   };
 
   const handleBodyChange = (e) => {
@@ -54,7 +52,6 @@ export const VisorForm = ({ formulario }) => {
       ...prevState,
       ["body"]: body,
     }));
-    // console.log(editor);
   };
 
   const addSeccion = (e) => {
@@ -92,40 +89,39 @@ export const VisorForm = ({ formulario }) => {
 
   const deleteSeccion = (e, i) => {
     e.preventDefault();
-    const { name } = e.currentTarget;
-    // console.log(e.currentTarget)
-    // console.log(name)
-    let seccion = Number(name.replace("borrar-seccion-", ""));
-    // console.log("Se elimina la seccion" + seccion);
-    let body = [...editor.body];
-    body = body.filter((n, i) => i !== seccion);
+    if (window.confirm("Desea eliminar la seccion?")) {
+      const { name } = e.currentTarget;
+      let seccion = Number(name.replace("borrar-seccion-", ""));
+      let body = [...editor.body];
+      body = body.filter((n, i) => i !== seccion);
 
-    setEditor((prevState) => ({
-      ...prevState,
-      ["body"]: body,
-    }));
+      setEditor((prevState) => ({
+        ...prevState,
+        ["body"]: body,
+      }));
+    }
   };
 
   const deteleCampo = (e, i) => {
     e.preventDefault();
-    const { name } = e.currentTarget;
+    if (window.confirm("Desea eliminar el campo?")) {
+      const { name } = e.currentTarget;
+      let [seccion, campo] = name
+        .replace("borrar-seccion-", "")
+        .replace("-campo-", "_")
+        .split("_");
+      seccion = Number(seccion);
+      campo = Number(campo);
 
-    // console.log(name.replace("borrar-seccion-", "").replace("-campo-", "_"));
-    let [seccion, campo] = name
-      .replace("borrar-seccion-", "")
-      .replace("-campo-", "_")
-      .split("_");
-    seccion = Number(seccion);
-    campo = Number(campo);
+      let body = [...editor.body];
+      let campos = body[seccion].campos.filter((n, i) => i !== campo);
+      body[seccion].campos = campos;
 
-    let body = [...editor.body];
-    let campos = body[seccion].campos.filter((n, i) => i !== campo);
-    body[seccion].campos = campos;
-
-    setEditor((prevState) => ({
-      ...prevState,
-      ["body"]: body,
-    }));
+      setEditor((prevState) => ({
+        ...prevState,
+        ["body"]: body,
+      }));
+    }
   };
 
   return (

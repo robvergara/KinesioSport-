@@ -12207,7 +12207,16 @@ textarea.form-control-lg {
 
 .entradas {
   background-color: #fac680;
-  width: 20%;
+}
+
+.entradas-template {
+  background-color: #fac680;
+  width: 25%;
+}
+
+.entradas-form {
+  background-color: #fac680;
+  width: 170px;
 }
 
 .buscar {
@@ -12290,4 +12299,8 @@ textarea.form-control-lg {
   color: white;
   font-size: 14px;
   width: 35px;
+}
+
+input[type=file]::file-selector-button {
+  display: none;
 }/*# sourceMappingURL=custom.css.map */

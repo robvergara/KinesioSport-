@@ -28,7 +28,7 @@ export const RegisterForm = () => {
   };
 
   return (
-    <form onSubmit={onSubmit} className='d-flex flex-column'>
+    <form onSubmit={onSubmit} className="d-flex flex-column">
       <h5>Datos personales</h5>
       <div className="row">
         <div className="col-6">
@@ -488,12 +488,11 @@ export const RegisterForm = () => {
         <input type="file" className='mb-0 text-sm nombre'/>
       </FormGroup> */}
 
-      <div className='text-center'> 
-      <button type="submit" className="btn buscar w-25">
-        Registrar
-      </button>
+      <div className="text-center">
+        <button type="submit" className="btn buscar w-25">
+          Registrar
+        </button>
       </div>
-      
     </form>
   );
 };

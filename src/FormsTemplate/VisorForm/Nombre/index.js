@@ -5,7 +5,7 @@ export const VisorNombre = ({ id, nombre, cambios, seccion }) => {
         <div className="w-50 me-auto">
           <div className="input-group input-group-sm">
             <span
-              className="input-group-text entradas fw-medium"
+              className="input-group-text entradas-template fw-medium"
               id="basic-addon1"
             >
               Titulo:

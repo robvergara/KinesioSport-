@@ -17,7 +17,7 @@ export const VisorSeccion = ({
             <div className="col-12 mb-4" key={"S" + i + s.titulo}>
               <div className="input-group mb-3 input-group-sm w-50">
                 <span
-                  className="input-group-text entradas w-10 fw-medium"
+                  className="input-group-text entradas-template w-10 fw-medium"
                   id="basic-addon1"
                 >
                   Seccion {i + 1}:

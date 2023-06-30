@@ -12,7 +12,7 @@ export const Forms=()=>{
     <>
       <div className="row">
 
-        <h3 className="my-4" key={layout.nombre}>{layout.nombre}</h3>
+        {/* <h3 className="my-4" key={layout.nombre}>{layout.nombre}</h3> */}
 
         {layout.body.map (sec => (
           <>
