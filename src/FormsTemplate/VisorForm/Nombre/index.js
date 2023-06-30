@@ -2,7 +2,7 @@ export const VisorNombre = ({ id, nombre, cambios, seccion }) => {
   return (
     <>
       <div className="col-12 d-flex">
-        <div className="w-100 pe-5">
+        <div className="w-50 me-auto">
           <div className="input-group input-group-sm">
             <span
               className="input-group-text entradas fw-medium"
@@ -29,7 +29,7 @@ export const VisorNombre = ({ id, nombre, cambios, seccion }) => {
         >
           <i className="fa-solid fa-plus"></i>
         </button>
-        <button className="btn btn-sm buscar fw-medium ">
+        <button className="btn btn-sm buscar fw-medium">
           <i className="fa-solid fa-floppy-disk"></i>
         </button>
       </div>

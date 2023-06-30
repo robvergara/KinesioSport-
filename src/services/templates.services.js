@@ -1,7 +1,7 @@
 import { get, post, patch, erase, put } from "./Network";
 
 export function getAllTemplates() {
-  return get("/plantillas");
+  return get("/plantilla");
 }
 
 export function updateTemplate(id, body) {

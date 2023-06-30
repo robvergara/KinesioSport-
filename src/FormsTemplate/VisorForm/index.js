@@ -14,7 +14,7 @@ export const VisorForm = ({ formulario }) => {
   }, [formulario]);
 
   const onSubmit = async (e) => {
-    console.log(editor);
+    // console.log(editor);
     let a = await updateTemplate(editor._id, editor);
   };
 
@@ -54,7 +54,7 @@ export const VisorForm = ({ formulario }) => {
       ...prevState,
       ["body"]: body,
     }));
-    console.log(editor);
+    // console.log(editor);
   };
 
   const addSeccion = (e) => {
@@ -81,6 +81,7 @@ export const VisorForm = ({ formulario }) => {
       tipo: "",
       opciones: [],
       valor: "",
+      lock: false,
     });
 
     setEditor((prevState) => ({
@@ -95,7 +96,7 @@ export const VisorForm = ({ formulario }) => {
     // console.log(e.currentTarget)
     // console.log(name)
     let seccion = Number(name.replace("borrar-seccion-", ""));
-    console.log('Se elimina la seccion' + seccion)
+    // console.log("Se elimina la seccion" + seccion);
     let body = [...editor.body];
     body = body.filter((n, i) => i !== seccion);
 
@@ -109,7 +110,7 @@ export const VisorForm = ({ formulario }) => {
     e.preventDefault();
     const { name } = e.currentTarget;
 
-    console.log(name.replace("borrar-seccion-", "").replace("-campo-", "_"));
+    // console.log(name.replace("borrar-seccion-", "").replace("-campo-", "_"));
     let [seccion, campo] = name
       .replace("borrar-seccion-", "")
       .replace("-campo-", "_")
