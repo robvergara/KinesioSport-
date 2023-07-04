@@ -1,6 +1,7 @@
 import { useReducer, useState, createContext, useEffect, useContext } from "react"
 import { createAdmission, getLayout, getOneHistory } from "../services/admissions.services";
 import { ModalContext } from "./modal.context";
+import { useAuth } from "./auth";
 // import {getPatientByCedula} from "../services/register.services"
 
 // import { useNavigate } from "react-router";
@@ -11,6 +12,7 @@ export const evaluationToken = "649c76f33143bd2e71cedad8"
 export const FormsContext = createContext();
 
 export const FormsProvider=({children})=>{
+  // const auth = useAuth()
   const {onInfo} = useContext(ModalContext)
   const [layout, setLayout] = useState()
   const [search, setSearch] = useState()
@@ -29,32 +31,6 @@ export const FormsProvider=({children})=>{
   const onEvaluation=()=>{dispatch({type: actionTypes.evaluation})}
   const onValoration=()=>{dispatch({type: actionTypes.valoration})}
   const onRegret=()=>{dispatch({type: actionTypes.regret})}
-
-
-  // console.log(state)
-  // const getTemplate = async()=>{
-  //   if(state.admission){
-  //     const template = await getLayout(admissionToken);
-  //     // console.log(template)
-  //     setLayout(template[0]);
-      
-  //   }
-  //   if(state.evaluation) {
-  //     const template = await getLayout(evaluationToken);
-  //     // console.log(template[0])
-  //     setLayout(template[0]);
-      
-  //   }
-  //   if(state.valoration) {
-  //     const template = await getLayout(valorationToken);
-  //     // console.log(template)
-  //     setLayout(template[0]);
-      
-  //   }
-  //   // console.log(state)
-  //   return
-  // }
-
 
   const onSubmit =async(e)=>{
     e.preventDefault()
@@ -95,7 +71,7 @@ export const FormsProvider=({children})=>{
       return secciones
     }
 
-
+    const usuario = JSON.parse(localStorage.getItem("kine_user"))
     const data = {
       body: Object.values(saveSections(section)),
       cedula_tipo:initialValues.cedula_tipo,
@@ -103,14 +79,16 @@ export const FormsProvider=({children})=>{
       nombre: layout.nombre,
       plantilla: layout._id,
       usuario_instancia: initialValues.nombre,
-      usuario_creacion: initialValues.user,
-      pago: true,
-      valor : "50000"
+      usuario_creacion: `${usuario.nombre} ${usuario.apellido}`,
+      pago: initialValues.pago,
+      // valor : initialValues.valor,
+      // pago:true,
+      valor: "50000"
   
     }
     // console.log(data)
     const res = await createAdmission(data)
-    // console.log(res)
+    console.log(res)
     onRegret();
     onInfo();
   }

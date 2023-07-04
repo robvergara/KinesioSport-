@@ -6,7 +6,9 @@ export const HomePage =()=>{
     <>
       <main className="shadow-box col-10 bg-secondary p-4">
 
-        <button className="btn btn-outline-warning btn-light px-5 mb-3">
+        <h2>Proximamente listado de citas</h2>
+
+        {/* <button className="btn btn-outline-warning btn-light px-5 mb-3">
           Salir
         </button>
 
@@ -55,7 +57,7 @@ export const HomePage =()=>{
 
             </div>
           </div>  
-        </div>
+        </div> */}
 
       </main>
     </>

@@ -6,7 +6,7 @@ import { Forms } from "../../ConfirmationsPage/Forms";
 import { InfoModal } from "../InfoModal";
 
 export const AdmissionModal = ({ show }) => {
-  const { onRegretModal, state: modalState, onInfo } = useContext(ModalContext);
+  const { onRegretModal, state: modalState } = useContext(ModalContext);
   const { onSubmit, state, layout, onRegret } = useContext(FormsContext);
 
   return (
@@ -38,15 +38,6 @@ export const AdmissionModal = ({ show }) => {
                       Cancelar
                     </button>
                   </div>
-                  {/* <button className="btn btn-outline-warning" type="submit">
-                    guardar
-                  </button>
-                  <button
-                    onClick={onRegret}
-                    className="btn btn-outline-warning"
-                  >
-                    Cancelar
-                  </button> */}
                 </>
               )}
             </form>

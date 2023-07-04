@@ -30,17 +30,17 @@ export const AppointmentSection=()=>{
       const addmissionList = list.filter(item=> item.plantilla === "649c74bd0c9afe310ec1a5b8");
       const lastAdmission = addmissionList[addmissionList.length - 1];
 
-      // console.log(addmissionList)
+      // console.log(addmissionList[addmissionList.length - 1])
 
       // console.log(lastAdmission.body
-      //   .find(seccion => seccion.titulo === "Datos Administrativos2")
+      //   .find(seccion => seccion.titulo === "Datos Administrativos")
       //   .campos.find(campo => campo.titulo === "Sesiones Ordenadas")
       //   .valor
       //   )
       
       if(addmissionList.length >= 1){
           setSessions(lastAdmission.body
-            .find(seccion => seccion.titulo === "Datos Administrativos2")
+            .find(seccion => seccion.titulo === "Datos Administrativos")
             .campos.find(campo => campo.titulo === "Sesiones Ordenadas")
             .valor
           );

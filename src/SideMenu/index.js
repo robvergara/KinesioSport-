@@ -19,14 +19,14 @@ export const SideMenu = () => {
           <ul className="nav nav-pills flex-column mb-auto p-2 mt-0">
           {auth.user && (
             <>
-              <li className="nav-item rounded-3 bnt-color-kine">
+              {/* <li className="nav-item rounded-3 bnt-color-kine">
                 <NavLink
                   className="nav-link align-item-center linkText m-1 boton-menu"
-                  to={`/`}
+                  to={`/admission`}
                 >
                   <i className="fa-solid fa-house me-2"></i> Inicio
                 </NavLink>
-              </li>
+              </li> */}
               {/* <li className="nav-item rounded-3 bnt-color-kine">
                 <NavLink
                   className="nav-link align-item-center linkText m-1 boton-menu"
@@ -45,15 +45,15 @@ export const SideMenu = () => {
                   Adminisiones
                 </NavLink>
               </li>
-              <li className="nav-item rounded-3 bnt-color-kine">
+              {/* <li className="nav-item rounded-3 bnt-color-kine">
                 <NavLink
                   className="nav-link align-item-center linkText m-1 boton-menu"
-                  to={`/`}
+                  to={`/admission`}
                 >
                   <i className="fa-solid fa-arrow-up-right-dots me-2"></i>
                   Evoluciones
                 </NavLink>
-              </li>
+              </li> */}
               {auth.user.status !== 2 && (
                 <>
                   <li className="nav-item rounded-3 bnt-color-kine">

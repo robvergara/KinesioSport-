@@ -12,6 +12,7 @@ export const ModalProvider =({children})=>{
   const onEdit=()=>dispatch({type:actionTypes.edit});
   const onCreatePatient=()=>dispatch({type:actionTypes.createPatient});
   const onRegretModal=()=>dispatch({type:actionTypes.regret});
+  const onPayment=()=>dispatch({type: actionTypes.payment})
 
   return(
     <ModalContext.Provider value={{
@@ -21,6 +22,7 @@ export const ModalProvider =({children})=>{
       onEdit,
       onRegretModal,
       onCreatePatient,
+      onPayment
     }}>
       {children}
     </ModalContext.Provider>
@@ -33,6 +35,7 @@ const initialState = {
   confirm:false,
   edit:false,
   createPatient:false,
+  payment: false,
 }
 
 const actionTypes ={
@@ -40,7 +43,8 @@ const actionTypes ={
   confirm: "confirm",
   edit:"edit",
   regret: "regret",
-  createPatient: "createPatient"
+  createPatient: "createPatient",
+  payment: "payment",
 }
 
 const reducerObject = (state, payload)=>({
@@ -50,6 +54,7 @@ const reducerObject = (state, payload)=>({
     confirm:false,
     edit:false,
     createPatient:false,
+    payment: false,
   },
   [actionTypes.confirm]:{
     ...state,
@@ -57,6 +62,7 @@ const reducerObject = (state, payload)=>({
     confirm:true,
     edit:false,
     createPatient:false,
+    payment: false,
   },
   [actionTypes.edit]:{
     ...state,
@@ -64,6 +70,7 @@ const reducerObject = (state, payload)=>({
     confirm:false,
     edit:true,
     createPatient:false,
+    payment: false,
   },
   [actionTypes.createPatient]:{
     ...state,
@@ -71,6 +78,15 @@ const reducerObject = (state, payload)=>({
     confirm:false,
     edit:false,
     createPatient: true,
+    payment: false,
+  },
+  [actionTypes.payment]:{
+    ...state,
+    info:false,
+    confirm:false,
+    edit:false,
+    createPatient: false,
+    payment: true,
   },
   [actionTypes.regret]:{
     ...initialState

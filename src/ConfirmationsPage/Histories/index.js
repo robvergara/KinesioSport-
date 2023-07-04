@@ -1,12 +1,22 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FormsContext } from "../../context/forms.context";
+import { ModalContext } from "../../context/modal.context";
 import { getAllHistories } from "../../services/admissions.services";
 import { NavLink } from "react-router-dom";
+import { PaymentModal } from "../../Modal/PaymentModal";
 // import { tabMenu } from "../Tabs";
 
 export const Histories = () => {
-  const { histories, setHistories, tabMenu, setTabMenu, initialValues } =
-    useContext(FormsContext);
+  const {state, onPayment} = useContext(ModalContext)
+  const [admissionData, setAdmissionData] = useState() 
+
+  const { 
+    histories, 
+    setHistories, 
+    tabMenu, 
+    setTabMenu, 
+    initialValues 
+  } = useContext(FormsContext);
   //  console.log(histories)
 
   const cedula = initialValues.cedula_numero;
@@ -30,6 +40,14 @@ export const Histories = () => {
     // console.log(data)
     setTabMenu(list);
   };
+
+  const showPaymentModal=(e, data)=>{
+    e.preventDefault();
+    // console.log(data);
+    setAdmissionData(data)
+    onPayment();
+  }
+
   return (
     <>
       {/* <h5>Historial de registro</h5> */}
@@ -41,39 +59,53 @@ export const Histories = () => {
                 {histories.map((history) => {
                   const date = history.date.substring(0, 10);
                   return (
-                    <li className="list-group-item p-1">
-                      <NavLink
-                        className="nav-link"
-                        onClick={() => viewLog(history._id)}
-                      >
-                        <div className="d-flex">
-                          <div className="flex-grow-1 align-self-center">
-                            {history.body[0].campos[0].valor.valor
-                              ? <b>{history.body[0].campos[0].valor.valor}</b>
-                              : <b>{history.body[0].campos[0].valor}</b>
-                            }
+                    <>
+                      {state.payment && (
+                        <>
+                          <PaymentModal data={admissionData} />
+                        </>
+                      )}
+
+                      <li className="list-group-item p-1">
+                        <div
+                          className="nav-link"
+                          onClick={() => viewLog(history._id)}
+                        >
+                          <div className="d-flex">
+                            <div className="flex-grow-1 align-self-center">
+                              {history.body[0].campos[0].valor.valor
+                                ? <b>{history.body[0].campos[0].valor.valor}</b>
+                                : <b>{history.body[0].campos[0].valor}</b>
+                              }
+                            </div>
+                            <div className='align-self-center'>{date}</div>
+                            <div className="ms-2">
+                              {history.pago ? (
+                                <>
+                                  <span 
+                                    className="badge badge-sm mb-0 text-sm flex-column justify-content-center pagado bg-gradient"
+                                  >
+                                    <i className="fa-solid fa-hand-holding-dollar"></i>
+                                  </span>
+                                </>
+                              ) : (
+                                <>
+                                <button 
+                                  onClick={(e)=>showPaymentModal(e,history)}
+                                  className="badge badge-sm mb-0 text-sm flex-column justify-content-center no-pagado bg-gradient"
+                                >
+                                <i className="fa-solid fa-sack-xmark"></i>
+                                  </button>
+                    
+                                </>
+                              )}
+                            </div>
                           </div>
-                          <div className='align-self-center'>{date}</div>
-                          <div className="ms-2">
-                            {history.pago ? (
-                              <>
-                                <span className="badge badge-sm mb-0 text-sm flex-column justify-content-center pagado bg-gradient">
-                                  <i className="fa-solid fa-hand-holding-dollar"></i>
-                                </span>
-                              </>
-                            ) : (
-                              <>
-                              <span className="badge badge-sm mb-0 text-sm flex-column justify-content-center no-pagado bg-gradient">
-                              <i className="fa-solid fa-sack-xmark"></i>
-                                </span>
-                  
-                              </>
-                            )}
-                          </div>
+                          {/* <b>{date}</b> */}
                         </div>
-                        {/* <b>{date}</b> */}
-                      </NavLink>
-                    </li>
+                      </li>
+
+                    </>
                   );
                 })}
               </ul>
