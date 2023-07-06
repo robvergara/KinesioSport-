@@ -6,7 +6,7 @@ import { useAuth } from "./auth";
 
 // import { useNavigate } from "react-router";
 export const admissionToken = "649c74bd0c9afe310ec1a5b8"
-export const valorationToken = "645915e11a36206c6d6d7e80"
+export const valorationToken = "649c76fb3143bd2e71cedada"
 export const evaluationToken = "649c76f33143bd2e71cedad8"
 
 export const FormsContext = createContext();
@@ -19,6 +19,7 @@ export const FormsProvider=({children})=>{
   const [initialValues, setInitialValues] = useState()
   const [section, setSection] = useState()
   const [histories, setHistories] = useState()
+  const [padreId, setPadreId] = useState()
   //ESTADOS PATA EL PESTAÑEADO
   const [tabMenu, setTabMenu] = useState([])
   const [tabList, setTabList] = useState([])
@@ -70,7 +71,7 @@ export const FormsProvider=({children})=>{
       }
       return secciones
     }
-
+    console.log(padreId)
     const usuario = JSON.parse(localStorage.getItem("kine_user"))
     const data = {
       body: Object.values(saveSections(section)),
@@ -81,14 +82,15 @@ export const FormsProvider=({children})=>{
       usuario_instancia: initialValues.nombre,
       usuario_creacion: `${usuario.nombre} ${usuario.apellido}`,
       pago: initialValues.pago,
-      // valor : initialValues.valor,
-      // pago:true,
-      valor: "50000"
+      valor: initialValues.valor,
+      padre_id:padreId,
+      // valor: "50000"
   
     }
     // console.log(data)
     const res = await createAdmission(data)
     console.log(res)
+    // setPadreId(null);
     onRegret();
     onInfo();
   }
@@ -122,6 +124,7 @@ export const FormsProvider=({children})=>{
         setTabList,
         setActiveTab,
         setDataTabs,
+        setPadreId,
         dataTabs, 
         activeTab, 
         tabList, 

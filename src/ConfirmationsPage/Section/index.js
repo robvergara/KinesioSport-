@@ -3,7 +3,7 @@ import { Field } from "../Field";
 import { FormsContext } from "../../context/forms.context";
 
 export const Section = ({ sec }) => {
-  // console.log(sec.campos)
+  // console.log(sec)
   const { setSection } = useContext(FormsContext);
   const [fields, setFields] = useState([]);
 

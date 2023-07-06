@@ -2,19 +2,17 @@ import { useContext, useEffect, useState } from "react";
 import { FormsContext } from "../../context/forms.context";
 import { ModalContext } from "../../context/modal.context";
 import { getAllHistories } from "../../services/admissions.services";
-import { NavLink } from "react-router-dom";
 import { PaymentModal } from "../../Modal/PaymentModal";
 // import { tabMenu } from "../Tabs";
 
-export const Histories = () => {
+export const Histories = ({setAdmissionId}) => {
   const {state, onPayment} = useContext(ModalContext)
   const [admissionData, setAdmissionData] = useState() 
 
+
   const { 
     histories, 
-    setHistories, 
-    tabMenu, 
-    setTabMenu, 
+    setHistories,  
     initialValues 
   } = useContext(FormsContext);
   //  console.log(histories)
@@ -22,6 +20,7 @@ export const Histories = () => {
   const cedula = initialValues.cedula_numero;
 
   useEffect(() => {
+    setAdmissionId(null)
     const getHistorial = async (cedula) => {
       const list = await getAllHistories(cedula);
       const admissionList = list.filter(
@@ -34,11 +33,9 @@ export const Histories = () => {
   }, [cedula]);
 
   const viewLog = (log) => {
-    // console.log(tabMenu);
-    const list = [...tabMenu];
-    list.push(log);
-    // console.log(data)
-    setTabMenu(list);
+    // console.log(log)
+    setAdmissionId(log)
+
   };
 
   const showPaymentModal=(e, data)=>{
@@ -69,10 +66,9 @@ export const Histories = () => {
                       <li className="list-group-item p-1">
                         <div
                           className="nav-link"
-                          onClick={() => viewLog(history._id)}
                         >
                           <div className="d-flex">
-                            <div className="flex-grow-1 align-self-center">
+                            <div onClick={() => viewLog(history._id)} className="flex-grow-1 align-self-center">
                               {history.body[0].campos[0].valor.valor
                                 ? <b>{history.body[0].campos[0].valor.valor}</b>
                                 : <b>{history.body[0].campos[0].valor}</b>
