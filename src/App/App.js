@@ -33,11 +33,18 @@ function App() {
                     <SideMenu />
 
                     <Routes>
-                      <Route path="/" element={
-                        <AuthRoute>
-                          <HomePage />
-                        </AuthRoute>
-                        } />
+                      <Route 
+                        path="/" 
+                        element={
+                          <>
+                            <ModalProvider>
+                              <FormsProvider>
+                                <ConfirmationPage />
+                              </FormsProvider>
+                            </ModalProvider>
+                          </>
+                        }
+                      />
 
                       {/* <Route path="/register" element={<RegisterPage />} /> */}
 

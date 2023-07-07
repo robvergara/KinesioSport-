@@ -1,12 +1,21 @@
 import { useContext, useEffect, useState } from "react"
-import {Button, Modal} from "react-bootstrap"
+import {Button, Form, Modal} from "react-bootstrap"
 import { ModalContext } from "../../context/modal.context"
 import { InfoModal } from "../InfoModal";
+import { updatePayment } from "../../services/admissions.services";
 
 export const PaymentModal=({data})=>{
+  const [paymentData, setPaymentData]= useState(data)
   const {onRegretModal, state, onInfo} = useContext(ModalContext);
   // console.log(data)
 
+  const handleChange=(e)=>{
+    const{name, value} = e.target;
+    setPaymentData((prevState)=>({
+      ...prevState,
+      [name]:value
+    }))
+  }
   useEffect(() => {
 
   }, []);
@@ -14,7 +23,8 @@ export const PaymentModal=({data})=>{
   const onSubmit=(e)=>{
     e.preventDefault();
     const pago = !data.pago
-    console.log({...data , pago})
+    // console.log({...data , pago})
+    updatePayment(data._id, {paymentData, pago})
     onInfo()
   };
 
@@ -31,7 +41,24 @@ export const PaymentModal=({data})=>{
           <Modal.Title>Realizar pago</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>El total a pagar es: {data.valor}</p>
+          <Form.Group
+            className="mb-3"
+            controlId="exampleForm.ControlInput1"
+          >
+            <div className="input-group mb-3 input-group-sm">
+              <span className="input-group-text entradas" id="basic-addon1">
+                Monto:
+              </span>
+              <input
+                type="text"
+                className="form-control"
+                name="valor"
+                id="valor"
+                onChange={handleChange}
+                placeholder="coloque el monto a pagar"
+              />
+            </div>
+          </Form.Group>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={onSubmit} >Pagar</Button>

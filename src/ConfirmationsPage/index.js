@@ -11,6 +11,7 @@ import { AppointmentSection } from "./AppointmentSection";
 import { getLayout } from "../services/admissions.services";
 
 export const ConfirmationPage = () => {
+  const [admissionId, setAdmissionId] = useState()
   const auth = useAuth();
   const {
     initialValues,
@@ -32,7 +33,7 @@ export const ConfirmationPage = () => {
       }
       if(state.evaluation) {
         const template = await getLayout(evaluationToken);
-        console.log(template)
+        // console.log(template)
         setLayout(template);
         
       }
@@ -168,7 +169,7 @@ export const ConfirmationPage = () => {
                     <div className="card-body p-2 shadow rounded border-0 bg-transparent">
                       {initialValues && (
                         <>
-                          <Histories />
+                          <Histories setAdmissionId={setAdmissionId} />
                         </>
                       )}
                     </div>
@@ -195,9 +196,9 @@ export const ConfirmationPage = () => {
                       </div>
                     </div>
                     <div className="card-body p-3 pb-2 shadow rounded border-0 bg-transparent">
-                      {initialValues && (
+                      {admissionId && (
                         <>
-                          <AppointmentSection/>
+                          <AppointmentSection id={admissionId} />
                         </>
                       )}
                     </div>

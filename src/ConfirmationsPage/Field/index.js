@@ -3,6 +3,7 @@ export const Field = ({ campo, handleChange }) => {
     <>
       {campo.tipo != "texto-grande" ? (
         <>
+        
           <form className="col-6 mb-1">
             <div className="input-group mb-3 input-group-sm" key={campo.titulo}>
               
