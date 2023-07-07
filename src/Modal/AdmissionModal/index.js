@@ -31,10 +31,10 @@ export const AdmissionModal = ({ show }) => {
                   {/* COMPONENTE QUE RENDERIZA EL FORMULARIO DE ACUERDO AL JSON ESTIPULADO EN EL BACKEND QUE SE LE ENVIA EN EL ATRIBUTO "LAYOUT" */}
                   <Forms layout={layout} />
                   <div className="text-center d-flex justify-content-center">
-                    <button type="submit" className="btn buscar me-2 fw-medium">
+                    <button type="submit" className="btn buscar me-2 fw-medium btn-sm">
                       Registrar
                     </button>
-                    <button onClick={onRegret} className="btn buscar ms-2 fw-medium">
+                    <button onClick={onRegret} className="btn buscar ms-2 fw-medium btn-sm">
                       Cancelar
                     </button>
                   </div>

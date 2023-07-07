@@ -37,7 +37,7 @@ export const PaymentModal=({data})=>{
         keyboard={false}
         centered
       >
-        <Modal.Header>
+        <Modal.Header className="fondo-kinesio text-white">
           <Modal.Title>Realizar pago</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -45,7 +45,7 @@ export const PaymentModal=({data})=>{
             className="mb-3"
             controlId="exampleForm.ControlInput1"
           >
-            <div className="input-group mb-3 input-group-sm">
+            <div className="input-group my-3 input-group-sm">
               <span className="input-group-text entradas" id="basic-addon1">
                 Monto:
               </span>
@@ -61,8 +61,8 @@ export const PaymentModal=({data})=>{
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={onSubmit} >Pagar</Button>
-          <Button onClick={onRegretModal}>Cancelar</Button>
+          <Button onClick={onSubmit} className='btn-sm buscar border-0'>Pagar</Button>
+          <Button onClick={onRegretModal} className='btn-sm buscar border-0'>Cancelar</Button>
         </Modal.Footer>
       </Modal>
 

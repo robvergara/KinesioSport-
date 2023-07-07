@@ -96,7 +96,7 @@ export const ConfirmationPage = () => {
                 <div className="col-12 pt-2 mb-4">
                   <div className="card border-0 shadow">
                     {/* CABECERA DE DATOS PERSONALES */}
-                    <div className="card-header p-2 pt-3 border-0 bg-transparent">
+                    <div className="card-header p-2 pt-2 border-0 bg-transparent">
                       <div className="fondo-kinesio text-center border-radius-xl mt-n4 position-absolute rounded-3 shadow ms-3 ">
                         <i className="fa-solid fa-hospital-user text-white m-3"></i>
                       </div>
@@ -108,7 +108,7 @@ export const ConfirmationPage = () => {
                           </p>
                           {initialValues &&
                             <button 
-                              className="btn bg-gradient buscar"
+                              className="btn bg-gradient buscar btn-sm"
                               disabled={!initialValues? "true" : ""} 
                               onClick={()=> setEditPD(true)}
                             >
@@ -139,9 +139,9 @@ export const ConfirmationPage = () => {
                 <div className="col-12 pt-3 h-100">
 
                   {/* SECCION HISTORIAL */}
-                  <div className="card border-0 shadow">
+                  <div className="card border-0 shadow mt-2">
                     {/* CABECERA DE LA SECCION */}
-                    <div className="card-header p-2 pt-3 border-0 bg-transparent">
+                    <div className="card-header p-2 pt-2 border-0 bg-transparent">
                       <div className="fondo-kinesio text-center border-radius-xl mt-n4 position-absolute rounded-3 shadow ms-3 ">
                         <i className="fa-solid fa-file-medical text-white m-3"></i>
                       </div>
@@ -154,7 +154,7 @@ export const ConfirmationPage = () => {
                           {initialValues &&
 
                             <button 
-                              className="btn bg-gradient buscar" 
+                              className="btn bg-gradient buscar btn-sm" 
                               disabled={!initialValues? "true" : ""} 
                               onClick={()=> {onAdmission()}}>
 
@@ -185,7 +185,7 @@ export const ConfirmationPage = () => {
               <div className="row h-100 p-0 m-0">
                 <div className="col-12 pt-2 pe-3">
                   <div className="card border-0 shadow h-100 ">
-                    <div className="card-header p-2 pt-3 border-0 bg-transparent">
+                    <div className="card-header p-2 pt-2 border-0 bg-transparent">
                       <div className="fondo-kinesio text-center border-radius-xl mt-n4 position-absolute rounded-3 shadow ms-3 ">
                         <i className="fa-regular fa-rectangle-list text-white m-3"></i>
                       </div>

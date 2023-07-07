@@ -127,3 +127,20 @@ input[type=file]::file-selector-button {
   display: none
   /* Add properties here */
 }
+
+.citas-admision-header{
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.citas-admision-body{
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.citas-admision-header-no-pagado {
+  background-color: #dc3545;
+  color: white;
+  font-size: 11px;
+  width: 35px;
+}

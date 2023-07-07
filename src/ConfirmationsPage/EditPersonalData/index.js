@@ -247,13 +247,13 @@ export const EditPersonalData = ({ setEditPD }) => {
         {/* BOTONES DE ACCION */}
         <div className="row text-center">
           <div className="col-6">
-            <button className="btn buscar px-5 mb-3" type="submit">
+            <button className="btn buscar px-5 mb-3 btn-sm" type="submit">
               Actualizar
             </button>
           </div>
           <div className="col-6">
             <button
-              className="btn buscar px-5 mb-3"
+              className="btn buscar px-5 mb-3 btn-sm"
               onClick={() => setEditPD(false)}
             >
               Cancelar
