@@ -36,13 +36,14 @@ export const SideMenu = () => {
                   Registro
                 </NavLink>
               </li> */}
+              
               <li className="nav-item rounded-3 bnt-color-kine">
                 <NavLink
                   className="nav-link align-item-center linkText m-1 boton-menu"
                   to={`/admission`}
                 >
                   <i className="bi bi-clipboard2-minus me-2"></i>
-                  Adminisiones
+                  {auth.user.status === 2 ? <>Citas</>:<>Admisiones</>}
                 </NavLink>
               </li>
               {/* <li className="nav-item rounded-3 bnt-color-kine">
