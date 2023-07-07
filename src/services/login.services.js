@@ -1,12 +1,13 @@
 import { api } from "../services/Network";
 
 export async function getLogin(body) {
-  console.log(body)
+  // console.log(body)
   try {
     const res = await api.post("/login",{
       usuario: body.usuario,
       contrasena: body.password
     });
+    res.timestamp = new Date()
     // console.log(res)
     if (res.data.token) {
       localStorage.setItem("kine_user", JSON.stringify(res.data));
@@ -18,16 +19,19 @@ export async function getLogin(body) {
   }
 }
 
-// export function getLogin(usuario) {
-//   post("/login",{
-//     usuario: usuario.usuario,
-//     contrasena: usuario.password
-//   });
-//   console.log()
-// }
-
 export const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem("kine_user"));
+  const data = JSON.parse(localStorage.getItem("kine_user"))
+  const date = new Date()
+  if(data){
+    if((date - data.timestamp)>(3*60*60*1000)){
+      localStorage.removeItem("kine_user")
+      return null
+    } else{
+      return JSON.parse(localStorage.getItem("kine_user"));
+    }
+  } else{
+    return null
+  }
 };
 
 

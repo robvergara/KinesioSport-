@@ -66,33 +66,63 @@ export const AppointmentSection=({id})=>{
   return(
     <>
 
-      <button 
-        className="btn bg-gradient buscar mb-3" 
-        onClick={()=> {onEvaluation()}}
-        disabled={
-          evaluaciones?
-            sessions <= evaluaciones.length || !admission.pago
-            ? true 
-            : false
-          : false
-        }
-      >
-        Nueva evaluación
-      </button>
+      {admission && (
+        <>
+          <button 
+            className="btn bg-gradient buscar mb-3" 
+            onClick={()=> {onEvaluation()}}
+            disabled={
+              evaluaciones?
+                sessions <= evaluaciones.length || !admission.pago
+                ? true 
+                : false
+              : false
+            }
+          >
+            Nueva evaluación
+          </button>
 
-      <button 
-        className="btn bg-gradient buscar mb-3" 
-        onClick={()=> {onValoration()}}
-        disabled={
-          valoracion?
-            1 <= valoracion.length || !admission.pago
-            ? true 
-            : false
-          : false
-        }
-      >
-        Nueva valoración
-      </button>
+          {admission.body
+                .find(seccion => seccion.titulo === "Datos Administrativos")
+                .campos.find(campo => campo.titulo === "Servicio")
+                .valor == "FISIOTERAPIA"
+            ? (
+              <>
+                <button 
+                  className="btn bg-gradient buscar mb-3" 
+                  onClick={()=> {onValoration()}}
+                  disabled={
+                    valoracion?
+                      sessions <= valoracion.length || !admission.pago
+                      ? true 
+                      : false
+                    : false
+                  }
+                >
+                  Nueva valoración
+                </button>
+              </>
+            )
+            : (
+
+              <button 
+                className="btn bg-gradient buscar mb-3" 
+                onClick={()=> {onValoration()}}
+                disabled={
+                  valoracion?
+                    1 <= valoracion.length || !admission.pago
+                    ? true 
+                    : false
+                  : false
+                }
+              >
+                Nueva valoración
+              </button>
+            )
+          }
+        </>
+      )}
+
 
       {evaluaciones &&(
         <>
