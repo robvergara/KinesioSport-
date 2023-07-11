@@ -7,10 +7,11 @@ export async function getLogin(body) {
       usuario: body.usuario,
       contrasena: body.password
     });
-    res.timestamp = new Date()
-    // console.log(res)
+    const timestamp = new Date()
+    console.log(timestamp)
     if (res.data.token) {
-      localStorage.setItem("kine_user", JSON.stringify(res.data));
+      const user = res.data
+      localStorage.setItem("kine_user", JSON.stringify({user, timestamp}));
     }
     console.log(res.data)
     return res.data;
@@ -27,7 +28,7 @@ export const getCurrentUser = () => {
       localStorage.removeItem("kine_user")
       return null
     } else{
-      return JSON.parse(localStorage.getItem("kine_user"));
+      return JSON.parse(localStorage.getItem("kine_user")).user;
     }
   } else{
     return null
@@ -36,7 +37,7 @@ export const getCurrentUser = () => {
 
 
 export function authHeader() {
-  const user = JSON.parse(localStorage.getItem("kine_user"));
+  const user = JSON.parse(localStorage.getItem("kine_user")).user;
 
   if (user && user.token) {
     return { Authorization: `Bearer ${user.token}` };
