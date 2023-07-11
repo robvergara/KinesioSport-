@@ -98,22 +98,74 @@ export const AppointmentSection = ({ id }) => {
                       {valoracion.length} / 1
                     </p>
                     {admission.body[0].campos[0].valor == "FISIO TERAPIA" && (
-                    <>
-                      <p className="my-auto col-6">
-                        <strong>Evolución: </strong>
-                        {valoracion.length} /{" "}
-                        {admission.body[0].campos[3].valor}
-                      </p>
-                    </>
-                  )}
+                      <>
+                        <p className="my-auto col-6">
+                          <strong>Evolución: </strong>
+                          {valoracion.length} /{" "}
+                          {admission.body[0].campos[3].valor}
+                        </p>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
             </>
           )}
 
-          <button
-            className="btn bg-gradient buscar mb-3"
+          <div>
+            <button
+              className="btn bg-gradient buscar mb-3 btn-sm me-2"
+              onClick={() => {
+                onValoration();
+              }}
+              disabled={
+                valoracion
+                  ? sessions <= valoracion.length || !admission.pago
+                    ? true
+                    : false
+                  : false
+              }
+            >
+              + Valoración
+            </button>
+            {admission.body[0].campos[0].valor == "FISIO TERAPIA" && (
+              <>
+                <button
+                  className="btn bg-gradient buscar mb-3 btn-sm"
+                  onClick={() => {
+                    onEvaluation();
+                  }}
+                  disabled={
+                    valoracion
+                      ? sessions <= valoracion.length || !admission.pago
+                        ? true
+                        : false
+                      : false
+                  }
+                >
+                  + Evolución
+                </button>
+              </>
+            )}
+
+            {/* <button
+              className="btn bg-gradient buscar mb-3 btn-sm"
+              onClick={() => {
+                onEvaluation();
+              }}
+              disabled={
+                valoracion
+                  ? sessions <= valoracion.length || !admission.pago
+                    ? true
+                    : false
+                  : false
+              }
+            >
+              + Evolución
+            </button> */}
+          </div>
+          {/* <button
+            className="btn bg-gradient buscar mb-3 btn-sm"
             onClick={() => {
               onEvaluation();
             }}
@@ -126,15 +178,15 @@ export const AppointmentSection = ({ id }) => {
             }
           >
             Nueva evaluación
-          </button>
+          </button> */}
 
-          {admission.body
+          {/* {admission.body
             .find((seccion) => seccion.titulo === "Datos Administrativos")
             .campos.find((campo) => campo.titulo === "Servicio").valor ==
-          "FISIOTERAPIA" ? (
+          "FISIO TERAPIA" ? (
             <>
               <button
-                className="btn bg-gradient buscar mb-3"
+                className="btn bg-gradient buscar mb-3 btn-sm"
                 onClick={() => {
                   onValoration();
                 }}
@@ -151,7 +203,7 @@ export const AppointmentSection = ({ id }) => {
             </>
           ) : (
             <button
-              className="btn bg-gradient buscar mb-3"
+              className="btn bg-gradient buscar mb-3 btn-sm"
               onClick={() => {
                 onValoration();
               }}
@@ -165,7 +217,7 @@ export const AppointmentSection = ({ id }) => {
             >
               Nueva valoración
             </button>
-          )}
+          )} */}
         </>
       )}
 
